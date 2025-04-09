@@ -1,0 +1,494 @@
+/* Enhanced main styles to match simulator and benchmark aesthetics */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 28px;
+    text-align: center;
+    color: #2c3e50;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+/* Header area */
+#main-header {
+    background: linear-gradient(90deg, #2c3e50, #4b6cb7);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#main-header h1 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+
+.main-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Controls section */
+.controls {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 200px;
+}
+
+/* Form controls */
+select, button, input {
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    outline: none;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+select:focus, input:focus {
+    border-color: #4b6cb7;
+    box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.1);
+}
+
+label {
+    font-weight: 500;
+    color: #444;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Button styling */
+button {
+    background: #4b6cb7;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover {
+    background: #3a5a9c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+button.success {
+    background: #2ecc71;
+}
+
+button.success:hover {
+    background: #27ae60;
+}
+
+button.danger {
+    background: #e74c3c;
+}
+
+button.danger:hover {
+    background: #c0392b;
+}
+
+button.secondary {
+    background: #7c8da5;
+}
+
+button.secondary:hover {
+    background: #6c7c95;
+}
+
+/* SVG map area */
+svg {
+    width: calc(100% - 40px);
+    height: 65vh;
+    background-color: white;
+    border-radius: 8px;
+    margin: 0 20px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Node and link styling */
+.node {
+    fill: #90CAF9;
+    stroke: #2c3e50;
+    stroke-width: 2px;
+    transition: fill 0.3s;
+}
+
+.node:hover {
+    fill: #64B5F6;
+}
+
+.node-label {
+    font-size: 12px;
+    font-weight: bold;
+    fill: #333;
+    pointer-events: none;
+}
+
+.link {
+    stroke: #bbb;
+    stroke-width: 2px;
+}
+
+.edge-label {
+    font-size: 11px;
+    fill: #777;
+    text-anchor: middle;
+}
+
+.transporter {
+    cursor: pointer;
+    transition: all 0.3s;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+}
+
+.transporter:hover {
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+/* Simulation clock */
+#sim-clock {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: monospace;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Log panel */
+#logPanel {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 0 20px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#logPanel h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+#logList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 13px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+#logList li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    line-height: 1.4;
+}
+
+#logList li:last-child {
+    border-bottom: none;
+}
+
+/* Request form */
+.request-form {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 20px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: end;
+}
+
+.request-form h3 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.request-form button {
+    margin-top: 5px;
+}
+
+/* Transport table */
+#transportTableContainer {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 0 20px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+#toggleTableBtn {
+    margin: 0 20px;
+}
+
+.transport-table {
+    width: 100%;
+}
+
+.transport-table h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#transportTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#transportTable th, #transportTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+#transportTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+#transportTable tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Status indicators */
+.status-pending {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.status-ongoing {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.status-running {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.status-stopped {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .request-form {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    svg {
+        height: 50vh;
+    }
+}
+
+#main-header {
+  background: linear-gradient(90deg, #2c3e50, #4b6cb7);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#main-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+}
+
+.main-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Add these styles to your existing CSS file */
+
+/* Cluster related elements */
+.cluster-node {
+  cursor: pointer;
+  transition: fill 0.2s ease-in-out;
+}
+
+.cluster-node:hover {
+  fill-opacity: 0.8;
+  stroke-width: 3px;
+}
+
+.cluster-link {
+  stroke-dasharray: 5, 5;
+}
+
+.cluster-label {
+  pointer-events: none;
+}
+
+/* Cluster controls */
+#clusterControls, #clusterControlsGroup {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#clusterControls label, #clusterControlsGroup label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.cluster-stats {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+#back-button-group {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+#back-button-group:hover {
+  opacity: 0.8;
+}
+
+/* View mode toggle button */
+#toggleViewModeBtn {
+  margin-top: 10px;
+  background-color: #4b6584;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#toggleViewModeBtn:hover {
+  background-color: #3c5270;
+}
+
+/* Control panel container */
+.control-panel {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Transporters */
+.transporter {
+  transition: cx 0.5s ease-out, cy 0.5s ease-out;
+}
+
+.transporter-label {
+  transition: x 0.5s ease-out, y 0.5s ease-out;
+  pointer-events: none;
+}
+
+/* Apply button flash effect */
+.btn-flash {
+  animation: button-flash 0.5s;
+}
+
+@keyframes button-flash {
+  0% { background-color: #4b6584; }
+  50% { background-color: #5dade2; }
+  100% { background-color: #4b6584; }
+}

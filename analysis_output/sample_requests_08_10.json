@@ -1,0 +1,62 @@
+[
+  {
+    "origin": "R\u00f6ntgen Norr rum S16",
+    "destination": "AKOM team 3 OBS:en",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 18 \u00d6ron N\u00e4sa Hals",
+    "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 54 Onkologi",
+    "destination": "KFU Klinisk Fysiologi Ultraljud",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen Plan 01 rum s18",
+    "destination": "Neurokirurgi Inskrivning",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 25 Thoraxkirurgi",
+    "destination": "R\u00f6ntgen S\u00f6der rum S4",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 15/28 Ortopedi",
+    "destination": "Operation 1",
+    "transport_type": "stretcher",
+    "urgent": true
+  },
+  {
+    "origin": "Cystoskopi Urologmottagningen",
+    "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 141 Hematologi",
+    "destination": "EEG - Klinisk Neurofysiologimott.",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen S\u00f6der rum S3",
+    "destination": "Avd 141 Hematologi",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen S\u00f6der rum S6",
+    "destination": "Avd 30 Urologi",
+    "transport_type": "stretcher",
+    "urgent": false
+  }
+]

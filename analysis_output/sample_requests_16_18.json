@@ -1,0 +1,62 @@
+[
+  {
+    "origin": "Avd 15/28 Ortopedi",
+    "destination": "R\u00f6ntgen Norr rum S11",
+    "transport_type": "wheelchair",
+    "urgent": true
+  },
+  {
+    "origin": "Nuklearmedicin Klin Fys",
+    "destination": "Avd 93 HIA Hj\u00e4rtintensiv",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "Dag-UVA avdelning 95B",
+    "destination": "Avd 132 Kirurgi",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 12 Thoraxkirurgi",
+    "destination": "R\u00f6ntgen Norr rum S12",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "AKOM akutteam 4",
+    "destination": "R\u00f6ntgen Norr rum S11",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "UVA avdelning 95A",
+    "destination": "Avd 136 Kirurgi",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 67 Gynekologi",
+    "destination": "Operation 1",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 115 Reumatologi",
+    "destination": "R\u00f6ntgen Norr rum S12",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 115 Reumatologi",
+    "destination": "R\u00f6ntgen Norr rum S11",
+    "transport_type": "stretcher",
+    "urgent": true
+  },
+  {
+    "origin": "R\u00f6ntgen Norr rum S15",
+    "destination": "AKOM akutteam 4",
+    "transport_type": "stretcher",
+    "urgent": false
+  }
+]

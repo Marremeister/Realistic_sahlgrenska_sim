@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hospital Transport Simulator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <!-- Add hospital-transport-utils.js before simulator.js -->
+  <script src="{{ url_for('static', filename='js/hospital-transport-utils.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/simulator.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="sim-header">
+  <h1>🏥 Hospital Transport Simulator</h1>
+  <div id="sim-clock">⏱️ 00:00:00</div>
+  <div class="header-links">
+    <a href="/playground" class="back-button">🎮 Playground</a>
+    <a href="/benchmark" class="back-button">📊 Benchmark</a>
+    <a href="/" class="back-button">🏠 Home</a>
+  </div>
+</div>
+
+  <div class="sim-container" id="simulator-container">
+    <div class="sim-sidebar">
+      <div class="panel">
+        <h3><i class="fas fa-cogs"></i> Simulation Settings</h3>
+        <div class="form-group">
+          <label for="numTransporters">Number of Transporters:</label>
+          <input type="number" id="numTransporters" min="1" max="10" value="3">
+        </div>
+
+        <div class="form-group">
+          <label for="requestInterval">Request Interval (sec):</label>
+          <input type="number" id="requestInterval" min="1" max="60" value="10">
+        </div>
+
+        <div class="form-group">
+          <label for="strategySelect">Assignment Strategy:</label>
+          <select id="strategySelect">
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+
+        <button id="applyConfigBtn" class="btn primary" onclick="applySimulatorConfig()">
+          <i class="fas fa-check"></i> Apply Config
+        </button>
+
+        <div id="currentConfig" class="config-indicator">
+          Configuration not yet applied
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><i class="fas fa-play-circle"></i> Simulation Controls</h3>
+        <div class="sim-stats">
+          <div class="stat-box">
+            <span class="stat-label">Transporters</span>
+            <span id="activeTransporters" class="stat-value">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Pending</span>
+            <span id="pendingRequests" class="stat-value">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Completed</span>
+            <span id="completedRequests" class="stat-value">0</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Simulation Status: <span id="simulationStatus" class="status-stopped">Stopped</span></label>
+        </div>
+
+        <div class="btn-group">
+          <button id="startSimulationBtn" class="btn success" onclick="startSimulation()">
+            <i class="fas fa-play"></i> Start Simulation
+          </button>
+          <button id="stopSimulationBtn" class="btn danger" onclick="stopSimulation()">
+            <i class="fas fa-stop"></i> Stop Simulation
+          </button>
+        </div>
+
+        <div class="debug-controls">
+          <button class="btn small" onclick="debugTransporters()">
+            <i class="fas fa-bug"></i> Debug Transporters
+          </button>
+          <button class="btn small" onclick="refreshAllTransporters()">
+            <i class="fas fa-sync"></i> Refresh Transporters
+          </button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><i class="fas fa-eye"></i> Visualization Options</h3>
+        <div class="form-group">
+          <label for="viewModeSelect">View Mode:</label>
+          <select id="viewModeSelect" class="form-select" onchange="transportSystem.ui.changeViewMode(this.value)">
+            <option value="detailed">Detailed View</option>
+            <option value="clustered">Clustered View</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="clusterMethodGroup" style="display:none;">
+          <label for="clusterMethodSelect">Clustering Method:</label>
+          <select id="clusterMethodSelect" class="form-select" onchange="transportSystem.ui.applyClusterMethod(this.value)">
+            <option value="department_type">By Department Type</option>
+            <option value="kmeans">K-Means Clustering</option>
+            <option value="hierarchical">Hierarchical Clustering</option>
+          </select>
+        </div>
+
+        <div id="clusterInfo" class="cluster-info" style="display:none;">
+          <div class="info-item">
+            <span class="info-label">Clusters:</span>
+            <span id="clusterCount" class="info-value">0</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Method:</span>
+            <span id="currentClusterMethod" class="info-value">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3><i class="fas fa-clipboard-list"></i> Simulation Log</h3>
+        <div class="sim-log">
+          <ul id="logList"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-main">
+      <div class="hospital-view">
+        <svg id="hospitalMap" viewBox="-100 -100 1400 1000"></svg>
+      </div>
+
+      <div class="transport-table-container" id="transportTableContainer">
+        <h3>
+          <span><i class="fas fa-table"></i> Transport Status</span>
+          <button id="refreshTableBtn" class="btn small" onclick="loadTransportTable()">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+        </h3>
+        <table id="transportTable">
+          <thead>
+            <tr>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>Type</th>
+              <th>Urgent</th>
+              <th>Transporter</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/simulator.js') }}"></script>
+</body>
+</html>

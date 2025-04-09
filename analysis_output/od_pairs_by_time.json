@@ -1,0 +1,410 @@
+{
+  "08-12": [
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.011863183720594602
+    },
+    {
+      "origin": "Avd 12 Thoraxkirurgi",
+      "destination": "R\u00f6ntgen S\u00f6der rum S4",
+      "probability": 0.011632270168855536
+    },
+    {
+      "origin": "Kirurgmottagningen Dagv\u00e5rd",
+      "destination": "Operation 1",
+      "probability": 0.010997257901573099
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.010246788858421129
+    },
+    {
+      "origin": "Avd 25 Thoraxkirurgi",
+      "destination": "R\u00f6ntgen S\u00f6der rum S4",
+      "probability": 0.009554048203203925
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 31 Plastik dagv\u00e5rd",
+      "probability": 0.009063356905758407
+    },
+    {
+      "origin": "Str\u00e5lbehandling Rum 4",
+      "destination": "Avd 54 Onkologi",
+      "probability": 0.007706739789291384
+    },
+    {
+      "origin": "Cystoskopi Urologmottagningen",
+      "destination": "Operation 4",
+      "probability": 0.007389233655650166
+    },
+    {
+      "origin": "R\u00f6ntgen S\u00f6der rum S4",
+      "destination": "Avd 12 Thoraxkirurgi",
+      "probability": 0.007360369461682783
+    },
+    {
+      "origin": "Avd 54 Onkologi",
+      "destination": "Str\u00e5lbehandling Rum 4",
+      "probability": 0.006407851060759129
+    },
+    {
+      "origin": "Avd 31 Plastik dagv\u00e5rd",
+      "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.006321258478856978
+    },
+    {
+      "origin": "R\u00f6ntgen S\u00f6der rum S4",
+      "destination": "Avd 25 Thoraxkirurgi",
+      "probability": 0.006176937509020061
+    },
+    {
+      "origin": "Avd 15/28 Ortopedi",
+      "destination": "R\u00f6ntgen S\u00f6der rum S5",
+      "probability": 0.006148073315052677
+    },
+    {
+      "origin": "Avd 18 \u00d6ron N\u00e4sa Hals",
+      "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.0060614807331505266
+    },
+    {
+      "origin": "AKOM akutteam 1",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.00600375234521576
+    },
+    {
+      "origin": "KFU Klinisk Fysiologi Ultraljud",
+      "destination": "Avd 91 MAVA",
+      "probability": 0.00600375234521576
+    },
+    {
+      "origin": "Kirurgmottagningen Dagv\u00e5rd",
+      "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.005772838793476692
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.005628517823639775
+    },
+    {
+      "origin": "Avd 25 Thoraxkirurgi",
+      "destination": "R\u00f6ntgen Norr rum S12",
+      "probability": 0.005108962332226873
+    },
+    {
+      "origin": "Avd 15/28 Ortopedi",
+      "destination": "Operation 8",
+      "probability": 0.005080098138259489
+    }
+  ],
+  "12-17": [
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.018339899470180682
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.01383417108182765
+    },
+    {
+      "origin": "AKOM akutteam 1",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.013290766653081557
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.01025675859258253
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 31 Plastik dagv\u00e5rd",
+      "probability": 0.008264275687180184
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 18 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.007652945704840828
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 132 Kirurgi",
+      "probability": 0.00697369016890821
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 136 Kirurgi",
+      "probability": 0.006317076484173346
+    },
+    {
+      "origin": "KFU Klinisk Fysiologi Ultraljud",
+      "destination": "Avd 91 MAVA",
+      "probability": 0.006294434632975592
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 15/28 Ortopedi",
+      "probability": 0.0057057465018339895
+    },
+    {
+      "origin": "Str\u00e5lbehandling Rum 4",
+      "destination": "Avd 54 Onkologi",
+      "probability": 0.005615179097042974
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S15",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.005547253543449713
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "Avd 132 Kirurgi",
+      "probability": 0.005094416519494634
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "Avd 137 Kirurgi",
+      "probability": 0.005049132817099126
+    },
+    {
+      "origin": "KFU Klinisk Fysiologi Ultraljud",
+      "destination": "Avd 135 Stroke",
+      "probability": 0.004935923561110356
+    },
+    {
+      "origin": "Avd 54 Onkologi",
+      "destination": "Str\u00e5lbehandling Rum 4",
+      "probability": 0.004845356156319341
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 14 Plastik",
+      "probability": 0.004777430602726079
+    },
+    {
+      "origin": "Avd 91 MAVA",
+      "destination": "KFU Klinisk Fysiologi Ultraljud",
+      "probability": 0.004754788751528325
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 136 Kirurgi",
+      "probability": 0.004754788751528325
+    },
+    {
+      "origin": "AKOM team 3 OBS:en",
+      "destination": "Avd 34 Geriatrik",
+      "probability": 0.004528370239550786
+    }
+  ],
+  "17-22": [
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.0644122383252818
+    },
+    {
+      "origin": "AKOM akutteam 1",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.04616210413311862
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.0440150295222759
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.03292181069958848
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S15",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.02021828591876901
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S15",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.015745213812846662
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "Avd 132 Kirurgi",
+      "probability": 0.013359575356354745
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 15/28 Ortopedi",
+      "probability": 0.01258424285799487
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "Avd 137 Kirurgi",
+      "probability": 0.011928192282459593
+    },
+    {
+      "origin": "AKOM team 3 OBS:en",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.010675732092801336
+    },
+    {
+      "origin": "Operation 4 Postop",
+      "destination": "Avd 30 Urologi",
+      "probability": 0.010079322478678356
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 136 Kirurgi",
+      "probability": 0.010019681517266059
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S11",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.009900399594441462
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 15/28 Ortopedi",
+      "probability": 0.008647939404783206
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM team 3 OBS:en",
+      "probability": 0.008469016520546312
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "R\u00f6ntgen Norr rum S15",
+      "probability": 0.008051529790660225
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 138 K\u00e4rlkirurgi",
+      "probability": 0.008051529790660225
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S11",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.007872606906423331
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 132 Kirurgi",
+      "probability": 0.007514761137949544
+    },
+    {
+      "origin": "UVA avdelning 95A",
+      "destination": "Avd 132 Kirurgi",
+      "probability": 0.007455120176537246
+    }
+  ],
+  "22-08": [
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.14015964767409855
+    },
+    {
+      "origin": "AKOM akutteam 1",
+      "destination": "R\u00f6ntgen Norr rum S16",
+      "probability": 0.09683457197908064
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.06848334709606387
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S15",
+      "destination": "AKOM akutteam 4",
+      "probability": 0.055821635012386454
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S16",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.04360033030553262
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S15",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.03424167354803193
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "Avd 132 Kirurgi",
+      "probability": 0.02042389210019268
+    },
+    {
+      "origin": "Kirurgmottagningen Dagv\u00e5rd",
+      "destination": "Operation 1",
+      "probability": 0.018882466281310212
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "Avd 137 Kirurgi",
+      "probability": 0.017946600605560144
+    },
+    {
+      "origin": "Avd 26 Hj\u00e4rtdagsjukv\u00e5rd",
+      "destination": "Intervention 3",
+      "probability": 0.011835948252133223
+    },
+    {
+      "origin": "Avd 18 \u00d6ron N\u00e4sa Hals",
+      "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.011010184420589045
+    },
+    {
+      "origin": "Avd 26 Hj\u00e4rtdagsjukv\u00e5rd",
+      "destination": "Intervention 2",
+      "probability": 0.009083402146985962
+    },
+    {
+      "origin": "Cystoskopi Urologmottagningen",
+      "destination": "Operation 4",
+      "probability": 0.008477842003853564
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 15/28 Ortopedi",
+      "probability": 0.008147536471235893
+    },
+    {
+      "origin": "PIVA avd 22",
+      "destination": "Avd 137 Kirurgi",
+      "probability": 0.007817230938618221
+    },
+    {
+      "origin": "Avd 31 Plastik dagv\u00e5rd",
+      "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.007652078172309386
+    },
+    {
+      "origin": "AKOM akutteam 1",
+      "destination": "Avd 135 Stroke",
+      "probability": 0.00748692540600055
+    },
+    {
+      "origin": "AKOM akutteam 4",
+      "destination": "TVE Traumav\u00e5rdsenhet",
+      "probability": 0.007431874483897605
+    },
+    {
+      "origin": "R\u00f6ntgen Norr rum S12",
+      "destination": "AKOM akutteam 1",
+      "probability": 0.006881365262868153
+    },
+    {
+      "origin": "Kirurgmottagningen Dagv\u00e5rd",
+      "destination": "Operation 7 \u00d6ron N\u00e4sa Hals",
+      "probability": 0.006771263418662262
+    }
+  ]
+}

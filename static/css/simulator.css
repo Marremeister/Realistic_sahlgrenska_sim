@@ -1,0 +1,510 @@
+/* Enhanced Simulator Specific Styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#sim-header {
+    background: linear-gradient(90deg, #2c3e50, #3498db);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#sim-header h1 {
+    margin: 0;
+    color: white;
+    font-size: 24px;
+}
+
+#sim-clock {
+    background: rgba(255, 255, 255, 0.15);
+    position: static;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    font-family: monospace;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    z-index: auto;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sim-container {
+    display: flex;
+    height: calc(100vh - 55px);
+    overflow: hidden;
+}
+
+.sim-sidebar {
+    width: 350px;
+    background: white;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+}
+
+.sim-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f9f9fd;
+}
+
+.panel {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #eaeaea;
+}
+
+.panel h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.panel h3::before {
+    margin-right: 8px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background: #fafafa;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    outline: none;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s;
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn.primary {
+    background: #3498db;
+}
+
+.btn.success {
+    background: #2ecc71;
+}
+
+.btn.danger {
+    background: #e74c3c;
+}
+
+.btn.small {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-group .btn {
+    flex: 1;
+}
+
+.hospital-view {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    height: 60%;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #eaeaea;
+}
+
+#hospitalMap {
+    width: 100%;
+    height: 100%;
+    background: #f9f9f9;
+    border-radius: 4px;
+}
+
+.transport-table-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 15px;
+    flex: 1;
+    overflow: auto;
+    border: 1px solid #eaeaea;
+}
+
+.transport-table-container h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+}
+
+#transportTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#transportTable th, #transportTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+#transportTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+#transportTable tr:hover {
+    background: #f9f9f9;
+}
+
+.sim-log {
+    height: 260px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    font-family: monospace;
+}
+
+#logList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#logList li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.sim-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.stat-box {
+    background: #f5f7f9;
+    border-radius: 6px;
+    padding: 12px;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.stat-label {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.config-indicator {
+    font-size: 13px;
+    color: #666;
+    background: #f0f0f0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin: 8px 0;
+    border-left: 3px solid #3498db;
+}
+
+/* Node and transport styling */
+.node {
+    fill: #90CAF9;
+    stroke: #2c3e50;
+    stroke-width: 2px;
+    transition: fill 0.3s;
+}
+
+.node:hover {
+    fill: #64B5F6;
+}
+
+.node-label {
+    font-size: 12px;
+    font-weight: bold;
+    fill: #333;
+    pointer-events: none;
+}
+
+.link {
+    stroke: #bbb;
+    stroke-width: 2px;
+}
+
+.link-label {
+    font-size: 11px;
+    fill: #777;
+    text-anchor: middle;
+}
+
+/* Improved transporter styling */
+.transporter {
+    cursor: pointer;
+    transition: all 0.3s;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+}
+
+.transporter:hover {
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+
+.transporter-label {
+    pointer-events: none;
+    text-shadow: 0 0 3px white;
+}
+
+/* Status colors */
+.status-pending {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.status-ongoing {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.status-running {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.status-stopped {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Button flash effect for Apply Config */
+@keyframes btn-flash {
+    0% { background-color: #3498db; }
+    50% { background-color: #2ecc71; }
+    100% { background-color: #3498db; }
+}
+
+.btn-flash {
+    animation: btn-flash 0.5s;
+}
+
+/* Force transporter appearance */
+circle.transporter {
+    r: 15px !important;
+    fill: #FF5252 !important;
+    stroke: white !important;
+    stroke-width: 2px !important;
+}
+
+text.transporter-label {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    stroke: white !important;
+    stroke-width: 0.5px !important;
+}
+
+
+.header-links {
+  display: flex;
+  gap: 10px;
+}
+
+#sim-header {
+  justify-content: space-between;
+}
+
+/* Add these styles to your existing CSS file */
+
+/* Cluster related elements */
+.cluster-node {
+  cursor: pointer;
+  transition: fill 0.2s ease-in-out;
+}
+
+.cluster-node:hover {
+  fill-opacity: 0.8;
+  stroke-width: 3px;
+}
+
+.cluster-link {
+  stroke-dasharray: 5, 5;
+}
+
+.cluster-label {
+  pointer-events: none;
+}
+
+/* Cluster controls */
+#clusterControls, #clusterControlsGroup {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#clusterControls label, #clusterControlsGroup label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.cluster-stats {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+#back-button-group {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+#back-button-group:hover {
+  opacity: 0.8;
+}
+
+/* View mode toggle button */
+#toggleViewModeBtn {
+  margin-top: 10px;
+  background-color: #4b6584;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#toggleViewModeBtn:hover {
+  background-color: #3c5270;
+}
+
+/* Control panel container */
+.control-panel {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Transporters */
+.transporter {
+  transition: cx 0.5s ease-out, cy 0.5s ease-out;
+}
+
+.transporter-label {
+  transition: x 0.5s ease-out, y 0.5s ease-out;
+  pointer-events: none;
+}
+
+/* Apply button flash effect */
+.btn-flash {
+  animation: button-flash 0.5s;
+}
+
+@keyframes button-flash {
+  0% { background-color: #4b6584; }
+  50% { background-color: #5dade2; }
+  100% { background-color: #4b6584; }
+}

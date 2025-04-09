@@ -1,0 +1,62 @@
+[
+  {
+    "origin": "AKOM akutteam 4",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "wheelchair",
+    "urgent": true
+  },
+  {
+    "origin": "R\u00f6ntgen Norr rum S15",
+    "destination": "AKOM akutteam 1",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "AKOM akutteam 1",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "AKOM akutteam 1",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "PIVA avd 22",
+    "destination": "Avd 132 Kirurgi",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen Norr rum S12",
+    "destination": "Avd 137 Kirurgi",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "AKOM team 3 OBS:en",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 18 \u00d6ron N\u00e4sa Hals",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "AKOM akutteam 1",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "wheelchair",
+    "urgent": true
+  },
+  {
+    "origin": "AKOM akutteam 4",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "stretcher",
+    "urgent": false
+  }
+]

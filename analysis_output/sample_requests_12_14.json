@@ -1,0 +1,62 @@
+[
+  {
+    "origin": "AKOM akutteam 1",
+    "destination": "R\u00f6ntgen Norr rum S15",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen S\u00f6der rum S4",
+    "destination": "Avd 15/28 Ortopedi",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen S\u00f6der rum S6",
+    "destination": "Ortopedimottagning (Bl\u00e5 str\u00e5ket 3)",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 141 Hematologi",
+    "destination": "R\u00f6ntgen Norr rum S11",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "Dag-UVA avdelning 95B",
+    "destination": "Avd 137 Kirurgi",
+    "transport_type": "bed",
+    "urgent": false
+  },
+  {
+    "origin": "Avd 32 Specialistmedicin",
+    "destination": "R\u00f6ntgen Norr rum S16",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen Buk och K\u00e4rl S31 S32 S33 Ultraljud (Uppg\u00e5ng C plan 2)",
+    "destination": "AKOM triage",
+    "transport_type": "wheelchair",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen Norr rum S16",
+    "destination": "AKOM akutteam 4",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "R\u00f6ntgen Norr rum S16",
+    "destination": "Avd 91 MAVA",
+    "transport_type": "stretcher",
+    "urgent": false
+  },
+  {
+    "origin": "AKOM team 3 OBS:en",
+    "destination": "Avd 16/29 medicin",
+    "transport_type": "wheelchair",
+    "urgent": false
+  }
+]

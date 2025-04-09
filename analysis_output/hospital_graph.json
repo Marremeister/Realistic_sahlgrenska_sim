@@ -1,0 +1,2908 @@
+{
+  "departments": [
+    "Provtagningscentralen Centralkomplexet",
+    "Str\u00e5lbehandling CT-MR-Fixation",
+    "AKOM akutteam 1",
+    "Informationen",
+    "R\u00f6ntgen S\u00f6der rum S1",
+    "R\u00f6ntgen Norr rum S13 MR-kamera",
+    "AKOM/MAVA-korridoren Uppg\u00e5ng B",
+    "Neurokirurgimottagning (Bl\u00e5 str 7 plan 00)",
+    "Avd 12 Thoraxkirurgi",
+    "Avd 53 Onkologi",
+    "PIVA avd 22",
+    "Medicinmottagning 2",
+    "EEG - Klinisk Neurofysiologimott.",
+    "Str\u00e5lbehandling Rum 7",
+    "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+    "Fris\u00f6ren",
+    "Avd 14 Plastik",
+    "Avd 68 Gynekologi",
+    "AKOM team 2 medicin",
+    "Onkologimottagning 3 (KK Bl\u00e5 Str 6)",
+    "AKOM streamteam",
+    "R\u00f6ntgen Plan 01 rum s18 (MR)",
+    "Str\u00e5lbehandling Rum 9",
+    "K\u00e4rlkirurgimottagning (Vita Str 12)",
+    "KOL-Centrum",
+    "Infla-center Reumatologi",
+    "Dexa (\"Scapis\") Bl\u00e5 str 7 plan 1",
+    "Operation 3 Thorax (finns p\u00e5 OP 2 tillf\u00e4lligt)",
+    "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+    "Dexa (Plan 9 uppg\u00e5ng C)",
+    "Huvudentr\u00e9n",
+    "Avd 26 Hj\u00e4rtdagsjukv\u00e5rd",
+    "Str\u00e5lbehandling Rum 3",
+    "Thoraxmottagning (under sommaren p\u00e5 avd 25)",
+    "GEA Gastroenterologisk Endoskopi",
+    "CIVA avd 96",
+    "Medicinmottagning 1",
+    "Avd 138 K\u00e4rlkirurgi",
+    "Str\u00e5lbehandling Rum 5",
+    "KFU Klinisk Fysiologi Ultraljud",
+    "Ortopedimottagning (Bl\u00e5 str\u00e5ket 3)",
+    "IVF",
+    "Mammografi",
+    "\u00d6ron N\u00e4sa Hals-mottagning Akutsidan (gamla rtg)",
+    "H\u00f6rselv\u00e5rd (Flyttat till  nya huset vid Uppg\u00e5ng H)",
+    "\u00d6ron N\u00e4sa Hals-Mottagningen (flyttat till gamla r\u00f6ntgen)",
+    "Str\u00e5lbehandling Rum 4",
+    "CIVA Postop avdelning 97",
+    "Avd 21 Geriatrik",
+    "Avd 134 Ryggm\u00e4rgsskador",
+    "Reumatologimottagningen",
+    "Andningsfysiologi Klin fys mottagning 3",
+    "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+    "MS-Mottagningen",
+    "Driftavdelning",
+    "Kirurgmottagningen Dagv\u00e5rd",
+    "R\u00f6ntgen Plan 2/3 rum s21",
+    "Lunginfektionsmottagning TBC Vita Str 12",
+    "Avd 80 Psykiatri",
+    "Str\u00e5lbehandling Reception",
+    "Operation 8",
+    "Urologmottagningen",
+    "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH",
+    "Avd 90 MAVA",
+    "Avd 133 Neurologi",
+    "TIVA Thoraxintensiven",
+    "Undervisningsmottagning (pl 1 nya huset vid uppg\u00e5ng H)",
+    "Str\u00e5lbehandling Brachy",
+    "Peritonealdialys ( PD Bruna str 5 )",
+    "K\u00f6nsmottagningen",
+    "Postop 4",
+    "C-lab Klinisk Kemi Provinl\u00e4mning",
+    "Operation 7 \u00d6ron N\u00e4sa Hals",
+    "Blodcentralen Transfusionsmedicin",
+    "Bruna Str\u00e5ket 5 Entr\u00e9",
+    "Intervention 1",
+    "Avd 131 Njurmedicin",
+    "KK-akuten Gynekologisk Akutmottagning",
+    "Allergimottagning (samma hus som KOL-centrum)",
+    "AKOM team 3 OBS:en",
+    "S\u00f6mnlab",
+    "Avd 19 specialist",
+    "Lungonkologisk Mottagning LOM",
+    "Str\u00e5lbehandling Rum 1",
+    "Intervention 2",
+    "Lungdiagnostisk Mott.",
+    "Avd 81 Psykiatri",
+    "Lungmottagningen Vita Str 12",
+    "NIVA Neurointensiven",
+    "Avd 27 Plastik",
+    "Avd 32 Specialistmedicin",
+    "Plastikmottagningen Gr\u00f6na Str 7",
+    "Str\u00e5lbehandling Rum 8",
+    "Nuklearmedicin Klin Fys",
+    "Ambulanshall",
+    "Str\u00e5lbehandling Rum 12",
+    "Kirurgmottagningen",
+    "Operation 4 (p\u00e5 OP1 under sommaren)",
+    "Avd 136 Kirurgi",
+    "Avd 141 Hematologi",
+    "Matsal",
+    "Avd 139 Transplantation",
+    "Avd 23 Neurokirurgi",
+    "Neurooftamologisk mott Sahlgrenska \u00d6K",
+    "Str\u00e5lbehandling Rum 10",
+    "Avd 52 Onkologi",
+    "Avd 25 Thoraxkirurgi",
+    "Cystoskopi Urologmottagningen",
+    "AKOM triage",
+    "Operation 4 Postop",
+    "71 Onkologisk mottagning team 3",
+    "AKOM traumarummet",
+    "Neuromuskul\u00e4rt Centrum NMC (Bl\u00e5 str 7 plan 3)",
+    "TVE Traumav\u00e5rdsenhet",
+    "Avd 115 Reumatologi",
+    "Avd 67 Gynekologi",
+    "Preop 4",
+    "Plastikmottagningen",
+    "Avd 93 HIA Hj\u00e4rtintensiv",
+    "Avd 135 Stroke",
+    "Neurodagsjukv\u00e5rd (Bruna str 5 plan 1)",
+    "Operation 2",
+    "0",
+    "Operation 4 Preop",
+    "Avd 54 Onkologi",
+    "Dialysmottagning (avd 130)",
+    "R\u00f6ntgen Plan 04 s24",
+    "Hudbehandling plan 03",
+    "Operation 5 Narkosbed\u00f6mning",
+    "R\u00f6ntgen-reception Uppg\u00e5ng G",
+    "Prostatacancer-Center PCC",
+    "Operation 1",
+    "Str\u00e5lbehandling Rum 11",
+    "B\u00e5rhus",
+    "Fysioterapi Vita str 13",
+    "Avd 140 Hematologisk Mottagning",
+    "Helikopterplattan",
+    "ECT",
+    "Avd 69 Onkologi",
+    "Patolog-Lab",
+    "Avd 92 HIA Hj\u00e4rtintensiv",
+    "Iohexol njurfunktion Klin Fys (crom)",
+    "CTC gr\u00f6na str\u00e5ket 12",
+    "Str\u00e5lbehandling Rum 2",
+    "Bl\u00e5 Str\u00e5ket 3",
+    "B\u00e5rvagnsf\u00f6rr\u00e5d AKOM",
+    "Neurokirurgi Inskrivning",
+    "Operation 6 Plastikkirurgi",
+    "Avd 16/29 medicin",
+    "H\u00f6rselv\u00e5rd",
+    "Avd 113 Hud plan04",
+    "Njurmottagningen Vita Str 12",
+    "Avd 124 - \u00d6NH-mott tillf\u00e4lligt utlokaliserad",
+    "Mag-tarm-lab Bl\u00e5 str\u00e5ket 3 plan 4",
+    "Plastikmottagningen (Bl\u00e5 str 3)",
+    "RadFysLab",
+    "Avd 82 Psykiatri",
+    "Punktionscytologisk mott (v\u00e5n 13 Uppg D)",
+    "Avd 10 Neurokirurgi",
+    "Avd 94 dagv\u00e5rd kardiologi",
+    "Hudmottagningen plan 01",
+    "Muskellab Gula str 6",
+    "Kyrkan",
+    "Preoperativ mottagning Sahlgrenska Bl\u00e5 str 7 plan 1",
+    "Avd 91 MAVA",
+    "UVA avdelning 95A",
+    "Vakten",
+    "\u00c5V-rum 18 (Uppg\u00e5ng D)",
+    "Dagv\u00e5rd Urologmottagningen",
+    "Avd 143 Transplantationsmottagning",
+    "Boic-Gropen",
+    "Avd 86 Psykiatri",
+    "Hj\u00e4rtmottagningen",
+    "Intervention 3",
+    "Avd 15/28 Ortopedi",
+    "Avd 132 Kirurgi",
+    "Avd 13 Kardiologi",
+    "Avd 34 Geriatrik",
+    "AKOM akutteam 4",
+    "Operation 1 Narkosbed\u00f6mning",
+    "Dag-UVA avdelning 95B",
+    "Leverkirurgisk mottagning dagv\u00e5rd (Bruna 5, v\u00e5n 4)",
+    "Apoteket",
+    "Gynekologisk Mottagning",
+    "MR 52 Gamla Magnetkameran",
+    "Onkologimottagning 1 och 2 (JK Bl\u00e5 str 2)",
+    "MR 51 Gamla Magnetkameran",
+    "Operation 5 Neurokirurgi",
+    "Avd 137 Kirurgi",
+    "Avd 31 Plastik dagv\u00e5rd",
+    "Diabetesforskning L-berglab",
+    "Str\u00e5lbehandling Rum 6",
+    "Transporter Lounge",
+    "Transport Lounge"
+  ],
+  "coordinates": {
+    "Provtagningscentralen Centralkomplexet": {
+      "x": 566.9779681271809,
+      "y": 456.4951967803301
+    },
+    "Str\u00e5lbehandling CT-MR-Fixation": {
+      "x": 940.326336635188,
+      "y": 774.3783720334533
+    },
+    "AKOM akutteam 1": {
+      "x": 990.2472956963446,
+      "y": 518.6709920949322
+    },
+    "Informationen": {
+      "x": 431.53815877240237,
+      "y": 550.3404031441086
+    },
+    "R\u00f6ntgen S\u00f6der rum S1": {
+      "x": 594.9032070418363,
+      "y": 613.2493356841609
+    },
+    "R\u00f6ntgen Norr rum S13 MR-kamera": {
+      "x": 372.863108370452,
+      "y": 607.09341458835
+    },
+    "AKOM/MAVA-korridoren Uppg\u00e5ng B": {
+      "x": 301.6320885641254,
+      "y": 889.9741873253734
+    },
+    "Neurokirurgimottagning (Bl\u00e5 str 7 plan 00)": {
+      "x": 495.1174135108012,
+      "y": 922.0835106671135
+    },
+    "Avd 12 Thoraxkirurgi": {
+      "x": 333.59241468096366,
+      "y": 1085.2724941773467
+    },
+    "Avd 53 Onkologi": {
+      "x": 869.4647831541253,
+      "y": 414.05753483312935
+    },
+    "PIVA avd 22": {
+      "x": 1313.8526470593717,
+      "y": 656.6594387603427
+    },
+    "Medicinmottagning 2": {
+      "x": 895.7576408660175,
+      "y": 330.1173875669934
+    },
+    "EEG - Klinisk Neurofysiologimott.": {
+      "x": 1183.7827867319318,
+      "y": 923.437400207085
+    },
+    "Str\u00e5lbehandling Rum 7": {
+      "x": 1243.1734841907062,
+      "y": 979.3294239549853
+    },
+    "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)": {
+      "x": 825.2252786037919,
+      "y": 659.596505627877
+    },
+    "Fris\u00f6ren": {
+      "x": 838.9945073081219,
+      "y": 271.50480074770405
+    },
+    "Avd 14 Plastik": {
+      "x": 1226.073802936206,
+      "y": 457.12394900045206
+    },
+    "Avd 68 Gynekologi": {
+      "x": 635.0342579722046,
+      "y": 874.3800869679296
+    },
+    "AKOM team 2 medicin": {
+      "x": 1385.564240008899,
+      "y": 727.3639526107484
+    },
+    "Onkologimottagning 3 (KK Bl\u00e5 Str 6)": {
+      "x": 916.881132301215,
+      "y": 546.9920516001974
+    },
+    "AKOM streamteam": {
+      "x": 307.7579285786454,
+      "y": 694.8494175517203
+    },
+    "R\u00f6ntgen Plan 01 rum s18 (MR)": {
+      "x": 1082.3282680490443,
+      "y": 721.8002845020748
+    },
+    "Str\u00e5lbehandling Rum 9": {
+      "x": 1281.7073408799658,
+      "y": 516.1117948046676
+    },
+    "K\u00e4rlkirurgimottagning (Vita Str 12)": {
+      "x": 1169.3907208249616,
+      "y": 398.8486684594202
+    },
+    "KOL-Centrum": {
+      "x": 1418.4430927499702,
+      "y": 329.97344727665876
+    },
+    "Infla-center Reumatologi": {
+      "x": 1184.3685366273996,
+      "y": 612.8858902530411
+    },
+    "Dexa (\"Scapis\") Bl\u00e5 str 7 plan 1": {
+      "x": 714.203336908833,
+      "y": 483.54262664740685
+    },
+    "Operation 3 Thorax (finns p\u00e5 OP 2 tillf\u00e4lligt)": {
+      "x": 549.7313516499252,
+      "y": 238.03931497558585
+    },
+    "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)": {
+      "x": 567.6363052989307,
+      "y": 535.9460251823336
+    },
+    "Dexa (Plan 9 uppg\u00e5ng C)": {
+      "x": 741.7627526594256,
+      "y": 680.9771840436492
+    },
+    "Huvudentr\u00e9n": {
+      "x": 1368.3125322318822,
+      "y": 0
+    },
+    "Avd 26 Hj\u00e4rtdagsjukv\u00e5rd": {
+      "x": 502.1583357660682,
+      "y": 584.1868202335479
+    },
+    "Str\u00e5lbehandling Rum 3": {
+      "x": 561.4895899509908,
+      "y": 843.0767300382857
+    },
+    "Thoraxmottagning (under sommaren p\u00e5 avd 25)": {
+      "x": 627.9560149153699,
+      "y": 217.66695073320022
+    },
+    "GEA Gastroenterologisk Endoskopi": {
+      "x": 446.46975211795336,
+      "y": 637.9127627941556
+    },
+    "CIVA avd 96": {
+      "x": 1358.0896890792023,
+      "y": 500.7972790352796
+    },
+    "Medicinmottagning 1": {
+      "x": 1063.618646987195,
+      "y": 277.19221091727775
+    },
+    "Avd 138 K\u00e4rlkirurgi": {
+      "x": 1337.264475334569,
+      "y": 286.19966996103665
+    },
+    "Str\u00e5lbehandling Rum 5": {
+      "x": 1303.5377227576591,
+      "y": 435.9239371731572
+    },
+    "KFU Klinisk Fysiologi Ultraljud": {
+      "x": 0,
+      "y": 539.1078674213909
+    },
+    "Ortopedimottagning (Bl\u00e5 str\u00e5ket 3)": {
+      "x": 781.2244969401402,
+      "y": 1048.9652628155304
+    },
+    "IVF": {
+      "x": 804.6722742171238,
+      "y": 122.3396931660738
+    },
+    "Mammografi": {
+      "x": 637.5349497942811,
+      "y": 512.6588609674141
+    },
+    "\u00d6ron N\u00e4sa Hals-mottagning Akutsidan (gamla rtg)": {
+      "x": 957.7905232617688,
+      "y": 852.7390689770261
+    },
+    "H\u00f6rselv\u00e5rd (Flyttat till  nya huset vid Uppg\u00e5ng H)": {
+      "x": 1282.341926635706,
+      "y": 907.8532382803563
+    },
+    "\u00d6ron N\u00e4sa Hals-Mottagningen (flyttat till gamla r\u00f6ntgen)": {
+      "x": 736.6240381039661,
+      "y": 759.8840161160417
+    },
+    "Str\u00e5lbehandling Rum 4": {
+      "x": 0,
+      "y": 457.8412007547241
+    },
+    "CIVA Postop avdelning 97": {
+      "x": 1305.8125329749137,
+      "y": 736.8170957335335
+    },
+    "Avd 21 Geriatrik": {
+      "x": 293.70566688592567,
+      "y": 594.9115729725137
+    },
+    "Avd 134 Ryggm\u00e4rgsskador": {
+      "x": 388.20898626507847,
+      "y": 695.9489900421383
+    },
+    "Reumatologimottagningen": {
+      "x": 1251.2594646887937,
+      "y": 832.8439636539363
+    },
+    "Andningsfysiologi Klin fys mottagning 3": {
+      "x": 886.7506814820749,
+      "y": 0
+    },
+    "Avd 30 Urologi (P\u00e5 131 under sommaren)": {
+      "x": 860.1685682634322,
+      "y": 1200
+    },
+    "MS-Mottagningen": {
+      "x": 854.1391326418525,
+      "y": 494.2598925105287
+    },
+    "Driftavdelning": {
+      "x": 1059.4967096035032,
+      "y": 181.2846225409267
+    },
+    "Kirurgmottagningen Dagv\u00e5rd": {
+      "x": 900.2545296696766,
+      "y": 1002.956329726447
+    },
+    "R\u00f6ntgen Plan 2/3 rum s21": {
+      "x": 670.772180839983,
+      "y": 640.5946404260831
+    },
+    "Lunginfektionsmottagning TBC Vita Str 12": {
+      "x": 1163.666509573735,
+      "y": 1002.3738585946668
+    },
+    "Avd 80 Psykiatri": {
+      "x": 950.4226089122478,
+      "y": 387.87412878472725
+    },
+    "Str\u00e5lbehandling Reception": {
+      "x": 573.8335071050949,
+      "y": 158.73647908115254
+    },
+    "Operation 8": {
+      "x": 644.9157095195181,
+      "y": 432.5987939023749
+    },
+    "Urologmottagningen": {
+      "x": 605.5728817004117,
+      "y": 296.59033979482575
+    },
+    "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH": {
+      "x": 862.514442589661,
+      "y": 798.4732601469741
+    },
+    "Avd 90 MAVA": {
+      "x": 1085.1938917512184,
+      "y": 818.4089195709353
+    },
+    "Avd 133 Neurologi": {
+      "x": 782.0068354836264,
+      "y": 525.8441412411698
+    },
+    "TIVA Thoraxintensiven": {
+      "x": 243.8263259202257,
+      "y": 531.2577515407879
+    },
+    "Undervisningsmottagning (pl 1 nya huset vid uppg\u00e5ng H)": {
+      "x": 424.4425703625651,
+      "y": 783.8735950748392
+    },
+    "Str\u00e5lbehandling Brachy": {
+      "x": 1361.8744850288535,
+      "y": 888.6864134757539
+    },
+    "Peritonealdialys ( PD Bruna str 5 )": {
+      "x": 699.5684265855695,
+      "y": 566.4399662561724
+    },
+    "K\u00f6nsmottagningen": {
+      "x": 1082.655731648997,
+      "y": 1000.0970965869608
+    },
+    "Postop 4": {
+      "x": 684.6779719716292,
+      "y": 276.1005221061638
+    },
+    "C-lab Klinisk Kemi Provinl\u00e4mning": {
+      "x": 1287.1833892887184,
+      "y": 0
+    },
+    "Operation 7 \u00d6ron N\u00e4sa Hals": {
+      "x": 236.45965448888717,
+      "y": 651.9758433931407
+    },
+    "Blodcentralen Transfusionsmedicin": {
+      "x": 670.6809100064697,
+      "y": 722.7903590742828
+    },
+    "Bruna Str\u00e5ket 5 Entr\u00e9": {
+      "x": 1205.991744612333,
+      "y": 0
+    },
+    "Intervention 1": {
+      "x": 528.06349475952,
+      "y": 318.5802443524981
+    },
+    "Avd 131 Njurmedicin": {
+      "x": 1018.7543991129023,
+      "y": 772.6917049597017
+    },
+    "KK-akuten Gynekologisk Akutmottagning": {
+      "x": 1330.357359193836,
+      "y": 814.0939933352354
+    },
+    "Allergimottagning (samma hus som KOL-centrum)": {
+      "x": 787.9077623493395,
+      "y": 824.3759220979032
+    },
+    "AKOM team 3 OBS:en": {
+      "x": 964.467622101271,
+      "y": 699.5228206796412
+    },
+    "S\u00f6mnlab": {
+      "x": 480.18566801953244,
+      "y": 842.4372755470015
+    },
+    "Avd 19 specialist": {
+      "x": 881.6776462529181,
+      "y": 877.0667170694035
+    },
+    "Lungonkologisk Mottagning LOM": {
+      "x": 495.4180412870834,
+      "y": 417.52262583740537
+    },
+    "Str\u00e5lbehandling Rum 1": {
+      "x": 570.9762825819855,
+      "y": 1200
+    },
+    "Intervention 2": {
+      "x": 664.8619339349154,
+      "y": 948.0010704414926
+    },
+    "Lungdiagnostisk Mott.": {
+      "x": 722.3034790111233,
+      "y": 407.91842781218884
+    },
+    "Avd 81 Psykiatri": {
+      "x": 1344.83205973835,
+      "y": 968.0899383994147
+    },
+    "Lungmottagningen Vita Str 12": {
+      "x": 1202.5296256490778,
+      "y": 535.7771771900666
+    },
+    "NIVA Neurointensiven": {
+      "x": 1346.1176786913486,
+      "y": 366.66589344704937
+    },
+    "Avd 27 Plastik": {
+      "x": 805.689789165516,
+      "y": 900.0277223289428
+    },
+    "Avd 32 Specialistmedicin": {
+      "x": 1011.5739203220768,
+      "y": 440.61286852509545
+    },
+    "Plastikmottagningen Gr\u00f6na Str 7": {
+      "x": 605.5830894013633,
+      "y": 774.7594394114906
+    },
+    "Str\u00e5lbehandling Rum 8": {
+      "x": 171.41145949551867,
+      "y": 602.84052613072
+    },
+    "Nuklearmedicin Klin Fys": {
+      "x": 579.044858966897,
+      "y": 68.58952616394333
+    },
+    "Ambulanshall": {
+      "x": 0,
+      "y": 620.3745340880574
+    },
+    "Str\u00e5lbehandling Rum 12": {
+      "x": 1260.3472910150758,
+      "y": 595.0430019073679
+    },
+    "Kirurgmottagningen": {
+      "x": 1034.8875291009044,
+      "y": 363.048888142656
+    },
+    "Operation 4 (p\u00e5 OP1 under sommaren)": {
+      "x": 446.91053645769455,
+      "y": 321.2053714968558
+    },
+    "Avd 136 Kirurgi": {
+      "x": 766.3871594571084,
+      "y": 603.514942927984
+    },
+    "Avd 141 Hematologi": {
+      "x": 1449.4010825629525,
+      "y": 0
+    },
+    "Matsal": {
+      "x": 1158.1515739066544,
+      "y": 692.6759882504984
+    },
+    "Avd 139 Transplantation": {
+      "x": 1113.036706385185,
+      "y": 341.633822189065
+    },
+    "Avd 23 Neurokirurgi": {
+      "x": 1034.3372020291679,
+      "y": 877.058522319054
+    },
+    "Neurooftamologisk mott Sahlgrenska \u00d6K": {
+      "x": 524.9765616785919,
+      "y": 660.1352478631986
+    },
+    "Str\u00e5lbehandling Rum 10": {
+      "x": 1050.3180182878805,
+      "y": 575.8031565180394
+    },
+    "Avd 52 Onkologi": {
+      "x": 1578.8071319567057,
+      "y": 86.0372475030315
+    },
+    "Avd 25 Thoraxkirurgi": {
+      "x": 345.11397595382357,
+      "y": 766.9503788823184
+    },
+    "Cystoskopi Urologmottagningen": {
+      "x": 1359.3000579694435,
+      "y": 207.97752342277852
+    },
+    "AKOM triage": {
+      "x": 1171.4247668485975,
+      "y": 846.0598468008092
+    },
+    "Operation 4 Postop": {
+      "x": 996.3525688087989,
+      "y": 232.48358715840925
+    },
+    "71 Onkologisk mottagning team 3": {
+      "x": 931.9705936457791,
+      "y": 467.3485227936804
+    },
+    "AKOM traumarummet": {
+      "x": 660.9023937083117,
+      "y": 353.19963693736474
+    },
+    "Neuromuskul\u00e4rt Centrum NMC (Bl\u00e5 str 7 plan 3)": {
+      "x": 705.6199077901995,
+      "y": 192.72313683270494
+    },
+    "TVE Traumav\u00e5rdsenhet": {
+      "x": 1084.9198613322571,
+      "y": 1200
+    },
+    "Avd 115 Reumatologi": {
+      "x": 819.2998099211172,
+      "y": 353.62918990283197
+    },
+    "Avd 67 Gynekologi": {
+      "x": 1191.6974743672172,
+      "y": 321.98699316803294
+    },
+    "Preop 4": {
+      "x": 1016.1244809723139,
+      "y": 956.2006686437586
+    },
+    "Plastikmottagningen": {
+      "x": 661.4628731127574,
+      "y": 103.24856969228301
+    },
+    "Avd 93 HIA Hj\u00e4rtintensiv": {
+      "x": 1578.8071319567057,
+      "y": 1200
+    },
+    "Avd 135 Stroke": {
+      "x": 1439.4471247503561,
+      "y": 503.90365913019724
+    },
+    "Neurodagsjukv\u00e5rd (Bruna str 5 plan 1)": {
+      "x": 1478.5137982141598,
+      "y": 433.2804305248111
+    },
+    "Operation 2": {
+      "x": 468.8869830836921,
+      "y": 242.8588901885101
+    },
+    "0": {
+      "x": 1574.1602269314521,
+      "y": 0
+    },
+    "Operation 4 Preop": {
+      "x": 679.6914829968564,
+      "y": 806.2236886483238
+    },
+    "Avd 54 Onkologi": {
+      "x": 886.2440693170181,
+      "y": 713.2674656816276
+    },
+    "Dialysmottagning (avd 130)": {
+      "x": 1033.1341437796987,
+      "y": 658.5607088039127
+    },
+    "R\u00f6ntgen Plan 04 s24": {
+      "x": 1226.7021743924524,
+      "y": 755.8173032382641
+    },
+    "Hudbehandling plan 03": {
+      "x": 704.2203428084713,
+      "y": 1022.4630910171982
+    },
+    "Operation 5 Narkosbed\u00f6mning": {
+      "x": 1003.6531946655905,
+      "y": 1200
+    },
+    "R\u00f6ntgen-reception Uppg\u00e5ng G": {
+      "x": 926.4026433752358,
+      "y": 140.85440611670913
+    },
+    "Prostatacancer-Center PCC": {
+      "x": 1340.1768237185581,
+      "y": 1200
+    },
+    "Operation 1": {
+      "x": 841.1729975955179,
+      "y": 578.3496428145568
+    },
+    "Str\u00e5lbehandling Rum 11": {
+      "x": 1090.5469987128922,
+      "y": 419.24279973914474
+    },
+    "B\u00e5rhus": {
+      "x": 1103.1102215555031,
+      "y": 919.0663669531168
+    },
+    "Fysioterapi Vita str 13": {
+      "x": 417.33431884338785,
+      "y": 396.3558556936466
+    },
+    "Avd 140 Hematologisk Mottagning": {
+      "x": 762.018258806498,
+      "y": 251.1413560041895
+    },
+    "Helikopterplattan": {
+      "x": 196.96331012917142,
+      "y": 371.26711218095573
+    },
+    "ECT": {
+      "x": 594.4199026396205,
+      "y": 693.8791831612946
+    },
+    "Avd 69 Onkologi": {
+      "x": 1410.990686126312,
+      "y": 804.5311648264995
+    },
+    "Patolog-Lab": {
+      "x": 352.90457222533263,
+      "y": 445.8844218097256
+    },
+    "Avd 92 HIA Hj\u00e4rtintensiv": {
+      "x": 973.3235407942026,
+      "y": 310.00035889929813
+    },
+    "Iohexol njurfunktion Klin Fys (crom)": {
+      "x": 583.7382309129096,
+      "y": 376.9133705874284
+    },
+    "CTC gr\u00f6na str\u00e5ket 12": {
+      "x": 972.0365114771231,
+      "y": 602.4003193917279
+    },
+    "Str\u00e5lbehandling Rum 2": {
+      "x": 1125.7485367300228,
+      "y": 554.763760678254
+    },
+    "Bl\u00e5 Str\u00e5ket 3": {
+      "x": 863.1018143798583,
+      "y": 192.00914066053082
+    },
+    "B\u00e5rvagnsf\u00f6rr\u00e5d AKOM": {
+      "x": 1460.901049827584,
+      "y": 1200
+    },
+    "Neurokirurgi Inskrivning": {
+      "x": 938.8729337207642,
+      "y": 931.7199220340934
+    },
+    "Operation 6 Plastikkirurgi": {
+      "x": 244.69502378073958,
+      "y": 305.49512252733643
+    },
+    "Avd 16/29 medicin": {
+      "x": 1271.9697140632443,
+      "y": 334.51622780803075
+    },
+    "H\u00f6rselv\u00e5rd": {
+      "x": 822.8455533831875,
+      "y": 979.9565184036874
+    },
+    "Avd 113 Hud plan04": {
+      "x": 744.6547172471679,
+      "y": 953.1892558542097
+    },
+    "Njurmottagningen Vita Str 12": {
+      "x": 1506.6787760964226,
+      "y": 49.1303581398779
+    },
+    "Avd 124 - \u00d6NH-mott tillf\u00e4lligt utlokaliserad": {
+      "x": 195.66373262407217,
+      "y": 452.5233870735408
+    },
+    "Mag-tarm-lab Bl\u00e5 str\u00e5ket 3 plan 4": {
+      "x": 49.18144687898439,
+      "y": 74.58086847318532
+    },
+    "Plastikmottagningen (Bl\u00e5 str 3)": {
+      "x": 1578.8071319567057,
+      "y": 1129.596631142961
+    },
+    "RadFysLab": {
+      "x": 604.9724721052212,
+      "y": 1002.8304372986204
+    },
+    "Avd 82 Psykiatri": {
+      "x": 1443.7489767270167,
+      "y": 584.3527623189038
+    },
+    "Punktionscytologisk mott (v\u00e5n 13 Uppg D)": {
+      "x": 172.82421341134034,
+      "y": 702.0672268867161
+    },
+    "Avd 10 Neurokirurgi": {
+      "x": 902.1861157601998,
+      "y": 633.1358227192538
+    },
+    "Avd 94 dagv\u00e5rd kardiologi": {
+      "x": 1235.365271057529,
+      "y": 674.9762830870787
+    },
+    "Hudmottagningen plan 01": {
+      "x": 793.5379254983153,
+      "y": 442.64574174094366
+    },
+    "Muskellab Gula str 6": {
+      "x": 1102.7288710113833,
+      "y": 632.2148251885541
+    },
+    "Kyrkan": {
+      "x": 493.93916361916894,
+      "y": 498.6560689318584
+    },
+    "Preoperativ mottagning Sahlgrenska Bl\u00e5 str 7 plan 1": {
+      "x": 466.88026983413806,
+      "y": 717.2701826686066
+    },
+    "Avd 91 MAVA": {
+      "x": 495.9241358233509,
+      "y": 83.51197674380597
+    },
+    "UVA avdelning 95A": {
+      "x": 1241.322457533056,
+      "y": 257.4132398048641
+    },
+    "Vakten": {
+      "x": 0,
+      "y": 283.59598728380513
+    },
+    "\u00c5V-rum 18 (Uppg\u00e5ng D)": {
+      "x": 0,
+      "y": 364.8626539504718
+    },
+    "Dagv\u00e5rd Urologmottagningen": {
+      "x": 1340.8102307419338,
+      "y": 579.9595008616359
+    },
+    "Avd 143 Transplantationsmottagning": {
+      "x": 1142.5453035117944,
+      "y": 257.46626695340535
+    },
+    "Boic-Gropen": {
+      "x": 1397.5715844517522,
+      "y": 429.41549850993556
+    },
+    "Avd 86 Psykiatri": {
+      "x": 1148.7904483318557,
+      "y": 767.0298385918337
+    },
+    "Hj\u00e4rtmottagningen": {
+      "x": 1222.5682669531689,
+      "y": 1200
+    },
+    "Intervention 3": {
+      "x": 815.543523011134,
+      "y": 736.6464579361682
+    },
+    "Avd 15/28 Ortopedi": {
+      "x": 742.2327751443804,
+      "y": 328.35096940285206
+    },
+    "Avd 132 Kirurgi": {
+      "x": 15.82738555645335,
+      "y": 1200
+    },
+    "Avd 13 Kardiologi": {
+      "x": 525.5663484367983,
+      "y": 769.8264637608075
+    },
+    "Avd 34 Geriatrik": {
+      "x": 918.4485163903374,
+      "y": 251.8363543210648
+    },
+    "AKOM akutteam 4": {
+      "x": 353.6797474973292,
+      "y": 526.7498587272247
+    },
+    "Operation 1 Narkosbed\u00f6mning": {
+      "x": 370.7030780901736,
+      "y": 294.5477252893482
+    },
+    "Dag-UVA avdelning 95B": {
+      "x": 1069.910908420047,
+      "y": 497.56580820440394
+    },
+    "Leverkirurgisk mottagning dagv\u00e5rd (Bruna 5, v\u00e5n 4)": {
+      "x": 399.9675512295995,
+      "y": 861.5160926137632
+    },
+    "Apoteket": {
+      "x": 1147.2530385894293,
+      "y": 478.15272526383063
+    },
+    "Gynekologisk Mottagning": {
+      "x": 0,
+      "y": 1158.7403273228852
+    },
+    "MR 52 Gamla Magnetkameran": {
+      "x": 576.117785012621,
+      "y": 926.9109153906654
+    },
+    "Onkologimottagning 1 och 2 (JK Bl\u00e5 str 2)": {
+      "x": 1392.6584563226552,
+      "y": 647.13899895193
+    },
+    "MR 51 Gamla Magnetkameran": {
+      "x": 723.8886651157729,
+      "y": 874.2751398295122
+    },
+    "Operation 5 Neurokirurgi": {
+      "x": 291.5048418087662,
+      "y": 223.88502130160197
+    },
+    "Avd 137 Kirurgi": {
+      "x": 1578.8071319567057,
+      "y": 352.2358867109797
+    },
+    "Avd 31 Plastik dagv\u00e5rd": {
+      "x": 1578.8071319567057,
+      "y": 1048.3329501273045
+    },
+    "Diabetesforskning L-berglab": {
+      "x": 1463.65758561597,
+      "y": 1115.39796386031
+    },
+    "Str\u00e5lbehandling Rum 6": {
+      "x": 97.07328518559973,
+      "y": 1200
+    },
+    "Transporter Lounge": {
+      "x": 0,
+      "y": 0
+    },
+    "Transport Lounge": {
+      "x": 1500,
+      "y": 1100
+    }
+  },
+  "corridors": [
+    [
+      "Provtagningscentralen Centralkomplexet",
+      "Vakten",
+      0.7000000000000001
+    ],
+    [
+      "AKOM akutteam 1",
+      "Bruna Str\u00e5ket 5 Entr\u00e9",
+      0.5
+    ],
+    [
+      "AKOM akutteam 1",
+      "Vakten",
+      0.75
+    ],
+    [
+      "AKOM akutteam 1",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      4.1000000000000005
+    ],
+    [
+      "AKOM akutteam 1",
+      "Huvudentr\u00e9n",
+      5.0
+    ],
+    [
+      "AKOM akutteam 1",
+      "Avd 10 Neurokirurgi",
+      5.0
+    ],
+    [
+      "AKOM akutteam 1",
+      "Operation 7 \u00d6ron N\u00e4sa Hals",
+      5.0
+    ],
+    [
+      "Informationen",
+      "\u00d6ron N\u00e4sa Hals-mottagning Akutsidan (gamla rtg)",
+      5.0
+    ],
+    [
+      "Informationen",
+      "Vakten",
+      0.5
+    ],
+    [
+      "R\u00f6ntgen S\u00f6der rum S1",
+      "Vakten",
+      0.5
+    ],
+    [
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      "Str\u00e5lbehandling Rum 12",
+      1.1
+    ],
+    [
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      "UVA avdelning 95A",
+      5.0
+    ],
+    [
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      "R\u00f6ntgen Plan 2/3 rum s21",
+      0.6000000000000001
+    ],
+    [
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      0.7000000000000001
+    ],
+    [
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      "Urologmottagningen",
+      3.9000000000000004
+    ],
+    [
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      4.95
+    ],
+    [
+      "AKOM/MAVA-korridoren Uppg\u00e5ng B",
+      "Vakten",
+      0.8
+    ],
+    [
+      "Avd 12 Thoraxkirurgi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 53 Onkologi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 53 Onkologi",
+      "Str\u00e5lbehandling Rum 9",
+      5.0
+    ],
+    [
+      "Avd 53 Onkologi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      "R\u00f6ntgen Plan 04 s24",
+      5.0
+    ],
+    [
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      0.9
+    ],
+    [
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      4.800000000000001
+    ],
+    [
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      "R\u00f6ntgen Plan 2/3 rum s21",
+      5.0
+    ],
+    [
+      "Fris\u00f6ren",
+      "Matsal",
+      5.0
+    ],
+    [
+      "Avd 14 Plastik",
+      "R\u00f6ntgen Plan 2/3 rum s21",
+      0.5
+    ],
+    [
+      "Avd 14 Plastik",
+      "Str\u00e5lbehandling Rum 2",
+      5.0
+    ],
+    [
+      "Avd 14 Plastik",
+      "Str\u00e5lbehandling Reception",
+      5.0
+    ],
+    [
+      "Avd 14 Plastik",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      2.6
+    ],
+    [
+      "Avd 14 Plastik",
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      5.0
+    ],
+    [
+      "Avd 14 Plastik",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 14 Plastik",
+      "KK-akuten Gynekologisk Akutmottagning",
+      5.0
+    ],
+    [
+      "Avd 14 Plastik",
+      "Gynekologisk Mottagning",
+      5.0
+    ],
+    [
+      "Avd 68 Gynekologi",
+      "GEA Gastroenterologisk Endoskopi",
+      1.1
+    ],
+    [
+      "Avd 68 Gynekologi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 68 Gynekologi",
+      "R\u00f6ntgen Plan 2/3 rum s21",
+      5.0
+    ],
+    [
+      "AKOM team 2 medicin",
+      "Intervention 2",
+      0.5
+    ],
+    [
+      "AKOM team 2 medicin",
+      "AKOM triage",
+      0.8
+    ],
+    [
+      "AKOM team 2 medicin",
+      "Ambulanshall",
+      0.6000000000000001
+    ],
+    [
+      "AKOM team 2 medicin",
+      "Vakten",
+      0.9500000000000001
+    ],
+    [
+      "AKOM team 2 medicin",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "AKOM streamteam",
+      "Vakten",
+      0.6000000000000001
+    ],
+    [
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      "Vakten",
+      4.1000000000000005
+    ],
+    [
+      "K\u00e4rlkirurgimottagning (Vita Str 12)",
+      "Medicinmottagning 2",
+      5.0
+    ],
+    [
+      "Infla-center Reumatologi",
+      "Reumatologimottagningen",
+      0.8
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "Avd 27 Plastik",
+      0.6000000000000001
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "Mammografi",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "Str\u00e5lbehandling Rum 10",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "EEG - Klinisk Neurofysiologimott.",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "Str\u00e5lbehandling CT-MR-Fixation",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "MR 51 Gamla Magnetkameran",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "Intervention 1",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "KFU Klinisk Fysiologi Ultraljud",
+      5.0
+    ],
+    [
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      "Dialysmottagning (avd 130)",
+      5.0
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Provtagningscentralen Centralkomplexet",
+      0.5
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Preoperativ mottagning Sahlgrenska Bl\u00e5 str 7 plan 1",
+      0.6000000000000001
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Operation 5 Narkosbed\u00f6mning",
+      0.8
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "S\u00f6mnlab",
+      5.0
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Urologmottagningen",
+      0.6000000000000001
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Vakten",
+      5.0
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Transporter Lounge",
+      5.0
+    ],
+    [
+      "Huvudentr\u00e9n",
+      "Transport Lounge",
+      30
+    ],
+    [
+      "Avd 26 Hj\u00e4rtdagsjukv\u00e5rd",
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      1.3
+    ],
+    [
+      "Avd 26 Hj\u00e4rtdagsjukv\u00e5rd",
+      "Intervention 2",
+      5.0
+    ],
+    [
+      "GEA Gastroenterologisk Endoskopi",
+      "Vakten",
+      0.9
+    ],
+    [
+      "GEA Gastroenterologisk Endoskopi",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      1.4000000000000001
+    ],
+    [
+      "GEA Gastroenterologisk Endoskopi",
+      "Mammografi",
+      5.0
+    ],
+    [
+      "CIVA avd 96",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Huvudentr\u00e9n",
+      0.5
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Operation 1 Narkosbed\u00f6mning",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Avd 139 Transplantation",
+      0.5
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Vakten",
+      0.65
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Lungdiagnostisk Mott.",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Operation 1",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Dialysmottagning (avd 130)",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Operation 6 Plastikkirurgi",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Intervention 2",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 138 K\u00e4rlkirurgi",
+      "Intervention 3",
+      5.0
+    ],
+    [
+      "KFU Klinisk Fysiologi Ultraljud",
+      "Vakten",
+      0.5
+    ],
+    [
+      "KFU Klinisk Fysiologi Ultraljud",
+      "Medicinmottagning 1",
+      0.8
+    ],
+    [
+      "KFU Klinisk Fysiologi Ultraljud",
+      "R\u00f6ntgen-reception Uppg\u00e5ng G",
+      5.0
+    ],
+    [
+      "KFU Klinisk Fysiologi Ultraljud",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      1.85
+    ],
+    [
+      "KFU Klinisk Fysiologi Ultraljud",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      0.5
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "Kirurgmottagningen",
+      0.9
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "Postop 4",
+      5.0
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "Punktionscytologisk mott (v\u00e5n 13 Uppg D)",
+      5.0
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "Prostatacancer-Center PCC",
+      5.0
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "GEA Gastroenterologisk Endoskopi",
+      5.0
+    ],
+    [
+      "Avd 21 Geriatrik",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "Avd 134 Ryggm\u00e4rgsskador",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      3.7
+    ],
+    [
+      "Avd 134 Ryggm\u00e4rgsskador",
+      "KFU Klinisk Fysiologi Ultraljud",
+      5.0
+    ],
+    [
+      "Avd 134 Ryggm\u00e4rgsskador",
+      "EEG - Klinisk Neurofysiologimott.",
+      5.0
+    ],
+    [
+      "Avd 134 Ryggm\u00e4rgsskador",
+      "Operation 7 \u00d6ron N\u00e4sa Hals",
+      5.0
+    ],
+    [
+      "Avd 134 Ryggm\u00e4rgsskador",
+      "Urologmottagningen",
+      5.0
+    ],
+    [
+      "Reumatologimottagningen",
+      "Vakten",
+      0.7000000000000001
+    ],
+    [
+      "Andningsfysiologi Klin fys mottagning 3",
+      "Lungmottagningen Vita Str 12",
+      1.1
+    ],
+    [
+      "Andningsfysiologi Klin fys mottagning 3",
+      "Fysioterapi Vita str 13",
+      5.0
+    ],
+    [
+      "Andningsfysiologi Klin fys mottagning 3",
+      "Avd 10 Neurokirurgi",
+      5.0
+    ],
+    [
+      "Andningsfysiologi Klin fys mottagning 3",
+      "Avd 135 Stroke",
+      5.0
+    ],
+    [
+      "Andningsfysiologi Klin fys mottagning 3",
+      "Avd 21 Geriatrik",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "PIVA avd 22",
+      0.5
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "TVE Traumav\u00e5rdsenhet",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "K\u00e4rlkirurgimottagning (Vita Str 12)",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "Preop 4",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "KK-akuten Gynekologisk Akutmottagning",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "MR 51 Gamla Magnetkameran",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "Str\u00e5lbehandling Rum 9",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      "Operation 5 Neurokirurgi",
+      5.0
+    ],
+    [
+      "MS-Mottagningen",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Kirurgmottagningen Dagv\u00e5rd",
+      "Vakten",
+      0.7000000000000001
+    ],
+    [
+      "Kirurgmottagningen Dagv\u00e5rd",
+      "Urologmottagningen",
+      1.0
+    ],
+    [
+      "Kirurgmottagningen Dagv\u00e5rd",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "Kirurgmottagningen Dagv\u00e5rd",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Lunginfektionsmottagning TBC Vita Str 12",
+      "Njurmottagningen Vita Str 12",
+      0.6000000000000001
+    ],
+    [
+      "Avd 80 Psykiatri",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      0.5
+    ],
+    [
+      "Avd 80 Psykiatri",
+      "Medicinmottagning 2",
+      5.0
+    ],
+    [
+      "Avd 80 Psykiatri",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "Avd 80 Psykiatri",
+      "KFU Klinisk Fysiologi Ultraljud",
+      5.0
+    ],
+    [
+      "Operation 8",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Urologmottagningen",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Avd 90 MAVA",
+      "Avd 91 MAVA",
+      3.3000000000000003
+    ],
+    [
+      "Avd 90 MAVA",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 90 MAVA",
+      "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH",
+      5.0
+    ],
+    [
+      "Avd 90 MAVA",
+      "Gynekologisk Mottagning",
+      5.0
+    ],
+    [
+      "Avd 90 MAVA",
+      "Hj\u00e4rtmottagningen",
+      5.0
+    ],
+    [
+      "Avd 133 Neurologi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      3.7
+    ],
+    [
+      "Avd 133 Neurologi",
+      "Avd 54 Onkologi",
+      4.0
+    ],
+    [
+      "Avd 133 Neurologi",
+      "Kyrkan",
+      5.0
+    ],
+    [
+      "Avd 133 Neurologi",
+      "ECT",
+      5.0
+    ],
+    [
+      "Avd 133 Neurologi",
+      "KOL-Centrum",
+      5.0
+    ],
+    [
+      "Avd 133 Neurologi",
+      "Dag-UVA avdelning 95B",
+      5.0
+    ],
+    [
+      "Avd 133 Neurologi",
+      "Dialysmottagning (avd 130)",
+      5.0
+    ],
+    [
+      "TIVA Thoraxintensiven",
+      "Vakten",
+      0.6000000000000001
+    ],
+    [
+      "K\u00f6nsmottagningen",
+      "Vakten",
+      5.0
+    ],
+    [
+      "C-lab Klinisk Kemi Provinl\u00e4mning",
+      "Informationen",
+      5.0
+    ],
+    [
+      "Bruna Str\u00e5ket 5 Entr\u00e9",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Intervention 1",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      0.7000000000000001
+    ],
+    [
+      "Intervention 1",
+      "Kirurgmottagningen",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Hudbehandling plan 03",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Avd 137 Kirurgi",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Avd 132 Kirurgi",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Bruna Str\u00e5ket 5 Entr\u00e9",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Avd 139 Transplantation",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Kirurgmottagningen",
+      5.0
+    ],
+    [
+      "Avd 131 Njurmedicin",
+      "Avd 25 Thoraxkirurgi",
+      5.0
+    ],
+    [
+      "Allergimottagning (samma hus som KOL-centrum)",
+      "Avd 135 Stroke",
+      5.0
+    ],
+    [
+      "AKOM team 3 OBS:en",
+      "Apoteket",
+      0.6000000000000001
+    ],
+    [
+      "AKOM team 3 OBS:en",
+      "\u00c5V-rum 18 (Uppg\u00e5ng D)",
+      5.0
+    ],
+    [
+      "AKOM team 3 OBS:en",
+      "Vakten",
+      0.7000000000000001
+    ],
+    [
+      "AKOM team 3 OBS:en",
+      "Ortopedimottagning (Bl\u00e5 str\u00e5ket 3)",
+      1.4000000000000001
+    ],
+    [
+      "AKOM team 3 OBS:en",
+      "CIVA avd 96",
+      3.0
+    ],
+    [
+      "Avd 19 specialist",
+      "Avd 25 Thoraxkirurgi",
+      5.0
+    ],
+    [
+      "Avd 19 specialist",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 19 specialist",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 19 specialist",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "Lungdiagnostisk Mott.",
+      "Ortopedimottagning (Bl\u00e5 str\u00e5ket 3)",
+      0.9
+    ],
+    [
+      "Lungdiagnostisk Mott.",
+      "Lungmottagningen Vita Str 12",
+      5.0
+    ],
+    [
+      "Avd 81 Psykiatri",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "NIVA Neurointensiven",
+      "Vakten",
+      0.7000000000000001
+    ],
+    [
+      "Avd 27 Plastik",
+      "GEA Gastroenterologisk Endoskopi",
+      0.5
+    ],
+    [
+      "Avd 27 Plastik",
+      "Nuklearmedicin Klin Fys",
+      0.5
+    ],
+    [
+      "Avd 27 Plastik",
+      "Avd 31 Plastik dagv\u00e5rd",
+      0.6000000000000001
+    ],
+    [
+      "Avd 32 Specialistmedicin",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 32 Specialistmedicin",
+      "Cystoskopi Urologmottagningen",
+      5.0
+    ],
+    [
+      "Avd 32 Specialistmedicin",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 32 Specialistmedicin",
+      "Onkologimottagning 1 och 2 (JK Bl\u00e5 str 2)",
+      5.0
+    ],
+    [
+      "Nuklearmedicin Klin Fys",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      2.4000000000000004
+    ],
+    [
+      "Nuklearmedicin Klin Fys",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Ambulanshall",
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      0.5
+    ],
+    [
+      "Ambulanshall",
+      "Vakten",
+      0.8
+    ],
+    [
+      "Ambulanshall",
+      "Fris\u00f6ren",
+      3.3000000000000003
+    ],
+    [
+      "Ambulanshall",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Ambulanshall",
+      "KK-akuten Gynekologisk Akutmottagning",
+      5.0
+    ],
+    [
+      "Kirurgmottagningen",
+      "Operation 1",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Vakten",
+      0.75
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Operation 6 Plastikkirurgi",
+      1.4000000000000001
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Operation 7 \u00d6ron N\u00e4sa Hals",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Gynekologisk Mottagning",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Iohexol njurfunktion Klin Fys (crom)",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Urologmottagningen",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Medicinmottagning 1",
+      5.0
+    ],
+    [
+      "Avd 136 Kirurgi",
+      "Nuklearmedicin Klin Fys",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Huvudentr\u00e9n",
+      1.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Operation 4 (p\u00e5 OP1 under sommaren)",
+      3.1
+    ],
+    [
+      "Avd 141 Hematologi",
+      "H\u00f6rselv\u00e5rd",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Str\u00e5lbehandling Rum 8",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Dialysmottagning (avd 130)",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Mammografi",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Avd 23 Neurokirurgi",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Medicinmottagning 1",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "R\u00f6ntgen Plan 2/3 rum s21",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 141 Hematologi",
+      "Str\u00e5lbehandling Rum 10",
+      5.0
+    ],
+    [
+      "Avd 139 Transplantation",
+      "Avd 143 Transplantationsmottagning",
+      0.5
+    ],
+    [
+      "Avd 139 Transplantation",
+      "Str\u00e5lbehandling Rum 5",
+      5.0
+    ],
+    [
+      "Avd 139 Transplantation",
+      "Neuromuskul\u00e4rt Centrum NMC (Bl\u00e5 str 7 plan 3)",
+      5.0
+    ],
+    [
+      "Avd 139 Transplantation",
+      "Operation 8",
+      5.0
+    ],
+    [
+      "Avd 139 Transplantation",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 23 Neurokirurgi",
+      "Huvudentr\u00e9n",
+      0.5
+    ],
+    [
+      "Avd 23 Neurokirurgi",
+      "Hudmottagningen plan 01",
+      5.0
+    ],
+    [
+      "Avd 23 Neurokirurgi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 23 Neurokirurgi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 52 Onkologi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 52 Onkologi",
+      "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH",
+      5.0
+    ],
+    [
+      "Avd 25 Thoraxkirurgi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 25 Thoraxkirurgi",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "AKOM triage",
+      "Vakten",
+      0.9
+    ],
+    [
+      "AKOM triage",
+      "Onkologimottagning 1 och 2 (JK Bl\u00e5 str 2)",
+      3.6
+    ],
+    [
+      "AKOM triage",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "AKOM triage",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "AKOM triage",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "AKOM triage",
+      "Apoteket",
+      5.0
+    ],
+    [
+      "AKOM triage",
+      "NIVA Neurointensiven",
+      5.0
+    ],
+    [
+      "71 Onkologisk mottagning team 3",
+      "Avd 52 Onkologi",
+      0.5
+    ],
+    [
+      "71 Onkologisk mottagning team 3",
+      "RadFysLab",
+      5.0
+    ],
+    [
+      "71 Onkologisk mottagning team 3",
+      "GEA Gastroenterologisk Endoskopi",
+      5.0
+    ],
+    [
+      "AKOM traumarummet",
+      "Vakten",
+      1.5
+    ],
+    [
+      "AKOM traumarummet",
+      "KK-akuten Gynekologisk Akutmottagning",
+      3.2
+    ],
+    [
+      "AKOM traumarummet",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "CIVA avd 96",
+      0.7000000000000001
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "IVF",
+      5.0
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "Undervisningsmottagning (pl 1 nya huset vid uppg\u00e5ng H)",
+      5.0
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "Operation 5 Neurokirurgi",
+      4.7
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "Njurmottagningen Vita Str 12",
+      5.0
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "Hj\u00e4rtmottagningen",
+      5.0
+    ],
+    [
+      "Avd 115 Reumatologi",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "Avd 67 Gynekologi",
+      "Vakten",
+      3.7
+    ],
+    [
+      "Avd 67 Gynekologi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      "\u00d6ron N\u00e4sa Hals-Mottagningen (flyttat till gamla r\u00f6ntgen)",
+      0.7000000000000001
+    ],
+    [
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      3.1
+    ],
+    [
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      "Nuklearmedicin Klin Fys",
+      5.0
+    ],
+    [
+      "Avd 135 Stroke",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      3.2
+    ],
+    [
+      "Avd 135 Stroke",
+      "Thoraxmottagning (under sommaren p\u00e5 avd 25)",
+      5.0
+    ],
+    [
+      "Avd 135 Stroke",
+      "Str\u00e5lbehandling Rum 10",
+      5.0
+    ],
+    [
+      "Avd 135 Stroke",
+      "Avd 32 Specialistmedicin",
+      5.0
+    ],
+    [
+      "Neurodagsjukv\u00e5rd (Bruna str 5 plan 1)",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "0",
+      "Avd 54 Onkologi",
+      5.0
+    ],
+    [
+      "Operation 4 Preop",
+      "Operation 8",
+      5.0
+    ],
+    [
+      "Avd 54 Onkologi",
+      "Str\u00e5lbehandling Rum 1",
+      4.1000000000000005
+    ],
+    [
+      "Avd 54 Onkologi",
+      "Str\u00e5lbehandling Rum 11",
+      5.0
+    ],
+    [
+      "Avd 54 Onkologi",
+      "B\u00e5rhus",
+      5.0
+    ],
+    [
+      "Dialysmottagning (avd 130)",
+      "Nuklearmedicin Klin Fys",
+      2.9000000000000004
+    ],
+    [
+      "Dialysmottagning (avd 130)",
+      "Operation 1",
+      5.0
+    ],
+    [
+      "Prostatacancer-Center PCC",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      1.5
+    ],
+    [
+      "Prostatacancer-Center PCC",
+      "Urologmottagningen",
+      5.0
+    ],
+    [
+      "Operation 1",
+      "Operation 4 Preop",
+      0.6000000000000001
+    ],
+    [
+      "Operation 1",
+      "Operation 8",
+      0.9
+    ],
+    [
+      "Operation 1",
+      "Operation 4 Postop",
+      5.0
+    ],
+    [
+      "Operation 1",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      0.9
+    ],
+    [
+      "Operation 1",
+      "Preoperativ mottagning Sahlgrenska Bl\u00e5 str 7 plan 1",
+      5.0
+    ],
+    [
+      "B\u00e5rhus",
+      "CIVA Postop avdelning 97",
+      5.0
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "Huvudentr\u00e9n",
+      3.9000000000000004
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "Muskellab Gula str 6",
+      5.0
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      4.1000000000000005
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "Nuklearmedicin Klin Fys",
+      5.0
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "Intervention 1",
+      5.0
+    ],
+    [
+      "Avd 140 Hematologisk Mottagning",
+      "Avd 34 Geriatrik",
+      5.0
+    ],
+    [
+      "Avd 69 Onkologi",
+      "Fris\u00f6ren",
+      2.2
+    ],
+    [
+      "Avd 69 Onkologi",
+      "Str\u00e5lbehandling Rum 7",
+      4.0
+    ],
+    [
+      "Avd 69 Onkologi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 69 Onkologi",
+      "MR 51 Gamla Magnetkameran",
+      5.0
+    ],
+    [
+      "Patolog-Lab",
+      "TIVA Thoraxintensiven",
+      5.0
+    ],
+    [
+      "Avd 92 HIA Hj\u00e4rtintensiv",
+      "Intervention 3",
+      5.0
+    ],
+    [
+      "Avd 92 HIA Hj\u00e4rtintensiv",
+      "CTC gr\u00f6na str\u00e5ket 12",
+      5.0
+    ],
+    [
+      "Avd 92 HIA Hj\u00e4rtintensiv",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 92 HIA Hj\u00e4rtintensiv",
+      "Vakten",
+      5.0
+    ],
+    [
+      "Avd 92 HIA Hj\u00e4rtintensiv",
+      "GEA Gastroenterologisk Endoskopi",
+      5.0
+    ],
+    [
+      "Avd 92 HIA Hj\u00e4rtintensiv",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Iohexol njurfunktion Klin Fys (crom)",
+      "Nuklearmedicin Klin Fys",
+      1.3
+    ],
+    [
+      "Iohexol njurfunktion Klin Fys (crom)",
+      "Operation 4 Preop",
+      5.0
+    ],
+    [
+      "Bl\u00e5 Str\u00e5ket 3",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Bl\u00e5 Str\u00e5ket 3",
+      "Helikopterplattan",
+      5.0
+    ],
+    [
+      "B\u00e5rvagnsf\u00f6rr\u00e5d AKOM",
+      "Driftavdelning",
+      5.0
+    ],
+    [
+      "Neurokirurgi Inskrivning",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      3.8000000000000003
+    ],
+    [
+      "Neurokirurgi Inskrivning",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Neurokirurgi Inskrivning",
+      "Neurooftamologisk mott Sahlgrenska \u00d6K",
+      5.0
+    ],
+    [
+      "Avd 16/29 medicin",
+      "Onkologimottagning 1 och 2 (JK Bl\u00e5 str 2)",
+      0.9
+    ],
+    [
+      "Avd 16/29 medicin",
+      "Lungonkologisk Mottagning LOM",
+      5.0
+    ],
+    [
+      "Avd 16/29 medicin",
+      "Leverkirurgisk mottagning dagv\u00e5rd (Bruna 5, v\u00e5n 4)",
+      5.0
+    ],
+    [
+      "Avd 16/29 medicin",
+      "PIVA avd 22",
+      3.6
+    ],
+    [
+      "Avd 16/29 medicin",
+      "KK-akuten Gynekologisk Akutmottagning",
+      5.0
+    ],
+    [
+      "Avd 113 Hud plan04",
+      "Informationen",
+      1.6
+    ],
+    [
+      "Avd 113 Hud plan04",
+      "Dialysmottagning (avd 130)",
+      1.7000000000000002
+    ],
+    [
+      "Njurmottagningen Vita Str 12",
+      "Peritonealdialys ( PD Bruna str 5 )",
+      5.0
+    ],
+    [
+      "Njurmottagningen Vita Str 12",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      0.7000000000000001
+    ],
+    [
+      "Njurmottagningen Vita Str 12",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 124 - \u00d6NH-mott tillf\u00e4lligt utlokaliserad",
+      "Avd 21 Geriatrik",
+      5.0
+    ],
+    [
+      "Mag-tarm-lab Bl\u00e5 str\u00e5ket 3 plan 4",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Plastikmottagningen (Bl\u00e5 str 3)",
+      "Vakten",
+      1.0
+    ],
+    [
+      "Avd 82 Psykiatri",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 10 Neurokirurgi",
+      "Avd 133 Neurologi",
+      5.0
+    ],
+    [
+      "Avd 10 Neurokirurgi",
+      "Gynekologisk Mottagning",
+      5.0
+    ],
+    [
+      "Avd 10 Neurokirurgi",
+      "Nuklearmedicin Klin Fys",
+      5.0
+    ],
+    [
+      "Avd 10 Neurokirurgi",
+      "Huvudentr\u00e9n",
+      5.0
+    ],
+    [
+      "Avd 10 Neurokirurgi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 10 Neurokirurgi",
+      "MR 52 Gamla Magnetkameran",
+      5.0
+    ],
+    [
+      "Avd 94 dagv\u00e5rd kardiologi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Hudmottagningen plan 01",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Avd 91 MAVA",
+      "R\u00f6ntgen Plan 2/3 rum s21",
+      0.8
+    ],
+    [
+      "Avd 91 MAVA",
+      "Neurooftamologisk mott Sahlgrenska \u00d6K",
+      5.0
+    ],
+    [
+      "Avd 91 MAVA",
+      "H\u00f6rselv\u00e5rd (Flyttat till  nya huset vid Uppg\u00e5ng H)",
+      5.0
+    ],
+    [
+      "Avd 91 MAVA",
+      "Informationen",
+      2.8000000000000003
+    ],
+    [
+      "Avd 91 MAVA",
+      "Bruna Str\u00e5ket 5 Entr\u00e9",
+      5.0
+    ],
+    [
+      "Avd 91 MAVA",
+      "Str\u00e5lbehandling CT-MR-Fixation",
+      5.0
+    ],
+    [
+      "Avd 91 MAVA",
+      "Str\u00e5lbehandling Rum 1",
+      5.0
+    ],
+    [
+      "Avd 91 MAVA",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Vakten",
+      "\u00d6ron N\u00e4sa Hals-Mottagningen (flyttat till gamla r\u00f6ntgen)",
+      3.2
+    ],
+    [
+      "Dagv\u00e5rd Urologmottagningen",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 143 Transplantationsmottagning",
+      "Avd 16/29 medicin",
+      5.0
+    ],
+    [
+      "Avd 143 Transplantationsmottagning",
+      "Avd 91 MAVA",
+      5.0
+    ],
+    [
+      "Avd 143 Transplantationsmottagning",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 143 Transplantationsmottagning",
+      "Intervention 2",
+      5.0
+    ],
+    [
+      "Boic-Gropen",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Boic-Gropen",
+      "CIVA avd 96",
+      5.0
+    ],
+    [
+      "Avd 86 Psykiatri",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Hj\u00e4rtmottagningen",
+      "Vakten",
+      0.5
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Avd 90 MAVA",
+      1.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Onkologimottagning 3 (KK Bl\u00e5 Str 6)",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Huvudentr\u00e9n",
+      1.3
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Prostatacancer-Center PCC",
+      1.7000000000000002
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Avd 18 \u00d6ron N\u00e4sa Hals (p\u00e5 27 under sommaren)",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "MR 51 Gamla Magnetkameran",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Neurooftamologisk mott Sahlgrenska \u00d6K",
+      5.0
+    ],
+    [
+      "Avd 15/28 Ortopedi",
+      "Operation 8",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "Informationen",
+      0.5
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "Str\u00e5lbehandling Rum 3",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "Dialysmottagning (avd 130)",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "Kirurgmottagningen Dagv\u00e5rd",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Avd 132 Kirurgi",
+      "Iohexol njurfunktion Klin Fys (crom)",
+      5.0
+    ],
+    [
+      "Avd 13 Kardiologi",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      0.5
+    ],
+    [
+      "Avd 13 Kardiologi",
+      "Dexa (\"Scapis\") Bl\u00e5 str 7 plan 1",
+      5.0
+    ],
+    [
+      "Avd 13 Kardiologi",
+      "Str\u00e5lbehandling Rum 4",
+      5.0
+    ],
+    [
+      "Avd 13 Kardiologi",
+      "Dexa (Plan 9 uppg\u00e5ng C)",
+      5.0
+    ],
+    [
+      "Avd 13 Kardiologi",
+      "Medicinmottagning 1",
+      5.0
+    ],
+    [
+      "Avd 34 Geriatrik",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 34 Geriatrik",
+      "Str\u00e5lbehandling Brachy",
+      5.0
+    ],
+    [
+      "Avd 34 Geriatrik",
+      "Str\u00e5lbehandling Rum 6",
+      5.0
+    ],
+    [
+      "Avd 34 Geriatrik",
+      "Operation 2",
+      5.0
+    ],
+    [
+      "AKOM akutteam 4",
+      "Vakten",
+      0.8
+    ],
+    [
+      "AKOM akutteam 4",
+      "Blodcentralen Transfusionsmedicin",
+      1.0
+    ],
+    [
+      "AKOM akutteam 4",
+      "Operation 3 Thorax (finns p\u00e5 OP 2 tillf\u00e4lligt)",
+      5.0
+    ],
+    [
+      "AKOM akutteam 4",
+      "Neurokirurgimottagning (Bl\u00e5 str 7 plan 00)",
+      5.0
+    ],
+    [
+      "AKOM akutteam 4",
+      "B\u00e5rvagnsf\u00f6rr\u00e5d AKOM",
+      5.0
+    ],
+    [
+      "AKOM akutteam 4",
+      "Plastikmottagningen",
+      5.0
+    ],
+    [
+      "AKOM akutteam 4",
+      "Avd 93 HIA Hj\u00e4rtintensiv",
+      1.5
+    ],
+    [
+      "AKOM akutteam 4",
+      "AKOM triage",
+      2.8000000000000003
+    ],
+    [
+      "AKOM akutteam 4",
+      "Avd 30 Urologi (P\u00e5 131 under sommaren)",
+      5.0
+    ],
+    [
+      "Apoteket",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      1.2000000000000002
+    ],
+    [
+      "MR 52 Gamla Magnetkameran",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      0.6000000000000001
+    ],
+    [
+      "Onkologimottagning 1 och 2 (JK Bl\u00e5 str 2)",
+      "Str\u00e5lbehandling CT-MR-Fixation",
+      4.2
+    ],
+    [
+      "MR 51 Gamla Magnetkameran",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      0.8
+    ],
+    [
+      "MR 51 Gamla Magnetkameran",
+      "R\u00f6ntgen S\u00f6der rum S1",
+      5.0
+    ],
+    [
+      "MR 51 Gamla Magnetkameran",
+      "R\u00f6ntgen Plan 01 rum s18 (MR)",
+      5.0
+    ],
+    [
+      "Operation 5 Neurokirurgi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      0.8
+    ],
+    [
+      "Avd 137 Kirurgi",
+      "\u00d6ron N\u00e4s Hals-Mottagningen \u00d6NH",
+      3.9000000000000004
+    ],
+    [
+      "Avd 137 Kirurgi",
+      "Plastikmottagningen Gr\u00f6na Str 7",
+      5.0
+    ],
+    [
+      "Avd 137 Kirurgi",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 137 Kirurgi",
+      "Avd 31 Plastik dagv\u00e5rd",
+      5.0
+    ],
+    [
+      "Avd 137 Kirurgi",
+      "\u00d6ron N\u00e4sa Hals-Mottagningen (flyttat till gamla r\u00f6ntgen)",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "Avd 91 MAVA",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "Operation 8",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "R\u00f6ntgen Buk och K\u00e4rl S30 Genomlysning (Uppg\u00e5ng C plan 2)",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "Operation 2",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "Operation 7 \u00d6ron N\u00e4sa Hals",
+      5.0
+    ],
+    [
+      "Avd 31 Plastik dagv\u00e5rd",
+      "Operation 6 Plastikkirurgi",
+      5.0
+    ],
+    [
+      "Diabetesforskning L-berglab",
+      "R\u00f6ntgen Norr rum S13 MR-kamera",
+      5.0
+    ]
+  ]
+}

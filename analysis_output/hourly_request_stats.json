@@ -1,0 +1,98 @@
+{
+  "00-01": {
+    "requests_per_hour": 1862.0,
+    "total_requests": 1862
+  },
+  "01-02": {
+    "requests_per_hour": 1336.0,
+    "total_requests": 1336
+  },
+  "02-03": {
+    "requests_per_hour": 1525.0,
+    "total_requests": 1525
+  },
+  "03-04": {
+    "requests_per_hour": 1003.0,
+    "total_requests": 1003
+  },
+  "04-05": {
+    "requests_per_hour": 755.0,
+    "total_requests": 755
+  },
+  "05-06": {
+    "requests_per_hour": 986.0,
+    "total_requests": 986
+  },
+  "06-07": {
+    "requests_per_hour": 643.0,
+    "total_requests": 643
+  },
+  "07-08": {
+    "requests_per_hour": 4243.0,
+    "total_requests": 4243
+  },
+  "08-09": {
+    "requests_per_hour": 8237.0,
+    "total_requests": 8237
+  },
+  "09-10": {
+    "requests_per_hour": 8135.0,
+    "total_requests": 8135
+  },
+  "10-11": {
+    "requests_per_hour": 9584.0,
+    "total_requests": 9584
+  },
+  "11-12": {
+    "requests_per_hour": 8689.0,
+    "total_requests": 8689
+  },
+  "12-13": {
+    "requests_per_hour": 7570.0,
+    "total_requests": 7570
+  },
+  "13-14": {
+    "requests_per_hour": 11214.0,
+    "total_requests": 11214
+  },
+  "14-15": {
+    "requests_per_hour": 11179.0,
+    "total_requests": 11179
+  },
+  "15-16": {
+    "requests_per_hour": 8158.0,
+    "total_requests": 8158
+  },
+  "16-17": {
+    "requests_per_hour": 6045.0,
+    "total_requests": 6045
+  },
+  "17-18": {
+    "requests_per_hour": 5372.0,
+    "total_requests": 5372
+  },
+  "18-19": {
+    "requests_per_hour": 4137.0,
+    "total_requests": 4137
+  },
+  "19-20": {
+    "requests_per_hour": 3098.0,
+    "total_requests": 3098
+  },
+  "20-21": {
+    "requests_per_hour": 2944.0,
+    "total_requests": 2944
+  },
+  "21-22": {
+    "requests_per_hour": 1216.0,
+    "total_requests": 1216
+  },
+  "22-23": {
+    "requests_per_hour": 3001.0,
+    "total_requests": 3001
+  },
+  "23-00": {
+    "requests_per_hour": 2811.0,
+    "total_requests": 2811
+  }
+}

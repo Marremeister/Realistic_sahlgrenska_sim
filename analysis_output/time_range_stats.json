@@ -1,0 +1,22 @@
+{
+  "08-12": {
+    "requests_per_hour": 8661.25,
+    "total_requests": 34645,
+    "hours": 4
+  },
+  "12-17": {
+    "requests_per_hour": 8833.2,
+    "total_requests": 44166,
+    "hours": 5
+  },
+  "17-22": {
+    "requests_per_hour": 3353.4,
+    "total_requests": 16767,
+    "hours": 5
+  },
+  "22-08": {
+    "requests_per_hour": 1816.5,
+    "total_requests": 18165,
+    "hours": 10
+  }
+}
