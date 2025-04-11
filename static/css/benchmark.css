@@ -754,3 +754,278 @@ input:focus, select:focus {
   gap: 10px;
   margin-top: 10px;
 }
+
+/* Time-based benchmark styles - add to benchmark.css */
+.time-range-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.time-range-section h4 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.time-range-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.time-select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.time-separator {
+  font-weight: bold;
+  color: #555;
+}
+
+.suggested-time-ranges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.time-range-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.time-range-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.time-range-btn.active {
+  background-color: #4b6cb7;
+  color: white;
+  border-color: #3b5998;
+}
+
+.hourly-rate-container {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #eaeaea;
+  height: 250px;
+  margin-top: 15px;
+}
+
+.hourly-rate-container h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.benchmark-switch-container {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.benchmark-switch-label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.benchmark-type-switch {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 34px;
+}
+
+.benchmark-type-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.benchmark-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f0f0f0;
+  border-radius: 34px;
+  transition: .4s;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.benchmark-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 90px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #4b6cb7;
+  border-radius: 17px;
+  transition: .4s;
+}
+
+.benchmark-switch-labels {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.benchmark-switch-label-standard {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  flex: 1;
+  text-align: center;
+}
+
+.benchmark-switch-label-time {
+  color: #555;
+  font-weight: bold;
+  font-size: 12px;
+  flex: 1;
+  text-align: center;
+}
+
+.benchmark-type-switch input:checked + .benchmark-switch-slider:before {
+  transform: translateX(100px);
+}
+
+.benchmark-type-switch input:checked ~ .benchmark-switch-labels .benchmark-switch-label-standard {
+  color: #555;
+}
+
+.benchmark-type-switch input:checked ~ .benchmark-switch-labels .benchmark-switch-label-time {
+  color: white;
+}
+
+/* Time-based parameters card */
+.time-params-card {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.time-params-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.time-param-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.time-param-label {
+  color: #555;
+}
+
+.time-param-value {
+  font-weight: bold;
+  color: #4b6cb7;
+}
+
+/* Time-based scenario styles */
+.time-range-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.time-select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.time-separator {
+  font-weight: bold;
+  color: #555;
+}
+
+.suggested-time-ranges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.time-range-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.time-range-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.time-range-btn.active {
+  background-color: #4b6cb7;
+  color: white;
+  border-color: #3b5998;
+}
+
+.hourly-rate-container {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #eaeaea;
+  height: 250px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.hourly-rate-container h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+}
+
+.small-note {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.scenario-actions {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+}

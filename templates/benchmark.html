@@ -118,9 +118,14 @@
                 <span class="slider round"></span>
               </label>
             </div>
-            <button id="add-scenario-btn" class="btn secondary small">
-              <i class="fas fa-plus"></i> Add Scenario
-            </button>
+            <div class="scenario-actions">
+              <button id="add-scenario-btn" class="btn secondary small">
+                <i class="fas fa-plus"></i> Add Scenario
+              </button>
+              <button id="add-time-scenario-btn" class="btn secondary small">
+                <i class="fas fa-clock"></i> Time-Based
+              </button>
+            </div>
           </div>
         </div>
 
@@ -410,6 +415,50 @@
         </div>
       </div>
       <button class="btn danger" id="cancel-benchmark-btn">Cancel Benchmark</button>
+    </div>
+  </div>
+
+  <!-- Time-based scenario modal -->
+  <div id="time-scenario-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Generate Time-Based Scenario</h3>
+
+      <div class="form-group">
+        <label for="time-scenario-name">Scenario Name:</label>
+        <input type="text" id="time-scenario-name" placeholder="E.g., Morning Peak 8-10">
+      </div>
+
+      <div class="form-group">
+        <label>Time Range:</label>
+        <div class="time-range-selector">
+          <select id="start-hour" class="time-select"></select>
+          <span class="time-separator">to</span>
+          <select id="end-hour" class="time-select"></select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Suggested Time Ranges:</label>
+        <div id="suggested-time-ranges" class="suggested-time-ranges">
+          <!-- Buttons will be added here -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="time-request-count">Number of Requests:</label>
+        <input type="number" id="time-request-count" min="1" max="50" value="10">
+        <span class="small-note">(Leave blank to use time-based average)</span>
+      </div>
+
+      <div class="hourly-rate-container">
+        <h4>Transport Request Rate by Hour</h4>
+        <canvas id="hourly-rate-chart" height="200"></canvas>
+      </div>
+
+      <div class="modal-actions">
+        <button id="generate-time-scenario-btn" class="btn primary">Generate Time-Based Scenario</button>
+      </div>
     </div>
   </div>
 

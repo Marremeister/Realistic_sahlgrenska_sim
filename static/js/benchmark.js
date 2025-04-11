@@ -1567,3 +1567,591 @@ if (document.readyState === 'loading') {
 } else {
   initializeBenchmarkPage();
 }
+
+// Time-based benchmark functions - add to benchmark.js
+
+// Add this to your document ready function or initialization code
+function initializeTimeBenchmarkFeatures() {
+  const benchmarkTypeSwitch = document.getElementById('benchmark-type-switch');
+  const standardBenchmarkSection = document.getElementById('standard-benchmark-section');
+  const timeBenchmarkSection = document.getElementById('time-benchmark-section');
+
+  // Initialize time range selectors
+  initializeTimeRangeSelectors();
+
+  // Fetch available time ranges from server
+  fetchTimeRangeData();
+
+  // Set up benchmark type switch
+  if (benchmarkTypeSwitch) {
+    benchmarkTypeSwitch.addEventListener('change', function() {
+      if (this.checked) {
+        // Time-based benchmark
+        standardBenchmarkSection.style.display = 'none';
+        timeBenchmarkSection.style.display = 'block';
+      } else {
+        // Standard benchmark
+        standardBenchmarkSection.style.display = 'block';
+        timeBenchmarkSection.style.display = 'none';
+      }
+    });
+  }
+
+  // Set up run button for time-based benchmark
+  const runTimeBenchmarkBtn = document.getElementById('run-time-benchmark-btn');
+  if (runTimeBenchmarkBtn) {
+    runTimeBenchmarkBtn.addEventListener('click', function() {
+      startTimeBenchmark();
+    });
+  }
+}
+
+function initializeTimeRangeSelectors() {
+  const startHourSelect = document.getElementById('start-hour');
+  const endHourSelect = document.getElementById('end-hour');
+
+  if (!startHourSelect || !endHourSelect) return;
+
+  // Clear existing options
+  startHourSelect.innerHTML = '';
+  endHourSelect.innerHTML = '';
+
+  // Add hour options (0-23)
+  for (let i = 0; i < 24; i++) {
+    const formattedHour = i.toString().padStart(2, '0') + ':00';
+
+    const startOption = document.createElement('option');
+    startOption.value = i;
+    startOption.textContent = formattedHour;
+    startHourSelect.appendChild(startOption);
+
+    const endOption = document.createElement('option');
+    endOption.value = i;
+    endOption.textContent = formattedHour;
+    endHourSelect.appendChild(endOption);
+  }
+
+  // Set common business hours as default (9am-5pm)
+  startHourSelect.value = 9;
+  endHourSelect.value = 17;
+}
+
+function fetchTimeRangeData() {
+  fetch('/get_available_time_ranges')
+    .then(response => response.json())
+    .then(data => {
+      updateSuggestedTimeRanges(data.time_ranges);
+      createHourlyRateChart(data.hourly_rates);
+    })
+    .catch(error => {
+      console.error('Error fetching time ranges:', error);
+      notifyUser('Failed to load time range data', 'error');
+    });
+}
+
+function updateSuggestedTimeRanges(timeRanges) {
+  if (!timeRanges || !timeRanges.length) return;
+
+  const suggestedRangesContainer = document.getElementById('suggested-time-ranges');
+  if (!suggestedRangesContainer) return;
+
+  suggestedRangesContainer.innerHTML = '';
+
+  timeRanges.forEach(range => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn small secondary time-range-btn';
+    button.textContent = range;
+    button.addEventListener('click', () => {
+      const [start, end] = range.split('-').map(h => parseInt(h));
+      document.getElementById('start-hour').value = start;
+      document.getElementById('end-hour').value = end;
+
+      // Set active state
+      document.querySelectorAll('.time-range-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+    });
+
+    suggestedRangesContainer.appendChild(button);
+  });
+}
+
+function createHourlyRateChart(hourlyRates) {
+  if (!hourlyRates || !document.getElementById('hourly-rate-chart')) return;
+
+  const ctx = document.getElementById('hourly-rate-chart').getContext('2d');
+
+  // Create or update chart
+  if (window.hourlyRateChart) {
+    window.hourlyRateChart.destroy();
+  }
+
+  window.hourlyRateChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: hourlyRates.labels, // Time labels
+      datasets: [{
+        label: 'Requests per Hour',
+        data: hourlyRates.data,
+        backgroundColor: 'rgba(75, 108, 183, 0.7)',
+        borderColor: 'rgba(75, 108, 183, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Transport Request Rate by Hour'
+        },
+        tooltip: {
+          callbacks: {
+            title: function(tooltipItems) {
+              return tooltipItems[0].label;
+            },
+            label: function(context) {
+              return `${context.raw.toFixed(2)} requests per hour`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Requests per Hour'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Hour of Day'
+          }
+        }
+      }
+    }
+  });
+}
+
+function startTimeBenchmark() {
+  const startHourSelect = document.getElementById('start-hour');
+  const endHourSelect = document.getElementById('end-hour');
+  const timeTransporterCount = document.getElementById('time-transporter-count');
+
+  if (!startHourSelect || !endHourSelect || !timeTransporterCount) {
+    notifyUser('Missing required form elements', 'error');
+    return;
+  }
+
+  const startHour = parseInt(startHourSelect.value);
+  const endHour = parseInt(endHourSelect.value);
+  const transporterCount = parseInt(timeTransporterCount.value);
+
+  if (isNaN(startHour) || isNaN(endHour) || isNaN(transporterCount)) {
+    notifyUser('Please select valid time range and transporter count', 'error');
+    return;
+  }
+
+  if (transporterCount < 1) {
+    notifyUser('Transporter count must be at least 1', 'error');
+    return;
+  }
+
+  // Show progress modal
+  const progressModal = document.getElementById('benchmark-progress-modal');
+  progressModal.style.display = 'block';
+
+  // Update status
+  document.getElementById('benchmark-status').textContent = 'Status: Running Time-Based Benchmark';
+  updateProgressBar(0, 'Initializing benchmark...');
+
+  // Run the benchmark
+  runTimeBasedBenchmark(startHour, endHour, transporterCount);
+}
+
+function runTimeBasedBenchmark(startHour, endHour, transporterCount) {
+  // Send request to backend
+  fetch('/run_time_based_benchmark', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      start_hour: startHour,
+      end_hour: endHour,
+      transporter_count: transporterCount,
+      random_runs: parseInt(document.getElementById('randomRunsSlider').value)
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.error) {
+      notifyUser(`Benchmark error: ${data.error}`, 'error');
+      finalizeBenchmark({ error: data.error });
+      return;
+    }
+
+    // Process results
+    processBenchmarkResults({
+      strategy: 'ILP: Makespan',
+      times: [data.results.optimal_time],
+      workload: data.workload.optimal
+    });
+
+    processBenchmarkResults({
+      strategy: 'Random',
+      times: data.results.random_times,
+      workload: data.workload.random
+    });
+
+    // Update UI
+    updateAllResults();
+
+    // Add time params card to results
+    addTimeParamsCard(startHour, endHour, transporterCount, data);
+
+    // Finalize benchmark
+    finalizeBenchmark({ success: true });
+
+    // Show success notification
+    notifyUser(`Time-based benchmark (${startHour}:00-${endHour}:00) completed successfully!`, 'success');
+  })
+  .catch(error => {
+    notifyUser(`Failed to run time-based benchmark: ${error}`, 'error');
+    finalizeBenchmark({ error: error.message });
+  });
+}
+
+function addTimeParamsCard(startHour, endHour, transporterCount, benchmarkData) {
+  // Create a card showing the time-based parameters
+  const resultsContainer = document.querySelector('.result-cards');
+  if (!resultsContainer) return;
+
+  // Remove existing time params card if any
+  const existingCard = document.querySelector('.time-params-card');
+  if (existingCard) {
+    existingCard.remove();
+  }
+
+  // Create card
+  const card = document.createElement('div');
+  card.className = 'time-params-card';
+
+  // Get request rate if available
+  const requestRate = benchmarkData.scenario?.hourly_rate || 'unknown';
+
+  card.innerHTML = `
+    <div class="time-params-title">Time-based Parameters</div>
+    <div class="time-param-item">
+      <span class="time-param-label">Time Range:</span>
+      <span class="time-param-value">${startHour}:00 - ${endHour}:00</span>
+    </div>
+    <div class="time-param-item">
+      <span class="time-param-label">Transporters:</span>
+      <span class="time-param-value">${transporterCount}</span>
+    </div>
+    <div class="time-param-item">
+      <span class="time-param-label">Requests/Hour:</span>
+      <span class="time-param-value">${typeof requestRate === 'number' ? requestRate.toFixed(2) : requestRate}</span>
+    </div>
+  `;
+
+  // Insert at beginning
+  resultsContainer.insertBefore(card, resultsContainer.firstChild);
+}
+
+// Add to your document ready function
+document.addEventListener('DOMContentLoaded', function() {
+  // Add this call along with your other initializations
+  initializeTimeBenchmarkFeatures();
+});
+
+// Time-based scenario generation - Add these functions to your benchmark.js
+
+// Initialize time-based scenario functionality
+function initializeTimeBasedScenarios() {
+  const addTimeScenarioBtn = document.getElementById('add-time-scenario-btn');
+  const timeScenarioModal = document.getElementById('time-scenario-modal');
+  const generateTimeScenarioBtn = document.getElementById('generate-time-scenario-btn');
+
+  // Initialize the modal trigger
+  if (addTimeScenarioBtn) {
+    addTimeScenarioBtn.addEventListener('click', function() {
+      timeScenarioModal.style.display = 'block';
+
+      // Initialize time selectors if not already done
+      initializeTimeRangeSelectors();
+
+      // Fetch time range data if not already loaded
+      if (!window.hourlyRateChart) {
+        fetchTimeRangeData();
+      }
+    });
+  }
+
+  // Set up generate button
+  if (generateTimeScenarioBtn) {
+    generateTimeScenarioBtn.addEventListener('click', generateTimeBasedScenario);
+  }
+
+  // Close modal handlers
+  const closeButtons = document.querySelectorAll('.close-modal');
+  closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const modal = this.closest('.modal');
+      modal.style.display = 'none';
+    });
+  });
+}
+
+// Initialize time range selectors with hour options
+function initializeTimeRangeSelectors() {
+  const startHourSelect = document.getElementById('start-hour');
+  const endHourSelect = document.getElementById('end-hour');
+
+  if (!startHourSelect || !endHourSelect) return;
+
+  // Only initialize if not already done
+  if (startHourSelect.options.length === 0) {
+    // Add hour options (0-23)
+    for (let i = 0; i < 24; i++) {
+      const formattedHour = i.toString().padStart(2, '0') + ':00';
+
+      const startOption = document.createElement('option');
+      startOption.value = i;
+      startOption.textContent = formattedHour;
+      startHourSelect.appendChild(startOption);
+
+      const endOption = document.createElement('option');
+      endOption.value = i;
+      endOption.textContent = formattedHour;
+      endHourSelect.appendChild(endOption);
+    }
+
+    // Set common business hours as default (9am-5pm)
+    startHourSelect.value = 9;
+    endHourSelect.value = 17;
+  }
+}
+
+// Fetch time range data from the server
+function fetchTimeRangeData() {
+  fetch('/get_available_time_ranges')
+    .then(response => response.json())
+    .then(data => {
+      updateSuggestedTimeRanges(data.time_ranges);
+      createHourlyRateChart(data.hourly_rates);
+    })
+    .catch(error => {
+      console.error('Error fetching time ranges:', error);
+      notifyUser('Failed to load time range data', 'error');
+    });
+}
+
+// Update the suggested time ranges buttons
+function updateSuggestedTimeRanges(timeRanges) {
+  if (!timeRanges || !timeRanges.length) return;
+
+  const suggestedRangesContainer = document.getElementById('suggested-time-ranges');
+  if (!suggestedRangesContainer) return;
+
+  suggestedRangesContainer.innerHTML = '';
+
+  timeRanges.forEach(range => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn small secondary time-range-btn';
+    button.textContent = range;
+    button.addEventListener('click', () => {
+      const [start, end] = range.split('-').map(h => parseInt(h));
+      document.getElementById('start-hour').value = start;
+      document.getElementById('end-hour').value = end;
+
+      // Update scenario name suggestion
+      const nameInput = document.getElementById('time-scenario-name');
+      if (nameInput && !nameInput.value) {
+        nameInput.value = getTimeRangeName(start, end);
+      }
+
+      // Set active state
+      document.querySelectorAll('.time-range-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+    });
+
+    suggestedRangesContainer.appendChild(button);
+  });
+}
+
+// Create the hourly rate chart
+function createHourlyRateChart(hourlyRates) {
+  if (!hourlyRates || !document.getElementById('hourly-rate-chart')) return;
+
+  const ctx = document.getElementById('hourly-rate-chart').getContext('2d');
+
+  // Create or update chart
+  if (window.hourlyRateChart) {
+    window.hourlyRateChart.destroy();
+  }
+
+  window.hourlyRateChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: hourlyRates.labels, // Time labels
+      datasets: [{
+        label: 'Requests per Hour',
+        data: hourlyRates.data,
+        backgroundColor: 'rgba(75, 108, 183, 0.7)',
+        borderColor: 'rgba(75, 108, 183, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Transport Request Rate by Hour'
+        },
+        tooltip: {
+          callbacks: {
+            title: function(tooltipItems) {
+              return tooltipItems[0].label;
+            },
+            label: function(context) {
+              return `${context.raw.toFixed(2)} requests per hour`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Requests per Hour'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Hour of Day'
+          }
+        }
+      }
+    }
+  });
+}
+
+// Get a friendly name for a time range
+function getTimeRangeName(startHour, endHour) {
+  // Morning: 5-12, Afternoon: 12-17, Evening: 17-21, Night: 21-5
+  if (startHour >= 5 && endHour <= 12) {
+    return `Morning ${startHour}-${endHour}`;
+  } else if (startHour >= 12 && endHour <= 17) {
+    return `Afternoon ${startHour}-${endHour}`;
+  } else if (startHour >= 17 && endHour <= 21) {
+    return `Evening ${startHour}-${endHour}`;
+  } else {
+    return `Time Range ${startHour}-${endHour}`;
+  }
+}
+
+// Generate a time-based scenario
+function generateTimeBasedScenario() {
+  const startHour = parseInt(document.getElementById('start-hour').value);
+  const endHour = parseInt(document.getElementById('end-hour').value);
+  const scenarioName = document.getElementById('time-scenario-name').value || getTimeRangeName(startHour, endHour);
+  const requestCount = document.getElementById('time-request-count').value;
+
+  // Validate inputs
+  if (isNaN(startHour) || isNaN(endHour)) {
+    notifyUser('Please select a valid time range', 'error');
+    return;
+  }
+
+  // Show loading indicator or progress
+  document.getElementById('generate-time-scenario-btn').disabled = true;
+  document.getElementById('generate-time-scenario-btn').textContent = 'Generating...';
+
+  // Send request to backend
+  fetch('/generate_time_scenario', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      start_hour: startHour,
+      end_hour: endHour,
+      name: scenarioName,
+      request_count: requestCount || null  // Pass null to use time-based average
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.error) {
+      notifyUser(`Error: ${data.error}`, 'error');
+      return;
+    }
+
+    // Close the modal
+    document.getElementById('time-scenario-modal').style.display = 'none';
+
+    // Add the scenario to the list
+    addScenarioToList(data.scenario);
+
+    // Show success message
+    notifyUser(`Time-based scenario "${scenarioName}" created with ${data.scenario.requests.length} requests`, 'success');
+  })
+  .catch(error => {
+    notifyUser(`Failed to generate scenario: ${error}`, 'error');
+  })
+  .finally(() => {
+    // Reset button
+    document.getElementById('generate-time-scenario-btn').disabled = false;
+    document.getElementById('generate-time-scenario-btn').textContent = 'Generate Time-Based Scenario';
+  });
+}
+
+// Add a scenario to the scenario list
+function addScenarioToList(scenario) {
+  const scenarioList = document.getElementById('scenario-list');
+  if (!scenarioList) return;
+
+  // Create new scenario item
+  const scenarioItem = document.createElement('div');
+  scenarioItem.className = 'scenario-item';
+  scenarioItem.innerHTML = `
+    <div class="scenario-info">
+      <div class="scenario-name">${scenario.name}</div>
+      <div class="scenario-details">${scenario.requests.length} requests, ${scenario.urgent_count || 0} urgent</div>
+    </div>
+    <label class="switch">
+      <input type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
+  `;
+
+  // Insert before the scenario actions div
+  const actionsDiv = scenarioList.querySelector('.scenario-actions');
+  scenarioList.insertBefore(scenarioItem, actionsDiv);
+}
+
+// Add this call to your document ready function
+document.addEventListener('DOMContentLoaded', function() {
+  // Add this along with your other initializations
+  initializeTimeBasedScenarios();
+});
