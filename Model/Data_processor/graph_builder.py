@@ -6,6 +6,7 @@ import logging
 import random
 from Model.graph_model import Graph
 from Model.model_pathfinder import Pathfinder
+from Model.Data_processor.department_name_normalizer import DepartmentNameNormalizer
 
 
 class HospitalGraphBuilder:
@@ -189,7 +190,7 @@ class HospitalGraphBuilder:
 
     def _normalize_department_names(self, departments):
         """
-        Normalize department names by grouping similar names together.
+        Normalize department names by grouping similar names together using shared normalizer.
 
         Args:
             departments: List of original department names
@@ -201,132 +202,24 @@ class HospitalGraphBuilder:
         """
         self.logger.info("Normalizing department names...")
 
-        # Dictionary to map original names to normalized names
-        name_mapping = {}
+        # Use the shared normalizer
+        normalizer = DepartmentNameNormalizer(self.analysis_output_dir if hasattr(self, 'analysis_output_dir') else 'analysis_output')
 
-        # Group similar departments
-        department_groups = {}
+        # First try to load existing mapping
+        normalizer.load_existing_mapping()
 
-        for dept in departments:
-            # Skip empty department names
-            if not dept or dept.strip() == "":
-                continue
+        # Then normalize our departments
+        name_mapping = normalizer.normalize_departments(departments)
 
-            # Clean up the name (remove extra spaces, etc.)
-            cleaned_name = dept.strip()
+        # Extract normalized names
+        normalized_names = list(set(name_mapping.values()))
 
-            # Find the best match among existing groups
-            best_match = self._find_best_department_match(cleaned_name, department_groups.keys())
-
-            if best_match:
-                # Add to existing group
-                department_groups[best_match].append(cleaned_name)
-                name_mapping[cleaned_name] = best_match
-            else:
-                # Create new group
-                department_groups[cleaned_name] = [cleaned_name]
-                name_mapping[cleaned_name] = cleaned_name
-
-        # Get unique normalized names
-        normalized_names = list(department_groups.keys())
-
-        # Log mapping for debugging
-        for group_name, members in department_groups.items():
-            if len(members) > 1:
-                self.logger.info(f"Normalized group '{group_name}' contains {len(members)} variations:")
-                for member in members:
-                    self.logger.info(f"  - {member}")
+        # Save the mapping for future use
+        normalizer.save_mapping()
 
         self.logger.info(f"Reduced {len(departments)} department names to {len(normalized_names)} unique departments")
 
         return normalized_names, name_mapping
-
-    def _find_best_department_match(self, dept_name, existing_groups, threshold=0.7):
-        """
-        Find the best match for a department name among existing groups.
-
-        Args:
-            dept_name: Department name to match
-            existing_groups: List of existing group names
-            threshold: Similarity threshold (0.0-1.0)
-
-        Returns:
-            str or None: Best matching group name or None if no good match
-        """
-        if not existing_groups:
-            return None
-
-        # Try exact prefix match first (more reliable for hospital departments)
-        # Get the first few words (e.g., "Öron Näsa Hals")
-        words = dept_name.split()
-        if len(words) >= 2:
-            prefix = " ".join(words[:min(3, len(words))])
-
-            for group in existing_groups:
-                group_words = group.split()
-                if len(group_words) >= 2:
-                    group_prefix = " ".join(group_words[:min(3, len(group_words))])
-
-                    # If prefixes match, consider it the same department
-                    if prefix.lower() == group_prefix.lower():
-                        return group
-
-        # If no prefix match, try more advanced similarity metrics
-        best_match = None
-        best_score = 0
-
-        for group in existing_groups:
-            # Calculate similarity score (various methods possible)
-            score = self._calculate_name_similarity(dept_name, group)
-
-            if score > threshold and score > best_score:
-                best_score = score
-                best_match = group
-
-        return best_match
-
-    def _calculate_name_similarity(self, name1, name2):
-        """
-        Calculate similarity between two department names.
-
-        Args:
-            name1: First department name
-            name2: Second department name
-
-        Returns:
-            float: Similarity score (0.0-1.0)
-        """
-        # Convert to lowercase for comparison
-        name1 = name1.lower()
-        name2 = name2.lower()
-
-        # Simple character-based similarity
-        # Compute Jaccard similarity of character sets
-        set1 = set(name1)
-        set2 = set(name2)
-
-        if not set1 or not set2:
-            return 0
-
-        intersection = len(set1.intersection(set2))
-        union = len(set1.union(set2))
-
-        char_similarity = intersection / union
-
-        # Word-based similarity
-        words1 = set(name1.split())
-        words2 = set(name2.split())
-
-        if not words1 or not words2:
-            return char_similarity  # Fall back to char similarity
-
-        word_intersection = len(words1.intersection(words2))
-        word_union = len(words1.union(words2))
-
-        word_similarity = word_intersection / word_union
-
-        # Combined score (weighted more toward word similarity)
-        return 0.3 * char_similarity + 0.7 * word_similarity
 
     def _add_departments_as_nodes(self, departments=None):
         """
