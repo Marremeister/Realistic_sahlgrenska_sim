@@ -6,6 +6,7 @@ Updated to include the new optimization strategies.
 import time
 import threading
 from Model.Assignment_strategies.ILP.ilp_mode import ILPMode
+from new_backend_benchmark.time_based_benchmark_model import TimeBasedBenchmarkModel
 
 
 class BenchmarkController:
@@ -28,6 +29,7 @@ class BenchmarkController:
         self.cancel_flag = False
         self.progress = 0
         self.start_time = 0
+        self.time_model = TimeBasedBenchmarkModel(self.model)
 
     def start_benchmark(self, config):
         """
@@ -299,3 +301,142 @@ class BenchmarkController:
         """
         self.model.add_scenario(name, requests)
         return self.get_available_scenarios()
+
+    def add_custom_scenario(self, name, requests):
+        """
+        Add a custom scenario for benchmarking.
+
+        Args:
+            name (str): Scenario name
+            requests (list): List of request tuples (origin, destination, urgent)
+
+        Returns:
+            list: Updated list of scenario names
+        """
+        self.model.add_scenario(name, requests)
+        return self.get_available_scenarios()
+
+    # Time-based benchmark methods
+
+    def get_available_time_ranges(self):
+        """
+        Get available time ranges for time-based benchmarking.
+
+        Returns:
+            list: List of time range strings
+        """
+        return self.time_model.get_available_time_ranges()
+
+    def get_hourly_rate_data(self):
+        """
+        Get hourly rate data for visualization.
+
+        Returns:
+            dict: Hourly rate data for charts
+        """
+        return self.time_model.get_hourly_rates_data()
+
+    def validate_time_range(self, start_hour, end_hour):
+        """
+        Validate a time range input.
+
+        Args:
+            start_hour: Start hour (0-23)
+            end_hour: End hour (0-23)
+
+        Returns:
+            tuple: (is_valid, error_message)
+        """
+        # Check if within valid range
+        if start_hour is None or end_hour is None:
+            return False, "Missing time range parameters"
+
+        try:
+            start_hour = int(start_hour)
+            end_hour = int(end_hour)
+        except ValueError:
+            return False, "Time range must be integers"
+
+        if not (0 <= start_hour <= 23 and 0 <= end_hour <= 23):
+            return False, "Time range must be between 0-23"
+
+        # Valid input
+        return True, None
+
+    def generate_time_scenario(self, start_hour, end_hour, name=None, request_count=None):
+        """
+        Generate a time-based benchmark scenario.
+
+        Args:
+            start_hour (int): Start hour (0-23)
+            end_hour (int): End hour (0-23)
+            name (str, optional): Name for the scenario
+            request_count (int, optional): Number of requests
+
+        Returns:
+            dict: Result with scenario or error
+        """
+        # Validate inputs
+        valid, error = self.validate_time_range(start_hour, end_hour)
+        if not valid:
+            return {"success": False, "error": error}
+
+        # Generate scenario
+        scenario = self.time_model.generate_scenario(
+            int(start_hour), int(end_hour), name,
+            int(request_count) if request_count is not None else None
+        )
+
+        if not scenario:
+            return {
+                "success": False,
+                "error": f"Failed to generate requests for time range {start_hour}-{end_hour}"
+            }
+
+        # Add to benchmark model
+        if not self.time_model.add_scenario_to_benchmark(scenario):
+            return {
+                "success": False,
+                "error": "Failed to add scenario to benchmark model"
+            }
+
+        return {"success": True, "scenario": scenario}
+
+    def run_time_based_benchmark(self, start_hour, end_hour, transporters, random_runs=100):
+        """
+        Run a time-based benchmark.
+
+        Args:
+            start_hour (int): Start hour (0-23)
+            end_hour (int): End hour (0-23)
+            transporters (int): Number of transporters
+            random_runs (int): Number of random runs for comparison
+
+        Returns:
+            dict: Benchmark results
+        """
+        # Validate inputs
+        valid, error = self.validate_time_range(start_hour, end_hour)
+        if not valid:
+            return {"success": False, "error": error}
+
+        try:
+            transporters = int(transporters)
+            if transporters < 1:
+                return {"success": False, "error": "Transport count must be at least 1"}
+
+            random_runs = int(random_runs)
+            if random_runs < 1:
+                random_runs = 100  # Default value
+        except ValueError:
+            return {"success": False, "error": "Invalid transporter count or random runs"}
+
+        # Run benchmark
+        result = self.time_model.run_benchmark_for_time_range(
+            int(start_hour), int(end_hour), transporters, random_runs
+        )
+
+        if "error" in result:
+            return {"success": False, "error": result["error"]}
+
+        return {"success": True, "data": result}
