@@ -92,4 +92,3 @@ class RandomAssignment:
             return 9999  # Large penalty time
 
 
-import random

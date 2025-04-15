@@ -59,6 +59,8 @@ class BenchmarkView:
                               self._run_time_based_benchmark, methods=["POST"])
         self.app.add_url_rule("/generate_time_scenario", "generate_time_scenario",
                               self._generate_time_scenario, methods=["POST"])
+        self.app.add_url_rule("/get_hourly_rate_data", "get_hourly_rate_data",
+                              self._get_hourly_rate_data, methods=["GET"])
 
     # Route handler methods
 
@@ -148,6 +150,16 @@ class BenchmarkView:
 
         return jsonify(result["data"])
 
+    def _get_hourly_rate_data(self):
+        """
+        Get hourly rate data for time-based benchmarks.
+
+        Returns:
+            JSON: Hourly rate data for visualization
+        """
+        data = self.controller.get_hourly_rate_data()
+        return jsonify(data)
+
     # SocketIO event handlers
 
     def _register_socketio_handlers(self):
@@ -167,6 +179,12 @@ class BenchmarkView:
             print(f"Received benchmark request: {data}")
             result = self.controller.start_benchmark(data)
             return result
+
+        @self.socketio.on('incremental_benchmark_results')
+        def handle_incremental_results(data):
+            """Handle and broadcast incremental benchmark results."""
+            # This just re-emits the data to all clients
+            self.socketio.emit('incremental_benchmark_results', data)
 
     # Helper methods
 

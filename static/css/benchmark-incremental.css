@@ -1,0 +1,169 @@
+/* CSS styles for incremental benchmark functionality */
+
+.incremental-toggle-container {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.benchmark-switch-container {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.benchmark-type-switch {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 34px;
+}
+
+.benchmark-type-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.benchmark-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f0f0f0;
+    border-radius: 34px;
+    transition: .4s;
+}
+
+.benchmark-switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 90px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #4b6cb7;
+    border-radius: 17px;
+    transition: .4s;
+}
+
+.benchmark-switch-labels {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.benchmark-switch-label-standard,
+.benchmark-switch-label-time {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.benchmark-switch-label-standard {
+    color: white;
+}
+
+.benchmark-switch-label-time {
+    color: #555;
+}
+
+.benchmark-type-switch input:checked + .benchmark-switch-slider:before {
+    transform: translateX(100px);
+}
+
+.benchmark-type-switch input:checked ~ .benchmark-switch-labels .benchmark-switch-label-standard {
+    color: #555;
+}
+
+.benchmark-type-switch input:checked ~ .benchmark-switch-labels .benchmark-switch-label-time {
+    color: white;
+}
+
+.time-distribution-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.radio-label input {
+    width: auto;
+    margin-right: 8px;
+}
+
+.time-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.time-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.timeline-charts {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.timeline-chart-container,
+.load-chart-container {
+    flex: 1;
+    min-height: 300px;
+}
+
+.performance-comparison-container {
+    min-height: 350px;
+    margin-bottom: 20px;
+}
+
+.chart-container h4 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.hourly-rate-container {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    height: 180px;
+    margin-top: 5px;
+}
+
+.small-note {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
+
+@media (max-width: 1000px) {
+    .timeline-charts {
+        flex-direction: column;
+    }
+}

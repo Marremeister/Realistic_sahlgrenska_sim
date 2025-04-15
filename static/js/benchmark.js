@@ -890,7 +890,7 @@ function updateHistogram() {
   // Update chart annotations for optimal and mean lines
   const optimalTime = benchmarkResults.ilpMakespan[0];
   const randomMean = calculateMean(benchmarkResults.random);
-  
+
   // This updates annotations in Chart.js v3+
   if (!charts.histogramChart.options.plugins.annotation) {
     charts.histogramChart.options.plugins.annotation = {

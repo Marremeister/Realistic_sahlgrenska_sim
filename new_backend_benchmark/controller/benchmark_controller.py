@@ -6,8 +6,8 @@ Coordinates between the model and view, handling user interactions.
 import time
 import threading
 import logging
+import traceback
 from typing import Dict, List, Any, Optional, Tuple
-from new_backend_benchmark.strategies.time_based_benchmark_model import TimeBasedBenchmarkModel
 
 
 class BenchmarkController:
@@ -31,8 +31,6 @@ class BenchmarkController:
         self.progress = 0
         self.start_time = 0
         self.logger = self._setup_logger()
-
-        # Initialize time model (only when needed to avoid circular imports)
         self.time_model = None
 
     def _setup_logger(self):
@@ -46,15 +44,6 @@ class BenchmarkController:
         logger.setLevel(logging.INFO)
         return logger
 
-    def _ensure_time_model(self):
-        """
-        Ensure the time-based model is loaded.
-        Lazy loading to avoid circular imports.
-        """
-        if self.time_model is None:
-
-            self.time_model = TimeBasedBenchmarkModel(self.model)
-
     def start_benchmark(self, config: Dict[str, Any]) -> Dict[str, str]:
         """
         Start a benchmark with the given configuration.
@@ -65,12 +54,15 @@ class BenchmarkController:
                 - random_runs: Number of random simulations to run
                 - strategies: List of strategies to benchmark
                 - scenarios: List of scenarios to use
+                - incremental_mode: Whether to run in incremental mode
+                - time_range: Optional time range for incremental mode
+                - time_distribution: How to distribute requests in time
 
         Returns:
             Dict: Status message
         """
         try:
-            # Extract configuration
+            # Extract and validate configuration
             config = self._validate_benchmark_config(config)
 
             # Cancel existing benchmark if running
@@ -98,34 +90,75 @@ class BenchmarkController:
             Dict: Validated configuration with defaults applied
         """
         # Apply defaults for missing values
-        validated = {
+        validated = self._apply_config_defaults(config)
+
+        # Validate transporters
+        self._validate_transporter_count(validated)
+
+        # Validate random runs
+        self._validate_random_runs(validated)
+
+        # Validate strategies
+        self._validate_strategies(validated)
+
+        # Validate scenarios
+        self._validate_scenarios(validated)
+
+        # Validate incremental mode settings
+        self._validate_incremental_settings(validated)
+
+        return validated
+
+    def _apply_config_defaults(self, config):
+        """Apply default values to missing configuration options."""
+        return {
             "transporters": config.get("transporters", 3),
             "random_runs": config.get("random_runs", 100),
             "strategies": config.get("strategies", ["ILP: Makespan", "Random"]),
-            "scenarios": config.get("scenarios", ["Default Scenario"])
+            "scenarios": config.get("scenarios", ["Default Scenario"]),
+            "incremental_mode": config.get("incremental_mode", False),
+            "time_range": config.get("time_range", [0, 3600]),  # Default 1 hour
+            "time_distribution": config.get("time_distribution", "realistic")
         }
 
-        # Validate transporters (must be > 0)
-        if validated["transporters"] <= 0:
+    def _validate_transporter_count(self, config):
+        """Validate the number of transporters."""
+        if config["transporters"] <= 0:
             raise ValueError("Number of transporters must be greater than 0")
 
-        # Validate random runs (must be > 0)
-        if validated["random_runs"] <= 0:
-            validated["random_runs"] = 100
+    def _validate_random_runs(self, config):
+        """Validate the number of random runs."""
+        if config["random_runs"] <= 0:
+            config["random_runs"] = 100
 
-        # Validate strategies (must be in available strategies)
+    def _validate_strategies(self, config):
+        """Validate the selected strategies."""
         available_strategies = [s["name"] for s in self.model.get_available_strategies()]
-        validated["strategies"] = [s for s in validated["strategies"] if s in available_strategies]
-        if not validated["strategies"]:
-            validated["strategies"] = ["ILP: Makespan", "Random"]
+        config["strategies"] = [s for s in config["strategies"] if s in available_strategies]
+        if not config["strategies"]:
+            config["strategies"] = ["ILP: Makespan", "Random"]
 
-        # Validate scenarios (must be in available scenarios)
+    def _validate_scenarios(self, config):
+        """Validate the selected scenarios."""
         available_scenarios = self.model.get_available_scenarios()
-        validated["scenarios"] = [s for s in validated["scenarios"] if s in available_scenarios]
-        if not validated["scenarios"]:
-            validated["scenarios"] = ["Default Scenario"]
+        config["scenarios"] = [s for s in config["scenarios"] if s in available_scenarios]
+        if not config["scenarios"]:
+            config["scenarios"] = ["Default Scenario"]
 
-        return validated
+    def _validate_incremental_settings(self, config):
+        """Validate incremental mode settings."""
+        if config["incremental_mode"]:
+            time_range = config["time_range"]
+            # Check if time range is valid
+            if not isinstance(time_range, list) or len(time_range) != 2:
+                config["time_range"] = [0, 3600]  # Default 1 hour
+            elif time_range[0] >= time_range[1]:
+                config["time_range"] = [0, 3600]  # Default 1 hour
+
+            # Check if time distribution is valid
+            valid_distributions = ["random", "uniform", "realistic"]
+            if config["time_distribution"] not in valid_distributions:
+                config["time_distribution"] = "realistic"
 
     def _cancel_existing_benchmark(self):
         """Cancel any existing benchmark thread."""
@@ -152,7 +185,10 @@ class BenchmarkController:
                 config["transporters"],
                 config["random_runs"],
                 config["strategies"],
-                config["scenarios"]
+                config["scenarios"],
+                config["incremental_mode"],
+                config["time_range"],
+                config["time_distribution"]
             )
         )
         self.benchmark_thread.daemon = True
@@ -171,8 +207,12 @@ class BenchmarkController:
         else:
             return {"status": "No benchmark running"}
 
-    def _run_benchmark_thread(self, num_transporters: int, random_runs: int,
-                              strategy_names: List[str], scenario_names: List[str]) -> None:
+    def _run_benchmark_thread(
+        self, num_transporters: int, random_runs: int,
+        strategy_names: List[str], scenario_names: List[str],
+        incremental_mode: bool = False, time_range: List[float] = None,
+        time_distribution: str = "realistic"
+    ) -> None:
         """
         Run the benchmark in a background thread.
 
@@ -181,6 +221,9 @@ class BenchmarkController:
             random_runs: Number of random simulations to run
             strategy_names: List of strategy names to benchmark
             scenario_names: List of scenario names to use
+            incremental_mode: Whether to run in incremental mode
+            time_range: Optional time range for incremental mode
+            time_distribution: How to distribute requests in time
         """
         try:
             # Loop through all scenarios
@@ -201,13 +244,16 @@ class BenchmarkController:
                     num_transporters,
                     requests,
                     random_runs,
-                    scenario_name
+                    scenario_name,
+                    incremental_mode,
+                    time_range,
+                    time_distribution
                 )
 
-                # Emit results
+                # Emit results to the client
                 self._emit_results(benchmark_results)
 
-                # Emit benchmark complete
+                # Finalize the benchmark
                 self._finalize_benchmark()
 
         except Exception as e:
@@ -225,9 +271,13 @@ class BenchmarkController:
             return True
         return False
 
-    def _run_all_strategies(self, results: Dict[str, Any], strategy_names: List[str],
-                            num_transporters: int, requests: List[tuple],
-                            random_runs: int, scenario_name: str):
+    def _run_all_strategies(
+        self, results: Dict[str, Any], strategy_names: List[str],
+        num_transporters: int, requests: List[tuple],
+        random_runs: int, scenario_name: str,
+        incremental_mode: bool = False, time_range: List[float] = None,
+        time_distribution: str = "realistic"
+    ):
         """
         Run all requested strategies for a scenario.
 
@@ -238,6 +288,9 @@ class BenchmarkController:
             requests: List of requests for the scenario
             random_runs: Number of random runs
             scenario_name: Name of the current scenario
+            incremental_mode: Whether to run in incremental mode
+            time_range: Optional time range for incremental mode
+            time_distribution: How to distribute requests in time
         """
         # Calculate total steps for progress tracking
         total_strategies = len(strategy_names)
@@ -251,25 +304,30 @@ class BenchmarkController:
             progress_base = int(i * 90 / total_strategies) + 5
 
             # Update progress
+            run_mode = "incremental" if incremental_mode else "standard"
             self._update_progress(
                 progress_base,
-                f"Running {strategy_name} optimization for {scenario_name}"
+                f"Running {strategy_name} optimization ({run_mode} mode) for {scenario_name}"
             )
 
             # Run the appropriate strategy
-            if strategy_name == "Random":
+            if strategy_name == "Random" and not incremental_mode:
                 self._run_random_strategy(
                     results, num_transporters, requests, random_runs,
                     progress_base, i, total_strategies
                 )
             else:
+                # Run either standard or incremental benchmark
                 self._run_single_strategy(
-                    results, strategy_name, num_transporters, requests
+                    results, strategy_name, num_transporters, requests,
+                    incremental_mode, time_range, time_distribution
                 )
 
-    def _run_random_strategy(self, results: Dict[str, Any], num_transporters: int,
-                             requests: List[tuple], random_runs: int,
-                             progress_base: int, strategy_index: int, total_strategies: int):
+    def _run_random_strategy(
+        self, results: Dict[str, Any], num_transporters: int,
+        requests: List[tuple], random_runs: int,
+        progress_base: int, strategy_index: int, total_strategies: int
+    ):
         """
         Run the Random strategy with multiple iterations.
 
@@ -308,8 +366,10 @@ class BenchmarkController:
                 "error": str(e)
             }
 
-    def _update_random_progress(self, random_runs: int, progress_base: int,
-                                strategy_index: int, total_strategies: int):
+    def _update_random_progress(
+        self, random_runs: int, progress_base: int,
+        strategy_index: int, total_strategies: int
+    ):
         """
         Update progress during random simulations.
 
@@ -333,8 +393,12 @@ class BenchmarkController:
                 f"Processed Random simulation ({batch}/{random_runs})"
             )
 
-    def _run_single_strategy(self, results: Dict[str, Any], strategy_name: str,
-                             num_transporters: int, requests: List[tuple]):
+    def _run_single_strategy(
+        self, results: Dict[str, Any], strategy_name: str,
+        num_transporters: int, requests: List[tuple],
+        incremental_mode: bool = False, time_range: List[float] = None,
+        time_distribution: str = "realistic"
+    ):
         """
         Run a single optimization strategy.
 
@@ -343,28 +407,103 @@ class BenchmarkController:
             strategy_name: Name of the strategy to run
             num_transporters: Number of transporters to use
             requests: List of requests
+            incremental_mode: Whether to run in incremental mode
+            time_range: Optional time range for incremental mode
+            time_distribution: How to distribute requests in time
         """
         try:
+            # Prepare time range tuple if provided
+            time_range_tuple = self._prepare_time_range(time_range, incremental_mode)
+
             # Run the benchmark
             result = self.model.run_benchmark(
                 strategy_name,
                 num_transporters,
-                requests
+                requests,
+                incremental_mode=incremental_mode,
+                time_range=time_range_tuple,
+                time_distribution=time_distribution
             )
 
-            # Store results
-            results[strategy_name] = {
-                "times": [result["makespan"]],
-                "workload": result["workload"]
-            }
+            # Store standard results
+            results[strategy_name] = self._prepare_standard_results(result)
+
+            # Store incremental results if applicable
+            if incremental_mode:
+                self._add_incremental_results(results[strategy_name], result)
+
+                # Emit incremental results separately for real-time updates
+                self._emit_incremental_results(strategy_name, result)
 
         except Exception as e:
-            self.logger.error(f"Error in {strategy_name} benchmark: {str(e)}")
-            results[strategy_name] = {
-                "times": [0],
-                "workload": {},
-                "error": str(e)
-            }
+            self._handle_strategy_error(results, strategy_name, e)
+
+    def _prepare_time_range(self, time_range, incremental_mode):
+        """Prepare time range tuple for incremental benchmarks."""
+        if not incremental_mode or not time_range:
+            return None
+        return (time_range[0], time_range[1])
+
+    def _prepare_standard_results(self, result):
+        """Prepare standard result structure."""
+        return {
+            "times": [result["makespan"]],
+            "workload": result["workload"],
+            "incremental": result.get("incremental", False)
+        }
+
+    def _add_incremental_results(self, strategy_results, result):
+        """Add incremental-specific results to the strategy results."""
+        incremental_fields = [
+            "time_metrics", "events", "simulation_time", "hourly_distribution"
+        ]
+
+        for field in incremental_fields:
+            if field in result:
+                strategy_results[field] = result[field]
+
+    def _handle_strategy_error(self, results, strategy_name, error):
+        """Handle an error during strategy execution."""
+        self.logger.error(f"Error in {strategy_name} benchmark: {str(error)}")
+        results[strategy_name] = {
+            "times": [0],
+            "workload": {},
+            "error": str(error)
+        }
+
+    def _emit_incremental_results(self, strategy_name: str, result: Dict[str, Any]):
+        """
+        Emit incremental benchmark results to the client.
+
+        Args:
+            strategy_name: Name of the strategy
+            result: Benchmark result dictionary
+        """
+        # Extract relevant metrics
+        data = self._prepare_incremental_data(strategy_name, result)
+
+        # Emit to client
+        self.socketio.emit("incremental_benchmark_results", data)
+
+        # Add a small delay to ensure messages are processed in order
+        time.sleep(0.1)
+
+    def _prepare_incremental_data(self, strategy_name, result):
+        """Prepare data for incremental results emission."""
+        data = {
+            "strategy": strategy_name,
+            "makespan": result["makespan"],
+            "workload": result["workload"],
+            "simulation_time": result.get("simulation_time", 0)
+        }
+
+        # Add time-based metrics if available
+        incremental_fields = ["time_metrics", "events", "hourly_distribution"]
+        for field in incremental_fields:
+            if field in result:
+                data[field] = result[field]
+
+        return data
 
     def _emit_results(self, benchmark_results: Dict[str, Any]):
         """
@@ -395,7 +534,6 @@ class BenchmarkController:
         Args:
             error: The exception that occurred
         """
-        import traceback
         self.logger.error(f"Error in benchmark: {str(error)}")
         traceback.print_exc()
         self.socketio.emit("benchmark_complete", {"error": str(error)})
@@ -471,20 +609,149 @@ class BenchmarkController:
         self.model.add_scenario(name, requests)
         return self.get_available_scenarios()
 
-    # Time-based benchmark methods
-
-    def get_available_time_ranges(self) -> Dict[str, Any]:
+    def get_hourly_rate_data(self):
         """
-        Get available time ranges and hourly rates for time-based benchmarking.
+        Get hourly rate data for time-based benchmarks.
+        Returns:
+            Dict: Hourly rate data for visualization
+        """
+        return self.model.get_hourly_rate_data()
+
+    def get_available_time_ranges(self):
+        """
+        Get available time ranges for time-based benchmarks.
 
         Returns:
-            Dict: Dictionary with time ranges and hourly rates
+            Dict: Time ranges and hourly rate data
         """
-        self._ensure_time_model()
-        return {
-            "time_ranges": self.time_model.get_available_time_ranges(),
-            "hourly_rates": self.time_model.get_hourly_rates_data()
-        }
+        try:
+            # Create a temporary data repository to get the data
+            from new_backend_benchmark.execution.repository.transport_data_repository import TransportDataRepository
+            repository = TransportDataRepository()
+
+            return {
+                "time_ranges": repository.get_available_time_ranges(),
+                "hourly_rates": repository.get_hourly_rates_for_chart()
+            }
+        except Exception as e:
+            self.logger.error(f"Error getting time ranges: {str(e)}")
+            return {
+                "time_ranges": [],
+                "hourly_rates": {"labels": [], "data": []}
+            }
+
+    def generate_time_scenario(self, start_hour, end_hour, name=None, request_count=None) -> Dict[str, Any]:
+        """
+        Generate a time-based benchmark scenario.
+
+        Args:
+            start_hour: Start hour (0-23)
+            end_hour: End hour (0-23)
+            name: Name for the scenario
+            request_count: Number of requests
+
+        Returns:
+            Dict: Result with scenario or error
+        """
+        try:
+            # Validate inputs
+            valid, error = self.validate_time_range(start_hour, end_hour)
+            if not valid:
+                return {"success": False, "error": error}
+
+            # Create a data repository instance for generating requests
+            from new_backend_benchmark.execution.repository.transport_data_repository import TransportDataRepository
+            repository = TransportDataRepository()
+
+            # Generate a default name if not provided
+            if not name:
+                # Morning: 5-12, Afternoon: 12-17, Evening: 17-21, Night: 21-5
+                if 5 <= int(start_hour) < 12:
+                    period = "Morning"
+                elif 12 <= int(start_hour) < 17:
+                    period = "Afternoon"
+                elif 17 <= int(start_hour) < 21:
+                    period = "Evening"
+                else:
+                    period = "Night"
+                name = f"{period} {start_hour:02d}-{end_hour:02d}"
+
+            # If request count is provided, use that
+            if request_count is not None:
+                count = int(request_count)
+                generated_requests = repository.generate_benchmark_requests(
+                    int(start_hour), int(end_hour), count
+                )
+            else:
+                # Otherwise, get rate and calculate a daily amount
+                hourly_rate = repository.get_request_rate(int(start_hour), int(end_hour))
+                hours = int(end_hour) - int(start_hour) if int(end_hour) > int(start_hour) else (24 - int(
+                    start_hour)) + int(end_hour)
+
+                # Apply daily scaling - divide by approximate days in dataset
+                # This transforms the yearly total into a daily average
+                estimated_days_in_dataset = 365  # Adjust based on your dataset
+                daily_rate = hourly_rate / estimated_days_in_dataset
+
+                # Calculate reasonable number of requests for one day
+                count = int(daily_rate * hours)
+                count = max(1, min(count, 200))  # Reasonable bounds
+
+                self.logger.info(
+                    f"Calculated {count} requests for time range {start_hour}-{end_hour} (rate: {daily_rate:.2f}/hour)")
+                generated_requests = repository.generate_benchmark_requests(
+                    int(start_hour), int(end_hour), count
+                )
+
+            if not generated_requests:
+                return {
+                    "success": False,
+                    "error": f"Failed to generate requests for time range {start_hour}-{end_hour}"
+                }
+
+            # Convert to scenario format for the benchmark model
+            # The model expects tuples of (origin, destination, urgent)
+            scenario_requests = [
+                (origin, dest, urgent)
+                for origin, dest, _, urgent in generated_requests
+            ]
+
+            # Count urgent requests
+            urgent_count = sum(1 for _, _, urgent in scenario_requests if urgent)
+
+            # Add to benchmark model
+            self.model.add_scenario(name, scenario_requests)
+
+            # Get hourly rate information
+            hourly_rate = repository.get_request_rate(int(start_hour), int(end_hour))
+            hours = int(end_hour) - int(start_hour) if int(end_hour) > int(start_hour) else (24 - int(
+                start_hour)) + int(end_hour)
+            daily_rate = hourly_rate / 365  # Convert to daily rate
+
+            # Create complete scenario info
+            scenario = {
+                "name": name,
+                "time_range": f"{int(start_hour):02d}-{int(end_hour):02d}",
+                "requests": [
+                    {"origin": origin, "destination": dest, "urgent": urgent}
+                    for origin, dest, urgent in scenario_requests
+                ],
+                "urgent_count": urgent_count,
+                "request_count": len(scenario_requests),
+                "hourly_rate": hourly_rate,
+                "daily_rate": daily_rate,
+                "hours": hours
+            }
+
+            self.logger.info(f"Generated time-based scenario '{name}' with {len(scenario_requests)} requests")
+            self.logger.info(
+                f"Time range: {start_hour}-{end_hour}, Hourly rate: {hourly_rate:.2f}, Daily rate: {daily_rate:.2f}")
+
+            return {"success": True, "scenario": scenario}
+
+        except Exception as e:
+            self.logger.error(f"Error generating time scenario: {str(e)}")
+            return {"success": False, "error": str(e)}
 
     def validate_time_range(self, start_hour, end_hour) -> Tuple[bool, Optional[str]]:
         """
@@ -510,85 +777,10 @@ class BenchmarkController:
         if not (0 <= start_hour <= 23 and 0 <= end_hour <= 23):
             return False, "Time range must be between 0-23"
 
+        # Ensure start and end are different (at least a 1-hour range)
+        if start_hour == end_hour:
+            return False, "Start and end hour must be different"
+
         # Valid input
         return True, None
 
-    def generate_time_scenario(self, start_hour, end_hour, name=None, request_count=None) -> Dict[str, Any]:
-        """
-        Generate a time-based benchmark scenario.
-
-        Args:
-            start_hour: Start hour (0-23)
-            end_hour: End hour (0-23)
-            name: Name for the scenario
-            request_count: Number of requests
-
-        Returns:
-            Dict: Result with scenario or error
-        """
-        # Validate inputs
-        valid, error = self.validate_time_range(start_hour, end_hour)
-        if not valid:
-            return {"success": False, "error": error}
-
-        # Generate scenario
-        self._ensure_time_model()
-        scenario = self.time_model.generate_scenario(
-            int(start_hour), int(end_hour), name,
-            int(request_count) if request_count is not None else None
-        )
-
-        if not scenario:
-            return {
-                "success": False,
-                "error": f"Failed to generate requests for time range {start_hour}-{end_hour}"
-            }
-
-        # Add to benchmark model
-        if not self.time_model.add_scenario_to_benchmark(scenario):
-            return {
-                "success": False,
-                "error": "Failed to add scenario to benchmark model"
-            }
-
-        return {"success": True, "scenario": scenario}
-
-    def run_time_based_benchmark(self, start_hour, end_hour, transporters, random_runs=100) -> Dict[str, Any]:
-        """
-        Run a time-based benchmark.
-
-        Args:
-            start_hour: Start hour (0-23)
-            end_hour: End hour (0-23)
-            transporters: Number of transporters
-            random_runs: Number of random runs for comparison
-
-        Returns:
-            Dict: Benchmark results
-        """
-        # Validate inputs
-        valid, error = self.validate_time_range(start_hour, end_hour)
-        if not valid:
-            return {"success": False, "error": error}
-
-        try:
-            transporters = int(transporters)
-            if transporters < 1:
-                return {"success": False, "error": "Transport count must be at least 1"}
-
-            random_runs = int(random_runs)
-            if random_runs < 1:
-                random_runs = 100  # Default value
-        except ValueError:
-            return {"success": False, "error": "Invalid transporter count or random runs"}
-
-        # Run benchmark
-        self._ensure_time_model()
-        result = self.time_model.run_benchmark_for_time_range(
-            int(start_hour), int(end_hour), transporters, random_runs
-        )
-
-        if "error" in result:
-            return {"success": False, "error": result["error"]}
-
-        return {"success": True, "data": result}

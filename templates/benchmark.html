@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/benchmark.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/benchmark-incremental.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -200,12 +201,29 @@
         </div>
       </div>
 
-      <div class="benchmark-tabs">
-        <button class="tab-btn active" data-tab="tab-summary">Summary</button>
-        <button class="tab-btn" data-tab="tab-histogram">Histogram</button>
-        <button class="tab-btn" data-tab="tab-workload">Workload</button>
-        <button class="tab-btn" data-tab="tab-raw">Raw Data</button>
-      </div>
+      <!-- Add this button to the benchmark-tabs div -->
+<div class="benchmark-tabs">
+  <button class="tab-btn active" data-tab="tab-summary">Summary</button>
+  <button class="tab-btn" data-tab="tab-histogram">Histogram</button>
+  <button class="tab-btn" data-tab="tab-workload">Workload</button>
+  <button class="tab-btn" data-tab="tab-raw">Raw Data</button>
+  <button class="tab-btn" data-tab="tab-request-times">Request Times</button>
+</div>
+
+<!-- Add this new tab-pane after the other tab-panes -->
+<div id="tab-request-times" class="tab-pane">
+  <div class="request-times-controls">
+    <button id="toggle-urgent-only" class="btn secondary">Show Urgent Only</button>
+  </div>
+  <div id="request-times-charts" class="request-times-charts">
+    <!-- Charts will be dynamically added here -->
+  </div>
+  <div class="chart-description">
+    <p>These histograms show the distribution of completion times for individual requests for each strategy.</p>
+    <p>The x-axis represents the time to complete a request, and the y-axis shows how many requests took that amount of time.</p>
+    <p>Use the "Show Urgent Only" button to toggle between all requests and only urgent requests.</p>
+  </div>
+</div>
 
       <div class="tab-content">
         <div id="tab-summary" class="tab-pane active">
@@ -463,5 +481,6 @@
   </div>
 
   <script src="{{ url_for('static', filename='js/benchmark.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/benchmark-incremental.js') }}"></script>
 </body>
 </html>
