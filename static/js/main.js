@@ -7,11 +7,15 @@
 let svg = null;
 
 // Initialize when document is ready
+// Initialize when document is ready
 window.onload = function() {
     console.log("Window loaded, initializing transport system");
 
     // Initialize the transport system
     const transportSystem = HospitalTransport.initialize();
+
+    // Add custom socket handlers
+    setupCustomSocketHandlers();
 
     // Get SVG reference
     svg = d3.select("svg");
@@ -38,6 +42,9 @@ window.onload = function() {
         // Set up event handlers
         setupEventHandlers();
 
+        // Populate the strategy dropdown
+        populateStrategyDropdown();
+
         // Set up periodic refresh
         setInterval(updateData, 5000);
 
@@ -61,12 +68,13 @@ window.onload = function() {
     if (tableContainer) {
         tableContainer.style.display = "none";
     }
+
     const viewModeSelect = document.getElementById("viewModeSelect");
-if (viewModeSelect) {
-  viewModeSelect.addEventListener("change", function() {
-    HospitalTransport.ui.toggleViewMode(this.value);
-  });
-}
+    if (viewModeSelect) {
+      viewModeSelect.addEventListener("change", function() {
+        HospitalTransport.ui.toggleViewMode(this.value);
+      });
+    }
 };
 
 // Add view toggle button to page
@@ -100,8 +108,8 @@ function addViewToggleButton() {
                 <label for="clusterMethodSelect">Cluster Method:</label>
                 <select id="clusterMethodSelect" class="form-control">
                     <option value="department_type">By Department Type</option>
-                    <option value="kmeans">K-Means</option>
-                    <option value="hierarchical">Hierarchical</option>
+                    <option value="kmeans">K-Means Clustering</option>
+                    <option value="hierarchical">Hierarchical Clustering</option>
                 </select>
                 <button id="applyClusteringBtn" class="btn">Apply</button>
             </div>
@@ -142,6 +150,17 @@ function setupEventHandlers() {
 
     // Add toggle clustered view button
     addButtonListener("#toggleViewModeBtn", toggleClusteredView);
+
+    // Add strategy event handlers
+    addStrategyEventHandlers();
+}
+
+// Add event handlers for the strategy selection
+function addStrategyEventHandlers() {
+    const deployBtn = document.getElementById("deployStrategyBtn");
+    if (deployBtn) {
+        deployBtn.addEventListener("click", deploySelectedStrategy);
+    }
 }
 
 // Toggle between detailed and clustered view
@@ -201,6 +220,69 @@ function populateDepartmentDropdowns() {
     });
 
     console.log(`Added ${graph.nodes.length} departments to dropdowns`);
+}
+
+// Function to populate the strategy dropdown
+function populateStrategyDropdown() {
+    const strategyDropdown = document.getElementById("strategyDropdown");
+    if (!strategyDropdown) {
+        console.warn("Strategy dropdown not found");
+        return;
+    }
+
+    // Clear existing options
+    strategyDropdown.innerHTML = '<option value="">Loading strategies...</option>';
+
+    // Fetch available strategies from server
+    fetch(`${HospitalTransport.config.socketUrl}/get_available_strategies`)
+        .then(response => response.json())
+        .then(strategies => {
+            // Clear loading option
+            strategyDropdown.innerHTML = '';
+
+            // Add strategies to dropdown
+            strategies.forEach(strategy => {
+                const option = document.createElement('option');
+                option.value = strategy;
+                option.textContent = strategy;
+                strategyDropdown.appendChild(option);
+            });
+
+            // Set default selection to ILP: Makespan if available
+            const defaultStrategy = strategies.find(s => s === "ILP: Makespan");
+            if (defaultStrategy) {
+                strategyDropdown.value = defaultStrategy;
+            }
+
+            console.log(`Loaded ${strategies.length} optimization strategies`);
+        })
+        .catch(error => {
+            console.error("Error loading strategies:", error);
+            HospitalTransport.log.add("Failed to load optimization strategies", "error");
+
+            // Set a fallback option
+            strategyDropdown.innerHTML = '<option value="">No strategies available</option>';
+        });
+}
+
+// Function to deploy the selected strategy
+function deploySelectedStrategy() {
+    const strategyDropdown = document.getElementById("strategyDropdown");
+    if (!strategyDropdown || !strategyDropdown.value) {
+        HospitalTransport.log.add("Please select an optimization strategy", "error");
+        return;
+    }
+
+    const selectedStrategy = strategyDropdown.value;
+    HospitalTransport.log.add(`Deploying strategy: ${selectedStrategy}`, "info");
+
+    // Set the selected strategy
+    HospitalTransport.simulation.setStrategy(selectedStrategy, () => {
+        // After setting the strategy, deploy it
+        HospitalTransport.simulation.deployStrategy(() => {
+            HospitalTransport.log.add(`${selectedStrategy} deployed successfully`, "success");
+        });
+    });
 }
 
 // Load transport requests and update request dropdown
@@ -475,9 +557,18 @@ function returnHome() {
 
 // Deploy optimization strategy
 function deployOptimization() {
-    HospitalTransport.simulation.setStrategy("ILP: Makespan", () => {
-        HospitalTransport.simulation.deployStrategy();
-    });
+    // Use the selected strategy instead of hard-coded "ILP: Makespan"
+    const strategyDropdown = document.getElementById("strategyDropdown");
+    if (!strategyDropdown || !strategyDropdown.value) {
+        // Fallback to ILP: Makespan if no strategy is selected
+        HospitalTransport.simulation.setStrategy("ILP: Makespan", () => {
+            HospitalTransport.simulation.deployStrategy();
+        });
+    } else {
+        HospitalTransport.simulation.setStrategy(strategyDropdown.value, () => {
+            HospitalTransport.simulation.deployStrategy();
+        });
+    }
 }
 
 // Deploy random strategy
@@ -489,7 +580,11 @@ function deployRandomness() {
 
 // Simulate with optimal strategy
 function simulateOptimally() {
-    HospitalTransport.simulation.setStrategy("ILP: Makespan", () => {
+    // Use the selected strategy instead of hard-coded "ILP: Makespan"
+    const strategyDropdown = document.getElementById("strategyDropdown");
+    const selectedStrategy = strategyDropdown?.value || "ILP: Makespan";
+
+    HospitalTransport.simulation.setStrategy(selectedStrategy, () => {
         HospitalTransport.simulation.start();
 
         // Update UI
@@ -520,3 +615,76 @@ function stopSimulation() {
     document.getElementById("simulateOptimally").style.display = "inline-block";
     document.getElementById("simulateRandomly").style.display = "inline-block";
 }
+
+// Add this function to directly handle transporter updates
+function customTransporterUpdate(data) {
+    if (!data || !data.name || !data.path || data.path.length < 2) {
+        console.warn("Invalid transporter update data", data);
+        return;
+    }
+
+    // Get the transporter element
+    let transporterElement = d3.select(`[data-transporter='${data.name}']`);
+    if (transporterElement.empty()) {
+        console.error(`Transporter '${data.name}' not found in DOM`);
+        return;
+    }
+
+    let step = 1;
+    function moveStep() {
+        if (step >= data.path.length) return;
+
+        // Get position of next node
+        const nextNodePosition = HospitalTransport.graph.getNodePosition(data.path[step]);
+        if (!nextNodePosition) {
+            console.error(`Node position for '${data.path[step]}' not found`);
+            return;
+        }
+
+        const nextX = nextNodePosition.x;
+        const nextY = nextNodePosition.y;
+        const duration = (data.durations && data.durations[step-1]) || 1000;
+
+        // Animate the circle
+        transporterElement
+            .transition()
+            .duration(duration)
+            .attr("cx", nextX)
+            .attr("cy", nextY)
+            .on("end", () => {
+                console.log(`${data.name} moved to ${data.path[step]} in ${duration}ms`);
+                step++;
+                moveStep();
+            });
+
+        // Also animate the label if it exists
+        const labelElement = d3.select(`[data-transporter-label='${data.name}']`);
+        if (!labelElement.empty()) {
+            labelElement
+                .transition()
+                .duration(duration)
+                .attr("x", nextX)
+                .attr("y", nextY - 20);
+        }
+    }
+
+    moveStep();
+}
+
+// Function to set up custom socket handlers
+function setupCustomSocketHandlers() {
+    // Make sure HospitalTransport is initialized
+    if (!HospitalTransport.state.socket) {
+        console.error("Socket not initialized in HospitalTransport");
+        return;
+    }
+
+    // Add our custom handler for transporter updates
+    HospitalTransport.state.socket.on("transporter_update", customTransporterUpdate);
+
+    // Log that we've set up the handler
+    console.log("Custom transporter update handler registered");
+}
+
+// Add this line after initializing the socket connection
+// Near the end of your window.onload function:

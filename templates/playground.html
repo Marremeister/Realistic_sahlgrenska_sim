@@ -25,6 +25,14 @@
         <ul id="logList"></ul>
     </div>
 
+    <!-- New Strategy Selector Section -->
+    <div class="strategy-selector">
+        <h3>🧪 Optimization Strategy</h3>
+        <label for="strategyDropdown">Select Strategy:</label>
+        <select id="strategyDropdown"></select>
+        <button id="deployStrategyBtn">Deploy Selected Strategy</button>
+    </div>
+
     <div class="controls">
         <button onclick="location.href='/simulator'">🚀 Launch Simulator</button>
 
@@ -38,7 +46,7 @@
         </select>
         <button onclick="setTransporterStatus()">Update Status</button>
 
-        <button onclick="deployOptimization()">Solve with Optimizer</button>
+        <button onclick="deployOptimization()">Solve with Selected Optimizer</button>
         <button onclick="deployRandomness()">Solve with Randomizer</button>
 
         <div id="sim-clock"
@@ -58,8 +66,8 @@
         <button onclick="initiateTransport()">Initiate Patient Transport</button>
         <button id="returnHomeBtn" onclick="returnHome()">Return Home</button>
 
-        <button onclick="simulateOptimally()">Simulate Optimally</button>
-        <button onclick="simulateRandomly()">Simulate Randomly</button>
+        <button id="simulateOptimally" onclick="simulateOptimally()">Simulate with Selected Strategy</button>
+        <button id="simulateRandomly" onclick="simulateRandomly()">Simulate Randomly</button>
         <button id="stopSimulationBtn" onclick="stopSimulation()" style="display:none;">Stop Simulation</button>
     </div>
 
@@ -127,5 +135,113 @@
     <!-- Load main.js after hospital-transport-utils.js -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
+    <!-- Additional script for strategy selection -->
+    <script>
+        // Function to populate the strategy dropdown
+        function populateStrategyDropdown() {
+            const strategyDropdown = document.getElementById("strategyDropdown");
+            if (!strategyDropdown) {
+                console.warn("Strategy dropdown not found");
+                return;
+            }
+
+            // Clear existing options
+            strategyDropdown.innerHTML = '<option value="">Loading strategies...</option>';
+
+            // Fetch available strategies from server
+            fetch(`${HospitalTransport.config.socketUrl}/get_available_strategies`)
+                .then(response => response.json())
+                .then(strategies => {
+                    // Clear loading option
+                    strategyDropdown.innerHTML = '';
+
+                    // Add strategies to dropdown
+                    strategies.forEach(strategy => {
+                        const option = document.createElement('option');
+                        option.value = strategy;
+                        option.textContent = strategy;
+                        strategyDropdown.appendChild(option);
+                    });
+
+                    // Set default selection to ILP: Makespan if available
+                    const defaultStrategy = strategies.find(s => s === "ILP: Makespan");
+                    if (defaultStrategy) {
+                        strategyDropdown.value = defaultStrategy;
+                    }
+
+                    console.log(`Loaded ${strategies.length} optimization strategies`);
+                })
+                .catch(error => {
+                    console.error("Error loading strategies:", error);
+                    HospitalTransport.log.add("Failed to load optimization strategies", "error");
+
+                    // Set a fallback option
+                    strategyDropdown.innerHTML = '<option value="">No strategies available</option>';
+                });
+        }
+
+        // Function to deploy the selected strategy
+        function deploySelectedStrategy() {
+            const strategyDropdown = document.getElementById("strategyDropdown");
+            if (!strategyDropdown || !strategyDropdown.value) {
+                HospitalTransport.log.add("Please select an optimization strategy", "error");
+                return;
+            }
+
+            const selectedStrategy = strategyDropdown.value;
+            HospitalTransport.log.add(`Deploying strategy: ${selectedStrategy}`, "info");
+
+            // Set the selected strategy
+            HospitalTransport.simulation.setStrategy(selectedStrategy, () => {
+                // After setting the strategy, deploy it
+                HospitalTransport.simulation.deployStrategy(() => {
+                    HospitalTransport.log.add(`${selectedStrategy} deployed successfully`, "success");
+                });
+            });
+        }
+
+        // Override deployOptimization to use the selected strategy
+        function deployOptimization() {
+            // Use the selected strategy instead of hard-coded "ILP: Makespan"
+            const strategyDropdown = document.getElementById("strategyDropdown");
+            if (!strategyDropdown || !strategyDropdown.value) {
+                // Fallback to ILP: Makespan if no strategy is selected
+                HospitalTransport.simulation.setStrategy("ILP: Makespan", () => {
+                    HospitalTransport.simulation.deployStrategy();
+                });
+            } else {
+                HospitalTransport.simulation.setStrategy(strategyDropdown.value, () => {
+                    HospitalTransport.simulation.deployStrategy();
+                });
+            }
+        }
+
+        // Override simulateOptimally to use the selected strategy
+        function simulateOptimally() {
+            // Use the selected strategy instead of hard-coded "ILP: Makespan"
+            const strategyDropdown = document.getElementById("strategyDropdown");
+            const selectedStrategy = strategyDropdown?.value || "ILP: Makespan";
+
+            HospitalTransport.simulation.setStrategy(selectedStrategy, () => {
+                HospitalTransport.simulation.start();
+
+                // Update UI
+                document.getElementById("stopSimulationBtn").style.display = "inline-block";
+                document.getElementById("simulateOptimally").style.display = "none";
+                document.getElementById("simulateRandomly").style.display = "none";
+            });
+        }
+
+        // Initialize the strategy dropdown when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateStrategyDropdown();
+
+            // Add event handler for the deploy button
+            const deployBtn = document.getElementById("deployStrategyBtn");
+            if (deployBtn) {
+                deployBtn.addEventListener("click", deploySelectedStrategy);
+            }
+        });
+    </script>
 </body>
 </html>
