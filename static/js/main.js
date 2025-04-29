@@ -7,7 +7,7 @@
 let svg = null;
 
 // Initialize when document is ready
-// Initialize when document is ready
+
 window.onload = function() {
     console.log("Window loaded, initializing transport system");
 
@@ -20,19 +20,22 @@ window.onload = function() {
     // Get SVG reference
     svg = d3.select("svg");
 
+    // Setup zoom and pan first
+    setupZoomAndPan();
+
     // Initialize the view - load graph first, then everything else
     transportSystem.graph.load(() => {
         console.log("Graph loaded successfully");
 
-        // Now render the graph in SVG
-        transportSystem.graph.render('svg');
+        // Now render the graph in the container
+        renderGraphWithZoom();
 
         // Next, populate dropdowns that depend on the graph
         populateDepartmentDropdowns();
 
         // Load and render transporters on the graph
         transportSystem.transporters.load(() => {
-            transportSystem.transporters.render('svg');
+            transportSystem.transporters.render('.main-container');
         });
 
         // Load transport requests and update table
@@ -645,7 +648,7 @@ function customTransporterUpdate(data) {
         const nextY = nextNodePosition.y;
         const duration = (data.durations && data.durations[step-1]) || 1000;
 
-        // Animate the circle
+        // Animate the circle - works with zoom because it's within the main container
         transporterElement
             .transition()
             .duration(duration)
@@ -686,5 +689,63 @@ function setupCustomSocketHandlers() {
     console.log("Custom transporter update handler registered");
 }
 
-// Add this line after initializing the socket connection
-// Near the end of your window.onload function:
+function setupZoomAndPan() {
+  // First create a container group for all graph elements
+  let mainContainer = svg.select("g.main-container");
+  if (mainContainer.empty()) {
+    mainContainer = svg.append("g").attr("class", "main-container");
+
+    // Instead of trying to move elements (which is causing the error),
+    // let's just set the new container as the parent and render elements there
+    // in the future. This is simpler and avoids DOM manipulation errors.
+  }
+
+  // Create zoom behavior
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])  // Allow zooming from 0.1x to 4x
+    .on("zoom", function(event) {
+      mainContainer.attr("transform", event.transform);
+    });
+
+  // Apply zoom to the SVG
+  svg.call(zoom);
+
+  // Add a reset zoom button
+  let resetButton = document.getElementById("resetZoomBtn");
+  if (!resetButton) {
+    resetButton = document.createElement("button");
+    resetButton.id = "resetZoomBtn";
+    resetButton.textContent = "Reset Zoom";
+    resetButton.classList.add("btn");
+    resetButton.style.margin = "5px";
+
+    resetButton.addEventListener("click", function() {
+      svg.transition().duration(750).call(
+        zoom.transform,
+        d3.zoomIdentity
+      );
+    });
+
+    // Add to controls area
+    const controlsArea = document.querySelector(".controls") || document.body;
+    controlsArea.appendChild(resetButton);
+  }
+
+  return zoom;
+}
+
+function renderGraphWithZoom() {
+  // Get or create the main container
+  let mainContainer = svg.select("g.main-container");
+  if (mainContainer.empty()) {
+    mainContainer = svg.append("g").attr("class", "main-container");
+  }
+
+  // Clear existing content in the container
+  mainContainer.selectAll("*").remove();
+
+  // Now render the graph in the container instead of directly in the SVG
+  HospitalTransport.graph.render(mainContainer.node(), {
+    clear: false // Don't clear because we already did
+  });
+}
