@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group">
-          <label for="randomRunsSlider">Random Strategy Simulations:</label>
+          <label for="randomRunsSlider">Current Realistic System Simulations:</label>
           <div class="slider-container">
             <input type="range" id="randomRunsSlider" min="10" max="1000" step="10" value="100" class="slider">
             <span id="randomRunsValue" class="slider-value">100</span>
@@ -70,7 +70,7 @@
     </label>
     <label class="checkbox-label">
       <input type="checkbox" id="strategyRandom" checked>
-      <span>Random Assignment</span>
+      <span>Current Realistic System</span>
     </label>
   </div>
 </div>
@@ -166,8 +166,8 @@
               <span class="benchmark-label">3 Transporters, 100 Runs</span>
             </div>
             <div class="benchmark-stats">
-              <div>Optimal: <span class="stat-highlight">34.5s</span></div>
-              <div>Random Avg: <span class="stat-highlight">52.8s</span></div>
+              <div>Optimal: <span class="stat-highlight">34.5m</span></div>
+              <div>Current Realistic System Avg: <span class="stat-highlight">52.8m</span></div>
               <div>Improvement: <span class="stat-highlight">34.7%</span></div>
             </div>
             <button class="btn small secondary">Load Results</button>
@@ -178,8 +178,8 @@
               <span class="benchmark-label">5 Transporters, 200 Runs</span>
             </div>
             <div class="benchmark-stats">
-              <div>Optimal: <span class="stat-highlight">28.2s</span></div>
-              <div>Random Avg: <span class="stat-highlight">41.3s</span></div>
+              <div>Optimal: <span class="stat-highlight">28.2m</span></div>
+              <div>Current Realistic System Avg: <span class="stat-highlight">41.3m</span></div>
               <div>Improvement: <span class="stat-highlight">31.7%</span></div>
             </div>
             <button class="btn small secondary">Load Results</button>
@@ -232,12 +232,12 @@
               <div class="result-card">
                 <div class="card-title">Optimal Makespan</div>
                 <div class="card-value" id="optimal-makespan">--</div>
-                <div class="card-unit">seconds</div>
+                <div class="card-unit">minutes</div>
               </div>
               <div class="result-card">
-                <div class="card-title">Random Average</div>
+                <div class="card-title">Current Realistic System Average</div>
                 <div class="card-value" id="random-average">--</div>
-                <div class="card-unit">seconds</div>
+                <div class="card-unit">minutes</div>
               </div>
               <div class="result-card highlight">
                 <div class="card-title">Improvement</div>
@@ -247,7 +247,7 @@
               <div class="result-card">
                 <div class="card-title">Std. Deviation</div>
                 <div class="card-value" id="random-std">--</div>
-                <div class="card-unit">seconds</div>
+                <div class="card-unit">minutes</div>
               </div>
             </div>
 
@@ -278,7 +278,7 @@
                     <td>--</td>
                   </tr>
                   <tr>
-                    <td>Random</td>
+                    <td>Current Realistic System</td>
                     <td>--</td>
                     <td>--</td>
                     <td>--</td>
@@ -296,7 +296,7 @@
             <canvas id="histogram-chart"></canvas>
           </div>
           <div class="chart-description">
-            <p>This histogram shows the distribution of completion times for the random assignment strategy across all simulation runs. The red line represents the mean completion time, while the blue line shows the optimal (ILP) completion time.</p>
+            <p>This histogram shows the distribution of completion times for the current realistic system strategy across all simulation runs. The red line represents the mean completion time, while the blue line shows the optimal (ILP) completion time.</p>
             <p>A tighter distribution (smaller spread) indicates more consistent performance.</p>
           </div>
         </div>
@@ -308,7 +308,7 @@
               <canvas id="optimal-workload-chart"></canvas>
             </div>
             <div class="workload-chart-container">
-              <h3>Random Workload Distribution</h3>
+              <h3>Current Realistic System Workload Distribution</h3>
               <canvas id="random-workload-chart"></canvas>
             </div>
           </div>
@@ -322,7 +322,7 @@
           <div class="raw-data-container">
             <div class="raw-data-controls">
               <select id="raw-data-strategy">
-                <option value="random">Random Assignment</option>
+                <option value="random">Current Realistic System</option>
                 <option value="optimal">ILP: Makespan</option>
               </select>
               <input type="text" id="raw-data-filter" placeholder="Filter results...">
@@ -416,7 +416,7 @@
         <div class="progress-bar">
           <div class="progress-fill" style="width: 35%"></div>
         </div>
-        <div class="progress-text">35% - Running Random Simulations (35/100)</div>
+        <div class="progress-text">35% - Running Current Realistic System Simulations (35/100)</div>
       </div>
       <div class="progress-details">
         <div class="progress-stat">
@@ -429,7 +429,7 @@
         </div>
         <div class="progress-stat">
           <span class="stat-label">Current Task:</span>
-          <span class="stat-value">Simulating Random Assignment</span>
+          <span class="stat-value">Simulating Current Realistic System</span>
         </div>
       </div>
       <button class="btn danger" id="cancel-benchmark-btn">Cancel Benchmark</button>

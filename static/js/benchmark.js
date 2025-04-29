@@ -46,6 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Socket event listeners
   setupSocketListeners();
+
+  // Initialize benchmark page
+  initializeBenchmarkPage();
+
+  // Add reset button
+  addResetButton();
 });
 
 // INITIALIZATION FUNCTIONS
@@ -145,8 +151,11 @@ function populateDepartmentDropdowns(departments) {
 
 function createPlaceholderCharts() {
   // Create metrics chart (bar chart)
-  const metricsCtx = document.getElementById('metrics-chart').getContext('2d');
-  charts.metricsChart = new Chart(metricsCtx, {
+  const metricsCtx = document.getElementById('metrics-chart');
+  if (!metricsCtx) return;
+
+  const ctx = metricsCtx.getContext('2d');
+  charts.metricsChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['Mean', 'Median', 'Std Dev', 'Min', 'Max'],
@@ -157,7 +166,7 @@ function createPlaceholderCharts() {
         borderWidth: 1,
         data: [0, 0, 0, 0, 0]
       }, {
-        label: 'Random Assignment',
+        label: 'Current Realistic System',  // Updated label
         backgroundColor: 'rgba(231, 76, 60, 0.7)',
         borderColor: 'rgba(231, 76, 60, 1)',
         borderWidth: 1,
@@ -181,7 +190,7 @@ function createPlaceholderCharts() {
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Time (seconds)'
+            text: 'Time (minutes)'
           }
         }
       }
@@ -189,13 +198,16 @@ function createPlaceholderCharts() {
   });
 
   // Create histogram chart
-  const histogramCtx = document.getElementById('histogram-chart').getContext('2d');
-  charts.histogramChart = new Chart(histogramCtx, {
+  const histogramCtx = document.getElementById('histogram-chart');
+  if (!histogramCtx) return;
+
+  const histogramCtxCanvas = histogramCtx.getContext('2d');
+  charts.histogramChart = new Chart(histogramCtxCanvas, {
     type: 'bar',
     data: {
       labels: generateHistogramLabels(10),
       datasets: [{
-        label: 'Random Assignment Frequency',
+        label: 'Current Realistic System Frequency',  // Updated label
         backgroundColor: 'rgba(231, 76, 60, 0.7)',
         borderColor: 'rgba(231, 76, 60, 1)',
         borderWidth: 1,
@@ -253,7 +265,7 @@ function createPlaceholderCharts() {
         x: {
           title: {
             display: true,
-            text: 'Completion Time (seconds)'
+            text: 'Completion Time (minutes)'
           }
         }
       }
@@ -391,6 +403,7 @@ function getSelectedStrategies() {
   }
 
   if (document.getElementById('strategyRandom').checked) {
+    // Use the internal name for the server
     strategies.push('Random');
   }
 
@@ -453,7 +466,7 @@ function clearBenchmarkResults() {
       <td>--</td>
     </tr>
     <tr>
-      <td>Random</td>
+      <td>Current Realistic System</td>
       <td>--</td>
       <td>--</td>
       <td>--</td>
@@ -563,24 +576,26 @@ function processBenchmarkResults(data) {
         };
     }
 
-    // Store the results in the appropriate arrays/objects
-    if (data.strategy === 'Random') {
+    // Store results based on the internal strategy name
+    const strategy = data.strategy;
+
+    if (strategy === 'Random') {
         benchmarkResults.random = data.times || [];
         workloadData.random = data.workload || {};
-    } else if (data.strategy === 'ILP: Makespan') {
+    } else if (strategy === 'ILP: Makespan') {
         benchmarkResults.ilpMakespan = data.times || [];
         workloadData.ilpMakespan = data.workload || {};
-    } else if (data.strategy === 'ILP: Equal Workload') {
+    } else if (strategy === 'ILP: Equal Workload') {
         benchmarkResults.ilpEqual = data.times || [];
         workloadData.ilpEqual = data.workload || {};
-    } else if (data.strategy === 'ILP: Urgency First') {
+    } else if (strategy === 'ILP: Urgency First') {
         benchmarkResults.ilpUrgency = data.times || [];
         workloadData.ilpUrgency = data.workload || {};
-    } else if (data.strategy === 'ILP: Cluster-Based') {
+    } else if (strategy === 'ILP: Cluster-Based') {
         console.log("Processing Cluster-Based results:", data.times);
         benchmarkResults.ilpCluster = data.times || [];
         workloadData.ilpCluster = data.workload || {};
-    } else if (data.strategy === 'Genetic Algorithm') {
+    } else if (strategy === 'Genetic Algorithm') {
         console.log("Processing Genetic Algorithm results:", data.times);
         benchmarkResults.geneticAlgorithm = data.times || [];
         workloadData.geneticAlgorithm = data.workload || {};
@@ -637,14 +652,14 @@ function updateSummaryResults() {
     // Get all active strategies with results
     const activeStrategies = [];
 
-    // Define color schemes for each strategy
+    // Define color schemes for each strategy - use display names as keys
     const strategyColors = {
         'ILP: Makespan': 'rgba(75, 108, 183, 0.7)',
         'ILP: Equal Workload': 'rgba(241, 196, 15, 0.7)',
         'ILP: Urgency First': 'rgba(230, 126, 34, 0.7)',
         'ILP: Cluster-Based': 'rgba(46, 204, 113, 0.7)',
         'Genetic Algorithm': 'rgba(155, 89, 182, 0.7)',
-        'Random': 'rgba(231, 76, 60, 0.7)'
+        'Current Realistic System': 'rgba(231, 76, 60, 0.7)'
     };
 
     const strategyBorderColors = {
@@ -653,10 +668,10 @@ function updateSummaryResults() {
         'ILP: Urgency First': 'rgba(230, 126, 34, 1)',
         'ILP: Cluster-Based': 'rgba(46, 204, 113, 1)',
         'Genetic Algorithm': 'rgba(155, 89, 182, 1)',
-        'Random': 'rgba(231, 76, 60, 1)'
+        'Current Realistic System': 'rgba(231, 76, 60, 1)'
     };
 
-    // Check which strategies have data and add them to active strategies
+    // Add strategies with their display names
     if (benchmarkResults.ilpMakespan.length > 0) {
         activeStrategies.push({
             name: 'ILP: Makespan',
@@ -697,9 +712,10 @@ function updateSummaryResults() {
         });
     }
 
+    // Use display name for "Random" data
     if (benchmarkResults.random.length > 0) {
         activeStrategies.push({
-            name: 'Random',
+            name: 'Current Realistic System',
             times: benchmarkResults.random,
             workload: workloadData.random
         });
@@ -716,25 +732,36 @@ function updateSummaryResults() {
     activeStrategies.forEach(strategy => {
         let mean, median, std, min, max;
 
-        if (strategy.name === 'Random' && strategy.times.length > 1) {
-            // Random has multiple samples, so calculate statistics
-            mean = calculateMean(strategy.times);
-            median = calculateMedian(strategy.times);
-            std = calculateStandardDeviation(strategy.times);
-            min = Math.min(...strategy.times);
-            max = Math.max(...strategy.times);
+        // Safely handle array data
+        if (strategy.times && strategy.times.length > 0) {
+            if (strategy.name === 'Current Realistic System' && strategy.times.length > 1) {
+                // Random has multiple samples, so calculate statistics
+                mean = calculateMean(strategy.times);
+                median = calculateMedian(strategy.times);
+                std = calculateStandardDeviation(strategy.times);
+                min = Math.min(...strategy.times);
+                max = Math.max(...strategy.times);
+            } else {
+                // Other strategies have single value
+                const value = strategy.times[0];
+                mean = value;
+                median = value;
+                std = 0;
+                min = value;
+                max = value;
+            }
         } else {
-            // Other strategies have single value
-            const value = strategy.times[0];
-            mean = value;
-            median = value;
+            // Handle missing data
+            mean = 0;
+            median = 0;
             std = 0;
-            min = value;
-            max = value;
+            min = 0;
+            max = 0;
         }
 
         // Calculate workload std
-        const workloadStd = calculateWorkloadStd(strategy.workload);
+        const workloadValues = Object.values(strategy.workload || {});
+        const workloadStd = workloadValues.length > 0 ? calculateStandardDeviation(workloadValues) : 0;
 
         strategyMetrics[strategy.name] = {
             mean, median, std, min, max, workloadStd
@@ -742,21 +769,30 @@ function updateSummaryResults() {
     });
 
     // Update cards and UI with the best (non-random) strategy
-    const bestStrategy = activeStrategies
-        .filter(s => s.name !== 'Random')
-        .sort((a, b) => strategyMetrics[a.name].mean - strategyMetrics[b.name].mean)[0];
+    const optimizationStrategies = activeStrategies.filter(s => s.name !== 'Current Realistic System');
 
-    if (bestStrategy && activeStrategies.some(s => s.name === 'Random')) {
-        // If we have both a best strategy and random, calculate improvement
-        const bestTime = strategyMetrics[bestStrategy.name].mean;
-        const randomMean = strategyMetrics['Random'].mean;
-        const improvementPercentage = ((randomMean - bestTime) / randomMean) * 100;
+    if (optimizationStrategies.length > 0) {
+        // Find the best strategy by lowest mean time
+        const bestStrategy = optimizationStrategies.sort((a, b) => {
+            return strategyMetrics[a.name].mean - strategyMetrics[b.name].mean;
+        })[0];
 
-        // Update summary cards
-        document.getElementById('optimal-makespan').textContent = bestTime.toFixed(2);
-        document.getElementById('random-average').textContent = randomMean.toFixed(2);
-        document.getElementById('improvement-percentage').textContent = improvementPercentage.toFixed(1);
-        document.getElementById('random-std').textContent = strategyMetrics['Random'].std.toFixed(2);
+        const realisticSystem = activeStrategies.find(s => s.name === 'Current Realistic System');
+
+        if (bestStrategy && realisticSystem) {
+            // If we have both a best strategy and the realistic system, calculate improvement
+            const bestTime = strategyMetrics[bestStrategy.name].mean;
+            const randomMean = strategyMetrics['Current Realistic System'].mean;
+            const improvementPercentage = randomMean > 0
+                ? ((randomMean - bestTime) / randomMean) * 100
+                : 0;
+
+            // Update summary cards
+            document.getElementById('optimal-makespan').textContent = bestTime.toFixed(2);
+            document.getElementById('random-average').textContent = randomMean.toFixed(2);
+            document.getElementById('improvement-percentage').textContent = improvementPercentage.toFixed(1);
+            document.getElementById('random-std').textContent = strategyMetrics['Current Realistic System'].std.toFixed(2);
+        }
     }
 
     // Update metrics chart - completely rebuild the datasets
@@ -782,8 +818,10 @@ function updateSummaryResults() {
     });
 
     // Update the chart
-    charts.metricsChart.data.datasets = datasets;
-    charts.metricsChart.update();
+    if (charts.metricsChart) {
+        charts.metricsChart.data.datasets = datasets;
+        charts.metricsChart.update();
+    }
 
     // Update comparison table
     updateComparisonTable(activeStrategies, strategyMetrics);
@@ -803,17 +841,17 @@ function updateComparisonTable(activeStrategies, strategyMetrics) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${strategy.name}</td>
-            <td>${metrics.mean.toFixed(2)}s</td>
-            <td>${metrics.median.toFixed(2)}s</td>
+            <td>${metrics.mean.toFixed(2)}m</td>
+            <td>${metrics.median.toFixed(2)}m</td>
             <td>${metrics.std.toFixed(2)}</td>
-            <td>${metrics.max.toFixed(2)}s</td>
+            <td>${metrics.max.toFixed(2)}m</td>
             <td>${metrics.workloadStd.toFixed(2)}</td>
         `;
 
         // Highlight the best mean time
-        if (strategy.name !== 'Random' &&
+        if (strategy.name !== 'Current Realistic System' &&
             metrics.mean === Math.min(...activeStrategies
-                                         .filter(s => s.name !== 'Random')
+                                         .filter(s => s.name !== 'Current Realistic System')
                                          .map(s => strategyMetrics[s.name].mean))) {
             row.querySelector('td:nth-child(2)').style.fontWeight = 'bold';
             row.querySelector('td:nth-child(2)').style.color = '#27ae60';
@@ -855,13 +893,16 @@ function calculateWorkloadStd(workloadData) {
 }
 
 function updateHistogram() {
-  if (benchmarkResults.random.length === 0) {
+  if (!benchmarkResults.random || benchmarkResults.random.length === 0) {
     return;
   }
 
-  // Calculate bin ranges
-  const min = Math.min(...benchmarkResults.random);
-  const max = Math.max(...benchmarkResults.random);
+  // Calculate bin ranges with error handling
+  const validValues = benchmarkResults.random.filter(val => val !== undefined && val !== null);
+  if (validValues.length === 0) return;
+
+  const min = Math.min(...validValues);
+  const max = Math.max(...validValues);
   const range = max - min;
   const binCount = 10;
   const binWidth = range / binCount;
@@ -870,7 +911,7 @@ function updateHistogram() {
   const bins = Array(binCount).fill(0);
 
   // Count values in each bin
-  benchmarkResults.random.forEach(time => {
+  validValues.forEach(time => {
     const binIndex = Math.min(Math.floor((time - min) / binWidth), binCount - 1);
     bins[binIndex]++;
   });
@@ -884,54 +925,56 @@ function updateHistogram() {
   }
 
   // Update chart
-  charts.histogramChart.data.labels = labels;
-  charts.histogramChart.data.datasets[0].data = bins;
+  if (charts.histogramChart) {
+    charts.histogramChart.data.labels = labels;
+    charts.histogramChart.data.datasets[0].data = bins;
 
-  // Update chart annotations for optimal and mean lines
-  const optimalTime = benchmarkResults.ilpMakespan[0];
-  const randomMean = calculateMean(benchmarkResults.random);
+    // Update chart annotations for optimal and mean lines
+    const optimalTime = benchmarkResults.ilpMakespan[0] || 0;
+    const randomMean = calculateMean(validValues);
 
-  // This updates annotations in Chart.js v3+
-  if (!charts.histogramChart.options.plugins.annotation) {
-    charts.histogramChart.options.plugins.annotation = {
-      annotations: {
-        optimalLine: {
-          type: 'line',
-          xMin: optimalTime,
-          xMax: optimalTime,
-          borderColor: 'rgba(75, 108, 183, 1)',
-          borderWidth: 2,
-          label: {
-            content: `Optimal: ${optimalTime.toFixed(2)}s`,
-            enabled: true
-          }
-        },
-        meanLine: {
-          type: 'line',
-          xMin: randomMean,
-          xMax: randomMean,
-          borderColor: 'rgba(231, 76, 60, 1)',
-          borderWidth: 2,
-          label: {
-            content: `Mean: ${randomMean.toFixed(2)}s`,
-            enabled: true
+    // This updates annotations in Chart.js v3+
+    if (!charts.histogramChart.options.plugins.annotation) {
+      charts.histogramChart.options.plugins.annotation = {
+        annotations: {
+          optimalLine: {
+            type: 'line',
+            xMin: optimalTime,
+            xMax: optimalTime,
+            borderColor: 'rgba(75, 108, 183, 1)',
+            borderWidth: 2,
+            label: {
+              content: `Optimal: ${optimalTime.toFixed(2)}m`,
+              enabled: true
+            }
+          },
+          meanLine: {
+            type: 'line',
+            xMin: randomMean,
+            xMax: randomMean,
+            borderColor: 'rgba(231, 76, 60, 1)',
+            borderWidth: 2,
+            label: {
+              content: `Mean: ${randomMean.toFixed(2)}m`,
+              enabled: true
+            }
           }
         }
-      }
-    };
-  } else {
-    // Update existing annotations
-    const annotations = charts.histogramChart.options.plugins.annotation.annotations;
-    annotations.optimalLine.xMin = optimalTime;
-    annotations.optimalLine.xMax = optimalTime;
-    annotations.optimalLine.label.content = `Optimal: ${optimalTime.toFixed(2)}s`;
+      };
+    } else {
+      // Update existing annotations
+      const annotations = charts.histogramChart.options.plugins.annotation.annotations;
+      annotations.optimalLine.xMin = optimalTime;
+      annotations.optimalLine.xMax = optimalTime;
+      annotations.optimalLine.label.content = `Optimal: ${optimalTime.toFixed(2)}m`;
 
-    annotations.meanLine.xMin = randomMean;
-    annotations.meanLine.xMax = randomMean;
-    annotations.meanLine.label.content = `Mean: ${randomMean.toFixed(2)}s`;
+      annotations.meanLine.xMin = randomMean;
+      annotations.meanLine.xMax = randomMean;
+      annotations.meanLine.label.content = `Mean: ${randomMean.toFixed(2)}m`;
+    }
+
+    charts.histogramChart.update();
   }
-
-  charts.histogramChart.update();
 }
 
 function updateWorkloadCharts() {
@@ -942,7 +985,7 @@ function updateWorkloadCharts() {
         'ILP: Urgency First': 'rgba(230, 126, 34, 0.7)',
         'ILP: Cluster-Based': 'rgba(46, 204, 113, 0.7)',
         'Genetic Algorithm': 'rgba(155, 89, 182, 0.7)',
-        'Random': 'rgba(231, 76, 60, 0.7)'
+        'Current Realistic System': 'rgba(231, 76, 60, 0.7)'
     };
 
     const strategyBorderColors = {
@@ -951,61 +994,67 @@ function updateWorkloadCharts() {
         'ILP: Urgency First': 'rgba(230, 126, 34, 1)',
         'ILP: Cluster-Based': 'rgba(46, 204, 113, 1)',
         'Genetic Algorithm': 'rgba(155, 89, 182, 1)',
-        'Random': 'rgba(231, 76, 60, 1)'
+        'Current Realistic System': 'rgba(231, 76, 60, 1)'
     };
 
     // Get all active strategies with workload data
     const activeStrategies = [];
 
-    if (Object.keys(workloadData.ilpMakespan).length > 0) {
+    if (Object.keys(workloadData.ilpMakespan || {}).length > 0) {
         activeStrategies.push({
             name: 'ILP: Makespan',
             workload: workloadData.ilpMakespan
         });
     }
 
-    if (Object.keys(workloadData.ilpEqual).length > 0) {
+    if (Object.keys(workloadData.ilpEqual || {}).length > 0) {
         activeStrategies.push({
             name: 'ILP: Equal Workload',
             workload: workloadData.ilpEqual
         });
     }
 
-    if (Object.keys(workloadData.ilpUrgency).length > 0) {
+    if (Object.keys(workloadData.ilpUrgency || {}).length > 0) {
         activeStrategies.push({
             name: 'ILP: Urgency First',
             workload: workloadData.ilpUrgency
         });
     }
 
-    if (Object.keys(workloadData.ilpCluster).length > 0) {
+    if (Object.keys(workloadData.ilpCluster || {}).length > 0) {
         activeStrategies.push({
             name: 'ILP: Cluster-Based',
             workload: workloadData.ilpCluster
         });
     }
 
-    if (Object.keys(workloadData.geneticAlgorithm).length > 0) {
+    if (Object.keys(workloadData.geneticAlgorithm || {}).length > 0) {
         activeStrategies.push({
             name: 'Genetic Algorithm',
             workload: workloadData.geneticAlgorithm
         });
     }
 
-    if (Object.keys(workloadData.random).length > 0) {
+    if (Object.keys(workloadData.random || {}).length > 0) {
         activeStrategies.push({
-            name: 'Random',
+            name: 'Current Realistic System',
             workload: workloadData.random
         });
     }
+
+    if (activeStrategies.length === 0) return;
 
     // Update the container structure to support multiple charts
     updateWorkloadChartContainer(activeStrategies);
 
     // Create or update charts for each strategy
     activeStrategies.forEach(strategy => {
+        if (!strategy.workload) return;
+
         const transporters = Object.keys(strategy.workload);
-        const workloads = transporters.map(t => strategy.workload[t]);
+        if (transporters.length === 0) return;
+
+        const workloads = transporters.map(t => strategy.workload[t] || 0);
         const std = calculateStandardDeviation(workloads);
 
         // Create or update the chart
@@ -1080,6 +1129,7 @@ function updateWorkloadChartContainer(activeStrategies) {
         workloadCharts.style.gap = '20px';
     }
 }
+
 function createOrUpdateWorkloadChart(strategyName, transporters, workloads, std, backgroundColor, borderColor) {
     const chartId = `workload-chart-${strategyName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
     const canvas = document.getElementById(chartId);
@@ -1122,7 +1172,7 @@ function createOrUpdateWorkloadChart(strategyName, transporters, workloads, std,
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Total Time (seconds)'
+                            text: 'Total Time (minutes)'
                         }
                     },
                     x: {
@@ -1145,28 +1195,30 @@ function createOrUpdateWorkloadChart(strategyName, transporters, workloads, std,
 
 function updateRawDataTable() {
   const tableBody = document.querySelector('#raw-data-table tbody');
+  if (!tableBody) return;
+
   tableBody.innerHTML = '';
 
   // Add optimal results
   if (benchmarkResults.ilpMakespan.length > 0) {
     const optimalWorkloadStd = calculateWorkloadStd(workloadData.ilpMakespan);
     const optimalWorkloadValues = Object.values(workloadData.ilpMakespan);
-    const maxLoad = Math.max(...optimalWorkloadValues);
-    const minLoad = Math.min(...optimalWorkloadValues);
+    const maxLoad = optimalWorkloadValues.length > 0 ? Math.max(...optimalWorkloadValues) : 0;
+    const minLoad = optimalWorkloadValues.length > 0 ? Math.min(...optimalWorkloadValues) : 0;
 
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>1</td>
       <td>ILP: Makespan</td>
-      <td>${benchmarkResults.ilpMakespan[0].toFixed(2)}s</td>
+      <td>${benchmarkResults.ilpMakespan[0].toFixed(2)}m</td>
       <td>${optimalWorkloadStd.toFixed(2)}</td>
-      <td>${maxLoad.toFixed(2)}s</td>
-      <td>${minLoad.toFixed(2)}s</td>
+      <td>${maxLoad.toFixed(2)}m</td>
+      <td>${minLoad.toFixed(2)}m</td>
     `;
     tableBody.appendChild(row);
   }
 
-  // Add random results
+  // Add realistic system results
   benchmarkResults.random.forEach((time, index) => {
     // For random workload, we only have one sample for now
     let workloadStd = '–';
@@ -1176,15 +1228,15 @@ function updateRawDataTable() {
     if (index === 0 && Object.keys(workloadData.random).length > 0) {
       const values = Object.values(workloadData.random);
       workloadStd = calculateStandardDeviation(values).toFixed(2);
-      maxLoad = Math.max(...values).toFixed(2) + 's';
-      minLoad = Math.min(...values).toFixed(2) + 's';
+      maxLoad = Math.max(...values).toFixed(2) + 'm';
+      minLoad = Math.min(...values).toFixed(2) + 'm';
     }
 
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${index + 1}</td>
-      <td>Random</td>
-      <td>${time.toFixed(2)}s</td>
+      <td>Current Realistic System</td>
+      <td>${time.toFixed(2)}m</td>
       <td>${workloadStd}</td>
       <td>${maxLoad}</td>
       <td>${minLoad}</td>
@@ -1193,81 +1245,29 @@ function updateRawDataTable() {
   });
 }
 
-function addToRecentRuns() {
-  // Create new run entry
-  const numTransporters = parseInt(transporterCountSlider.value);
-  const randomRuns = parseInt(randomRunsSlider.value);
-  const optimalTime = benchmarkResults.ilpMakespan[0];
-  const randomMean = calculateMean(benchmarkResults.random);
-  const improvement = ((randomMean - optimalTime) / randomMean) * 100;
-
-  const timestamp = new Date().toLocaleTimeString();
-
-  const recentRunsContainer = document.querySelector('.recent-runs');
-  const runItem = document.createElement('div');
-  runItem.className = 'benchmark-run-item';
-  runItem.innerHTML = `
-    <div class="benchmark-run-header">
-      <span class="benchmark-time">Today, ${timestamp}</span>
-      <span class="benchmark-label">${numTransporters} Transporters, ${randomRuns} Runs</span>
-    </div>
-    <div class="benchmark-stats">
-      <div>Optimal: <span class="stat-highlight">${optimalTime.toFixed(1)}s</span></div>
-      <div>Random Avg: <span class="stat-highlight">${randomMean.toFixed(1)}s</span></div>
-      <div>Improvement: <span class="stat-highlight">${improvement.toFixed(1)}%</span></div>
-    </div>
-    <button class="btn small secondary load-run-btn">Load Results</button>
-  `;
-
-  // Add event listener to the load button
-  const loadButton = runItem.querySelector('.load-run-btn');
-  loadButton.addEventListener('click', function() {
-    // Store the current benchmark results to localStorage
-    const runData = {
-      timestamp: new Date().toISOString(),
-      config: {
-        transporters: numTransporters,
-        randomRuns: randomRuns
-      },
-      results: {
-        optimal: benchmarkResults.ilpMakespan[0],
-        random: benchmarkResults.random,
-        ilpEqual: benchmarkResults.ilpEqual,
-        ilpUrgency: benchmarkResults.ilpUrgency
-      },
-      workload: workloadData
-    };
-
-    localStorage.setItem('current_benchmark', JSON.stringify(runData));
-
-    // Reload the current benchmark
-    loadBenchmarkRun(runData);
-  });
-
-  // Add to the container (at the beginning)
-  recentRunsContainer.insertBefore(runItem, recentRunsContainer.firstChild);
-
-  // Limit to 5 recent runs
-  const runItems = recentRunsContainer.querySelectorAll('.benchmark-run-item');
-  if (runItems.length > 5) {
-    recentRunsContainer.removeChild(runItems[runItems.length - 1]);
-  }
-}
-
 function loadBenchmarkRun(runData) {
+  if (!runData || !runData.results) {
+    notifyUser('Invalid benchmark data', 'error');
+    return;
+  }
+
   // Load the saved benchmark data
   benchmarkResults = {
     random: runData.results.random || [],
-    ilpMakespan: [runData.results.optimal] || [],
+    ilpMakespan: runData.results.optimal ? [runData.results.optimal] : [],
     ilpEqual: runData.results.ilpEqual || [],
-    ilpUrgency: runData.results.ilpUrgency || []
+    ilpUrgency: runData.results.ilpUrgency || [],
+    ilpCluster: runData.results.ilpCluster || [],
+    geneticAlgorithm: runData.results.geneticAlgorithm || []
   };
 
   workloadData = runData.workload || {
     random: {},
     ilpMakespan: {},
     ilpEqual: {},
-    ilpUrgency: {}
+    ilpUrgency: {},
+    ilpCluster: {},
+    geneticAlgorithm: {}
   };
 
   // Update UI with loaded data
@@ -1502,70 +1502,176 @@ function formatTime(seconds) {
 
 // Initialize benchmark page when script loads
 function initializeBenchmarkPage() {
-  // Try to load previous benchmark if available
-  const savedBenchmark = localStorage.getItem('current_benchmark');
-  if (savedBenchmark) {
-    try {
-      const benchmarkData = JSON.parse(savedBenchmark);
-      loadBenchmarkRun(benchmarkData);
-    } catch (error) {
-      console.error('Error loading saved benchmark:', error);
-    }
-  }
+  // Skip loading saved benchmarks on initial page load
+  console.log("Benchmark page initialized - skipping auto-load of saved benchmarks");
 
-  // Try to load saved runs
+  // Still populate the recent runs list, but don't auto-load any benchmark
+  populateRecentRunsList();
+}
+
+// Separate function to populate recent runs list without loading data
+function populateRecentRunsList() {
+  // Try to load saved runs list only (without loading the actual benchmark)
   const savedRuns = localStorage.getItem('benchmark_runs');
-  if (savedRuns) {
-    try {
-      const runs = JSON.parse(savedRuns);
+  if (!savedRuns) return;
 
-      // Clear existing entries
-      const recentRunsContainer = document.querySelector('.recent-runs');
-      recentRunsContainer.innerHTML = '';
+  try {
+    const runs = JSON.parse(savedRuns);
 
-      // Add each saved run
-      runs.forEach(run => {
-        const timestamp = new Date(run.timestamp).toLocaleTimeString();
-        const numTransporters = run.config.transporters;
-        const randomRuns = run.config.randomRuns;
-        const optimalTime = run.results.optimal;
-        const randomMean = calculateMean(run.results.random);
-        const improvement = ((randomMean - optimalTime) / randomMean) * 100;
+    // Clear existing entries
+    const recentRunsContainer = document.querySelector('.recent-runs');
+    if (!recentRunsContainer) return;
+    recentRunsContainer.innerHTML = '';
 
-        const runItem = document.createElement('div');
-        runItem.className = 'benchmark-run-item';
-        runItem.innerHTML = `
-          <div class="benchmark-run-header">
-            <span class="benchmark-time">Today, ${timestamp}</span>
-            <span class="benchmark-label">${numTransporters} Transporters, ${randomRuns || '100'} Runs</span>
-          </div>
-          <div class="benchmark-stats">
-            <div>Optimal: <span class="stat-highlight">${optimalTime.toFixed(1)}s</span></div>
-            <div>Random Avg: <span class="stat-highlight">${randomMean.toFixed(1)}s</span></div>
-            <div>Improvement: <span class="stat-highlight">${improvement.toFixed(1)}%</span></div>
-          </div>
-          <button class="btn small secondary load-run-btn">Load Results</button>
-        `;
+    // Add each saved run
+    runs.forEach(run => {
+      // Skip invalid runs to prevent errors
+      if (!run || !run.results || !run.results.optimal || !run.results.random) {
+        return;
+      }
 
-        // Add event listener to the load button
-        const loadButton = runItem.querySelector('.load-run-btn');
-        loadButton.addEventListener('click', function() {
-          loadBenchmarkRun(run);
-        });
+      const timestamp = new Date(run.timestamp).toLocaleTimeString();
+      const numTransporters = run.config.transporters;
+      const randomRuns = run.config.randomRuns;
+      const optimalTime = run.results.optimal;
 
-        recentRunsContainer.appendChild(runItem);
+      // Safely calculate mean
+      const randomMean = run.results.random && run.results.random.length > 0
+        ? calculateMean(run.results.random)
+        : 0;
+
+      // Safely calculate improvement percentage
+      const improvement = (randomMean > 0)
+        ? ((randomMean - optimalTime) / randomMean) * 100
+        : 0;
+
+      const runItem = document.createElement('div');
+      runItem.className = 'benchmark-run-item';
+      runItem.innerHTML = `
+        <div class="benchmark-run-header">
+          <span class="benchmark-time">Today, ${timestamp}</span>
+          <span class="benchmark-label">${numTransporters} Transporters, ${randomRuns || '100'} Runs</span>
+        </div>
+        <div class="benchmark-stats">
+          <div>Optimal: <span class="stat-highlight">${optimalTime.toFixed(1)}m</span></div>
+          <div>Current Realistic System Avg: <span class="stat-highlight">${randomMean.toFixed(1)}m</span></div>
+          <div>Improvement: <span class="stat-highlight">${improvement.toFixed(1)}%</span></div>
+        </div>
+        <button class="btn small secondary load-run-btn">Load Results</button>
+      `;
+
+      // Add event listener to the load button
+      const loadButton = runItem.querySelector('.load-run-btn');
+      loadButton.addEventListener('click', function() {
+        loadBenchmarkRun(run);
       });
-    } catch (error) {
-      console.error('Error loading saved runs:', error);
-    }
+
+      recentRunsContainer.appendChild(runItem);
+    });
+  } catch (error) {
+    console.error('Error loading saved runs:', error);
   }
 }
 
-// Call initialization after DOM is loaded (redundant with DOMContentLoaded, but added for clarity)
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeBenchmarkPage);
-} else {
-  initializeBenchmarkPage();
+// Add a Reset button to the HTML
+function addResetButton() {
+  const resultsActions = document.querySelector('.results-actions');
+  if (!resultsActions) return;
+
+  const resetButton = document.createElement('button');
+  resetButton.id = 'reset-benchmark-btn';
+  resetButton.className = 'btn secondary';
+  resetButton.innerHTML = '<i class="fas fa-undo"></i> Reset View';
+  resetButton.addEventListener('click', resetBenchmarkView);
+
+  resultsActions.appendChild(resetButton);
+}
+
+// Function to reset the benchmark view
+function resetBenchmarkView() {
+  clearBenchmarkResults();
+  updateAllResults();
+  notifyUser('Benchmark view has been reset', 'info');
+}
+
+// Add this function to handle creating/updating the recent runs
+function addToRecentRuns() {
+  if (!benchmarkResults.ilpMakespan || benchmarkResults.ilpMakespan.length === 0 ||
+      !benchmarkResults.random || benchmarkResults.random.length === 0) {
+    console.warn("Incomplete benchmark results, skipping adding to recent runs");
+    return;
+  }
+
+  // Create new run entry
+  const numTransporters = parseInt(transporterCountSlider.value);
+  const randomRuns = parseInt(randomRunsSlider.value);
+  const optimalTime = benchmarkResults.ilpMakespan[0];
+
+  // Calculate mean safely
+  const randomMean = benchmarkResults.random.length > 0
+    ? calculateMean(benchmarkResults.random)
+    : 0;
+
+  // Calculate improvement safely
+  const improvement = randomMean > 0
+    ? ((randomMean - optimalTime) / randomMean) * 100
+    : 0;
+
+  const timestamp = new Date().toLocaleTimeString();
+
+  const recentRunsContainer = document.querySelector('.recent-runs');
+  if (!recentRunsContainer) return;
+
+  const runItem = document.createElement('div');
+  runItem.className = 'benchmark-run-item';
+  runItem.innerHTML = `
+    <div class="benchmark-run-header">
+      <span class="benchmark-time">Today, ${timestamp}</span>
+      <span class="benchmark-label">${numTransporters} Transporters, ${randomRuns} Runs</span>
+    </div>
+    <div class="benchmark-stats">
+      <div>Optimal: <span class="stat-highlight">${optimalTime.toFixed(1)}m</span></div>
+      <div>Current Realistic System Avg: <span class="stat-highlight">${randomMean.toFixed(1)}m</span></div>
+      <div>Improvement: <span class="stat-highlight">${improvement.toFixed(1)}%</span></div>
+    </div>
+    <button class="btn small secondary load-run-btn">Load Results</button>
+  `;
+
+  // Add event listener to the load button
+  const loadButton = runItem.querySelector('.load-run-btn');
+  loadButton.addEventListener('click', function() {
+    // Store the current benchmark results to localStorage
+    const runData = {
+      timestamp: new Date().toISOString(),
+      config: {
+        transporters: numTransporters,
+        randomRuns: randomRuns
+      },
+      results: {
+        optimal: benchmarkResults.ilpMakespan[0],
+        random: benchmarkResults.random,
+        ilpEqual: benchmarkResults.ilpEqual,
+        ilpUrgency: benchmarkResults.ilpUrgency,
+        ilpCluster: benchmarkResults.ilpCluster,
+        geneticAlgorithm: benchmarkResults.geneticAlgorithm
+      },
+      workload: workloadData
+    };
+
+    localStorage.setItem('current_benchmark', JSON.stringify(runData));
+
+    // Reload the current benchmark
+    loadBenchmarkRun(runData);
+  });
+
+  // Add to the container (at the beginning)
+  recentRunsContainer.insertBefore(runItem, recentRunsContainer.firstChild);
+
+  // Limit to 5 recent runs
+  const runItems = recentRunsContainer.querySelectorAll('.benchmark-run-item');
+  if (runItems.length > 5) {
+    recentRunsContainer.removeChild(runItems[runItems.length - 1]);
+  }
 }
 
 // Time-based benchmark functions - add to benchmark.js
@@ -1807,7 +1913,7 @@ function runTimeBasedBenchmark(startHour, endHour, transporterCount) {
     });
 
     processBenchmarkResults({
-      strategy: 'Random',
+      strategy: 'Random',  // Note: Using internal name for server compatibility
       times: data.results.random_times,
       workload: data.workload.random
     });
@@ -2150,8 +2256,23 @@ function addScenarioToList(scenario) {
   scenarioList.insertBefore(scenarioItem, actionsDiv);
 }
 
-// Add this call to your document ready function
+// Initialize time-based scenarios
 document.addEventListener('DOMContentLoaded', function() {
-  // Add this along with your other initializations
   initializeTimeBasedScenarios();
 });
+
+// Helper function to map between display names and internal names
+function getInternalStrategyName(displayName) {
+  if (displayName === 'Current Realistic System') {
+    return 'Random';
+  }
+  return displayName;
+}
+
+// Helper function to map from internal names to display names
+function getDisplayStrategyName(internalName) {
+  if (internalName === 'Random') {
+    return 'Current Realistic System';
+  }
+  return internalName;
+}
