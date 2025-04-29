@@ -15,7 +15,11 @@ class ILPOptimizerStrategy(AssignmentStrategy):
 
         Args:
             mode: The ILP mode to use (from ILPMode enum)
-            **kwargs: Additional parameters for specific modes (e.g., num_clusters)
+            **kwargs: Additional parameters for the optimizer:
+                - time_limit: Maximum time in seconds for optimization (default: 30)
+                - use_two_phase: Whether to use two-phase optimization (default: True)
+                - use_warm_start: Whether to use warm starting (default: True)
+                - num_clusters: Number of clusters for CLUSTER_BASED mode (default: 5)
         """
         self.mode = mode
         self.kwargs = kwargs
@@ -37,16 +41,43 @@ class ILPOptimizerStrategy(AssignmentStrategy):
         Returns:
             ILP optimizer instance
         """
+        # Extract additional parameters from kwargs
+        time_limit = self.kwargs.get('time_limit', 30)
+        use_two_phase = self.kwargs.get('use_two_phase', True)
+        use_warm_start = self.kwargs.get('use_warm_start', True)
+
         if self.mode == ILPMode.MAKESPAN:
-            return ILPMakespan(transporters, assignable_requests, graph)
+            return ILPMakespan(
+                transporters, assignable_requests, graph,
+                use_two_phase=use_two_phase,
+                time_limit=time_limit,
+                use_warm_start=use_warm_start
+            )
+
         elif self.mode == ILPMode.EQUAL_WORKLOAD:
-            return ILPEqualWorkload(transporters, assignable_requests, graph)
+            return ILPEqualWorkload(
+                transporters, assignable_requests, graph,
+                use_two_phase=use_two_phase,
+                time_limit=time_limit,
+                use_warm_start=use_warm_start
+            )
+
         elif self.mode == ILPMode.URGENCY_FIRST:
-            return ILPUrgencyFirst(transporters, assignable_requests, graph)
+            return ILPUrgencyFirst(
+                transporters, assignable_requests, graph,
+                use_two_phase=use_two_phase,
+                time_limit=time_limit,
+                use_warm_start=use_warm_start
+            )
+
         elif self.mode == ILPMode.CLUSTER_BASED:
             # Get parameters specific to cluster-based approach
             num_clusters = self.kwargs.get('num_clusters', 5)
-            return ClusterBasedILP(transporters, assignable_requests, graph, num_clusters=num_clusters)
+            return ClusterBasedILP(
+                transporters, assignable_requests, graph,
+                num_clusters=num_clusters
+            )
+
         else:
             raise ValueError(f"Unsupported ILP Mode: {self.mode}")
 
